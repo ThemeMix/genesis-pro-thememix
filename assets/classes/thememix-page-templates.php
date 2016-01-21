@@ -38,7 +38,7 @@ class ThemeMix_Page_Templates {
 	 * @return array  $templates  The modified list of page templates
 	 */
 	public function get_dynamic_page_templates() {
-		$current_dir = dirname( __FILE__ );
+		$current_dir = dirname( dirname( dirname( __FILE__ ) ) );
 		$dir = $current_dir . '/page-templates/';
 		$dynamic_templates = array_diff( scandir( $dir ), array( '..', '.' ) );
 		return $dynamic_templates;
@@ -51,7 +51,7 @@ class ThemeMix_Page_Templates {
 	 * @return array  $templates  The modified list of page templates
 	 */
 	public function add_page_templates( $templates ) {
-		$current_dir = dirname( __FILE__ );
+		$current_dir = dirname( dirname( dirname( __FILE__ ) ) );
 		$dir = $current_dir . '/page-templates/';
 		foreach ( $this->get_dynamic_page_templates() as $key => $template_file ) {
 			$templates[$template_file] = $this->get_template_name( $dir . $template_file );
@@ -71,7 +71,8 @@ class ThemeMix_Page_Templates {
 
 			// If current page template matches available dynamic page template, then load it.
 			if ( $template_file == $page_template ) {
-				require( plugin_dir_path( __FILE__ ) . '/page-templates/' . $template_file );
+				$current_dir = dirname( dirname( __FILE__ ) );
+				require( plugin_dir_path( $current_dir ) . 'page-templates/' . $template_file );
 				exit;
 			}
 		}
