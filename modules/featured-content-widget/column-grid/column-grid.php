@@ -1,8 +1,10 @@
 <?php
 
 $settings = get_option( 'widget_featured-content' );
-foreach ( $settings as $key => $setting ) {
-	$thememixfc_grid_counter[$key] = 0;
+if ( is_array( $settings ) ) {
+	foreach ( $settings as $key => $setting ) {
+		$thememixfc_grid_counter[$key] = 0;
+	}
 }
 
 function themefixfc_grid_after() {
