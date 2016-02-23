@@ -187,6 +187,7 @@ function thememixfc_fontawesome_styles() {
 	$plugin_url = plugin_dir_url( __FILE__ );
 	wp_enqueue_style( 'font-awesome',  $plugin_url . 'css/font-awesome.min.css', array(), '1.0', false );
 }
+add_action( 'admin_enqueue_scripts', 'thememixfc_fontawesome_styles' );
 add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles' );
 
 /**
