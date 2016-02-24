@@ -4,7 +4,7 @@ Contributors: thememix, defries, ryanhellyer
 Tags: genesiswp, page templates, genesis framework, genesis, thememix
 Requires at least: 4.4
 Tested up to: 4.4.1
-Stable tag: 0.1.0
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,13 @@ Right now the only thing this plugin does is add a login page template to your l
 Glad you asked. Our internal roadmap is not public (yet), but we sure are curious what you think this plugin should offer. Find us on [twitter](https://twitter.com/thememix/) and let us know!
 
 == Changelog ==
+
+= 0.3 =
+* Adding of Font Awesome functionality to the featured content widget.
+* Adding of BuddyPress Groups functionality to the featured content widget.
+
+= 0.2 =
+* Adding featured content widget.
 
 = 0.1.0 =
 * Into the light I command thee!
