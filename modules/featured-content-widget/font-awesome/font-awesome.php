@@ -101,6 +101,17 @@ function thememixfc_get_span_fontawesome( $text ) {
 
 	$settings = get_option( 'widget_featured-content' );
 	$key = $thememixfc_key;
+
+	// Bail out if Font Awesome not on
+	if (
+		isset( $settings[$key] ) && 1 != $settings[$key]
+		||
+		! isset( $settings[$key] )
+	) {
+		return $text;
+	}
+
+
 	if ( isset( $settings[$key]['fontawesome-position'] ) ) {
 		$position = $settings[$key]['fontawesome-position'];
 	} else {
