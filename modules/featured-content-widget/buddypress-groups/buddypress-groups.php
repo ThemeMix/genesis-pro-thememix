@@ -105,11 +105,13 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 
 				if ( 'inline_before_title' == $fontawesome_position ) {
 					thememixfc_span_fontawesome( $key, true );
+					echo ' ';
 				}
 
 				echo esc_html( $group->name );
 
 				if ( 'inline_after_title' == $fontawesome_position ) {
+					echo ' ';
 					thememixfc_span_fontawesome( $key, true );
 				}
 

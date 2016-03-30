@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
  */
 if ( ! class_exists( 'GS_Featured_Content' ) ) {
 class GS_Featured_Content extends WP_Widget {
-	
+
 	/**
 	 * Holds a copy of the object for easy reference.
 	 *
@@ -134,10 +134,11 @@ class GS_Featured_Content extends WP_Widget {
 		);
 
 		$name = __( 'Genesis Sandbox', 'thememixfc' );
-		if ( defined( 'CHILD_NAME' ) && true === apply_filters( 'thememixfc_widget_name', false ) )
+		if ( defined( 'CHILD_NAME' ) && true === apply_filters( 'thememixfc_widget_name', false ) ) {
 			$name = CHILD_THEME_NAME;
-		elseif ( apply_filters( 'thememixfc_widget_name', false ) )
+		} elseif ( apply_filters( 'thememixfc_widget_name', false ) ) {
 			$name = apply_filters( 'thememixfc_widget_name', false );
+		}
 
 		parent::__construct( 'featured-content', sprintf( __( '%s - Featured Content', 'thememixfc' ), $name ), $widget_ops, $control_ops );
 
