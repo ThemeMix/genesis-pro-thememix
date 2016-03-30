@@ -31,6 +31,9 @@ Glad you asked. Our internal roadmap is not public (yet), but we sure are curiou
 
 == Changelog ==
 
+= 0.9 =
+* Bug fixing and code cleanup.
+
 = 0.3 =
 * Adding of Font Awesome functionality to the featured content widget.
 * Adding of BuddyPress Groups functionality to the featured content widget.
