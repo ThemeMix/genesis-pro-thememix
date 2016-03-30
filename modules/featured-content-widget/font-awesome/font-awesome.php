@@ -104,9 +104,9 @@ function thememixfc_get_span_fontawesome( $text ) {
 
 	// Bail out if Font Awesome not on
 	if (
-		isset( $settings[$key] ) && 1 != $settings[$key]
+		isset( $settings[$key]['font-awesome'] ) && 1 != $settings[$key]['font-awesome']
 		||
-		! isset( $settings[$key] )
+		! isset( $settings[$key]['font-awesome'] )
 	) {
 		return $text;
 	}
