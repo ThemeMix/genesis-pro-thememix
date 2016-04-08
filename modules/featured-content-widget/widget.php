@@ -354,9 +354,12 @@ class GS_Featured_Content extends WP_Widget {
 		if ( !empty( $instance['post_info'] ) ) {
 			$byline = sprintf( '<p class="entry-meta">%s</p>', do_shortcode( $instance['post_info'] ) );
 		}
-		
+
 		GS_Featured_Content::maybe_echo( $instance, 'thememixfc_before_post_content', 'byline_position', 'before-title', $byline );
+
+		echo '<div class="entry-content">';
 		GS_Featured_Content::maybe_echo( $instance, 'thememixfc_post_content', 'byline_position', 'after-title', $byline );
+		echo '</div>';
 	}
 	
 	/**
@@ -1974,11 +1977,11 @@ function thememixfcSave(t) {
 		/* Add the width from $widget_width to the class from the $before widget */
 		// no 'class' attribute - add one with the value of width
 		if( strpos( $b, 'class' ) === false ) {
-			$b = str_replace( '>', 'class="' . GS_Featured_Content::$base . '-' . sanitize_html_class( $class ) . ' featuredpost"', $b );
+			$b = str_replace( '>', 'class="widget-wrap">', $b );
 		}
 		// there is 'class' attribute - append width value to it
 		else {
-			$b = str_replace( 'class="', 'class="'. GS_Featured_Content::$base . '-' . sanitize_html_class( $class ) . ' featuredpost ', $b );
+			$b = str_replace( 'class="', 'class="widget-wrap ', $b );
 		}
 		
 		/* Before widget */
