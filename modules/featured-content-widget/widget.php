@@ -133,7 +133,7 @@ class GS_Featured_Content extends WP_Widget {
 			'height'  => 350,
 		);
 
-		$name = __( 'Genesis Sandbox', 'thememixfc' );
+		$name = __( 'ThemeMix Genesis', 'thememixfc' );
 		if ( defined( 'CHILD_NAME' ) && true === apply_filters( 'thememixfc_widget_name', false ) ) {
 			$name = CHILD_THEME_NAME;
 		} elseif ( apply_filters( 'thememixfc_widget_name', false ) ) {

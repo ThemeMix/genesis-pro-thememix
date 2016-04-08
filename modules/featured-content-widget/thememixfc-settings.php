@@ -98,7 +98,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
      */
     public function add_metabox() {
         if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
-            add_meta_box( 'thememixfc-settings', __( 'Genesis Sandbox Featured Content Settings', 'thememixfc' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
+            add_meta_box( 'thememixfc-settings', __( 'ThemeMix Genesis Featured Content Settings', 'thememixfc' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
     }
     
     /**
@@ -119,7 +119,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
     public function settings() {
     ?>
         <label for="<?php echo $this->get_field_id( 'thememixfc_gfwa' ); ?>"><input type="checkbox" name="<?php echo $this->get_field_name( 'thememixfc_gfwa' ); ?>" id="<?php echo $this->get_field_id( 'thememixfc_gfwa' ); ?>" value="1"<?php checked( $this->get_field_value( 'thememixfc_gfwa' ) ); ?> />
-        <?php _e( 'Have Genesis Sandbox Featured Content Widget take over Genesis Featured Widget Amplified?', 'thememixfc' ); ?></label>
+        <?php _e( 'Have ThemeMix Genesis Featured Content Widget take over Genesis Featured Widget Amplified?', 'thememixfc' ); ?></label>
     <?php
     }
     
