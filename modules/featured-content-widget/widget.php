@@ -352,7 +352,7 @@ class GS_Featured_Content extends WP_Widget {
 		
 		$byline = '';
 		if ( !empty( $instance['post_info'] ) ) {
-			$byline = sprintf( '<p class="byline post-info">%s</p>', do_shortcode( $instance['post_info'] ) );
+			$byline = sprintf( '<p class="entry-meta">%s</p>', do_shortcode( $instance['post_info'] ) );
 		}
 		
 		GS_Featured_Content::maybe_echo( $instance, 'thememixfc_before_post_content', 'byline_position', 'before-title', $byline );
