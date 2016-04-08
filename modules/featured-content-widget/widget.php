@@ -356,10 +356,7 @@ class GS_Featured_Content extends WP_Widget {
 		}
 
 		GS_Featured_Content::maybe_echo( $instance, 'thememixfc_before_post_content', 'byline_position', 'before-title', $byline );
-
-		echo '<div class="entry-content">';
 		GS_Featured_Content::maybe_echo( $instance, 'thememixfc_post_content', 'byline_position', 'after-title', $byline );
-		echo '</div>';
 	}
 	
 	/**
@@ -524,7 +521,7 @@ class GS_Featured_Content extends WP_Widget {
 			return;
 		}
 
-		if ( '' !== $instance['show_content'] && ( $pre = apply_filters( 'thememixfc_post_content_add_entry_content', false ) ) ) {
+		if ( '' !== $instance['show_content'] ) {
 			echo '<div class="entry-content">';
 		}
 		switch ( $instance['show_content'] ) {
@@ -543,7 +540,7 @@ class GS_Featured_Content extends WP_Widget {
 				do_action( 'thememixfc_show_content' );
 				break;
 		}
-		if ( '' !== $instance['show_content'] && ( $pre = apply_filters( 'thememixfc_post_content_add_entry_content', false ) ) ) {
+		if ( '' !== $instance['show_content'] ) {
 			echo '</div>';
 		}
 		
