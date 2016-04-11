@@ -124,7 +124,7 @@ class GS_Featured_Content extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => 'featured-content',
-			'description' => __( 'Displays featured posts with thumbnails', 'thememix-pro-genesis' ),
+			'description' => __( 'Displays featured content with thumbnails', 'thememix-pro-genesis' ),
 		);
 
 		$control_ops = array(
@@ -140,7 +140,7 @@ class GS_Featured_Content extends WP_Widget {
 			$name = apply_filters( 'thememixfc_widget_name', false );
 		}
 
-		parent::__construct( 'featured-content', sprintf( __( '%s - Featured Content', 'thememix-pro-genesis' ), $name ), $widget_ops, $control_ops );
+		parent::__construct( 'featured-content', $name, $widget_ops, $control_ops );
 
 		GS_Featured_Content::add();
 		do_action( 'thememixfc_actions', $this );
