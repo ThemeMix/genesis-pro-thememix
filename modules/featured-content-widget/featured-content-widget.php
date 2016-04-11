@@ -13,7 +13,7 @@
  */
 
 /**
- * Genesis Sandbox Featured Post Widget
+ * Genesis Featured Content by ThemeMix Widget
  *
  * @category   Genesis_Sandbox_Featured_Content
  * @package    Widgets
