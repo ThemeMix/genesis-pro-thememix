@@ -68,7 +68,7 @@ function themefix_column_grid_settings_extension( $args ) {
 
 	$args['col2'][] = array(
 		'column-grid' => array(
-			'label'       => __( 'Number of columns', 'thememixfc' ),
+			'label'       => __( 'Number of columns', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'select',
 			'options'     => array(

@@ -81,9 +81,9 @@ add_filter( 'plugin_action_links', 'thememixfc_action_links', 10, 2 );
 function thememixfc_action_links( $links, $file ) {
 	if ( $file == plugin_basename( __FILE__ ) ) {
 		if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
-			array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=genesis' ), __( 'Settings', 'thememixfc' ) ) );
-		array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'widgets.php' ), __( 'Widgets', 'thememixfc' ) ) );
-		array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'thememixfc' ) ) );
+			array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=genesis' ), __( 'Settings', 'thememix-pro-genesis' ) ) );
+		array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'widgets.php' ), __( 'Widgets', 'thememix-pro-genesis' ) ) );
+		array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'thememix-pro-genesis' ) ) );
 	}
 	return $links;
 }
@@ -151,11 +151,11 @@ function thememixprofc_requirements_notice() {
 	echo '<div class="notice notice-success is-dismissible">';
 
 	if ( ! genesis_html5() ) {
-		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememixfc' ) . '</p>';
+		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememix-pro-genesis' ) . '</p>';
 	}
 
 	if ( ! class_exists( 'BP_Groups_Group' ) ) {
-		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires BuddyPress to be activated and the Groups compontent turned on.', 'thememixfc' ) . '</p>';
+		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires BuddyPress to be activated and the Groups compontent turned on.', 'thememix-pro-genesis' ) . '</p>';
 	}
 
 	echo '</div>';

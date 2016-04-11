@@ -27,12 +27,12 @@ function themefix_font_awesome_settings_extension( $args ) {
 
 	$args['col2'][] = array(
 		'font-awesome'             => array(
-			'label'       => __( 'Display Font Awesome icon', 'thememixfc' ),
+			'label'       => __( 'Display Font Awesome icon', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'checkbox',
 		),
 		'fontawesome-icon' => array(
-			'label'       => __( 'Icon', 'thememixfc' ),
+			'label'       => __( 'Icon', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'fontawesome',
 			'requires'    => array(
@@ -43,7 +43,7 @@ function themefix_font_awesome_settings_extension( $args ) {
 		),
 
 		'fontawesome-colour' => array(
-			'label'       => __( 'Colour', 'thememixfc' ),
+			'label'       => __( 'Colour', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'colour_picker',
 			'requires'    => array(
@@ -54,7 +54,7 @@ function themefix_font_awesome_settings_extension( $args ) {
 		),
 
 		'fontawesome-size' => array(
-			'label'       => __( 'Size', 'thememixfc' ),
+			'label'       => __( 'Size', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'select',
 			'options'     => array(
@@ -74,7 +74,7 @@ function themefix_font_awesome_settings_extension( $args ) {
 		),
 
 		'fontawesome-position' => array(
-			'label'       => __( 'Position', 'thememixfc' ),
+			'label'       => __( 'Position', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'select',
 			'options'     => array(
