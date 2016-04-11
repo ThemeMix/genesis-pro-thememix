@@ -27,60 +27,6 @@ class ThemeMix_Page_Templates {
 
 		// Add header logo
 		$wp_customize->add_setting(
-			'logged-in-heading',
-			array(
-				'type'              => 'theme_mod',
-				'capability'        => 'edit_theme_options',
-			)
-		);
-		$wp_customize->add_control(
-			'logged-in-heading',
-			array(
-				'section'         => 'thememix-pro-genesis',
-				'label'           => __( 'Login page - Logged in heading', 'thememix-pro-genesis' ),
-				'type'            => 'textarea',
-				'settings'        => 'logged-in-heading',
-				'active_callback' => array( $this, 'if_login_page' ),
-			)
-		);
-
-		$wp_customize->add_setting(
-			'logged-in-text',
-			array(
-				'type'              => 'theme_mod',
-				'capability'        => 'edit_theme_options',
-			)
-		);
-		$wp_customize->add_control(
-			'logged-in-text',
-			array(
-				'section'         => 'thememix-pro-genesis',
-				'label'           => __( 'Login page - Logged in text', 'thememix-pro-genesis' ),
-				'type'            => 'textarea',
-				'settings'        => 'logged-in-text',
-				'active_callback' => array( $this, 'if_login_page' ),
-			)
-		);
-
-		$wp_customize->add_setting(
-			'logged-out-heading',
-			array(
-				'type'              => 'theme_mod',
-				'capability'        => 'edit_theme_options',
-			)
-		);
-		$wp_customize->add_control(
-			'logged-out-heading',
-			array(
-				'section'         => 'thememix-pro-genesis',
-				'label'           => __( 'Login page - Logged out heading', 'thememix-pro-genesis' ),
-				'type'            => 'textarea',
-				'settings'        => 'logged-out-heading',
-				'active_callback' => array( $this, 'if_login_page' ),
-			)
-		);
-
-		$wp_customize->add_setting(
 			'logged-out-text',
 			array(
 				'type'              => 'theme_mod',
@@ -88,10 +34,10 @@ class ThemeMix_Page_Templates {
 			)
 		);
 		$wp_customize->add_control(
-			'login-template',
+			'logged-in-heading',
 			array(
 				'section'         => 'thememix-pro-genesis',
-				'label'           => __( 'Login page - Logged out text', 'thememix-pro-genesis' ),
+				'label'           => __( 'Logged out text', 'thememix-pro-genesis' ),
 				'type'            => 'textarea',
 				'settings'        => 'logged-out-text',
 				'active_callback' => array( $this, 'if_login_page' ),

@@ -33,7 +33,8 @@ function thememix_private_page_content() {
 	if ( is_user_logged_in() ) {
 		genesis_do_post_content();
 	} else {
-		echo '<p>'. __( 'Please log in to view this content.', 'thememix-pro-genesis' ). '</p>';
+
+		echo wpautop( get_theme_mod( 'logged-out-text', __( 'Please log in to view this content.', 'thememix-pro-genesis' ) ) );
 
 		$args = array(
 			'form_id'			=> 'loginform',
