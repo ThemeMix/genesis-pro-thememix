@@ -30,10 +30,20 @@ class ThemeMix_Pro_Genesis_Theme_Customizer {
 				'title'       => __( 'ThemeMix Pro Genesis', 'thememix-pro-genesis' ),
 				'priority'    => 10,
 				'description' => __( 'Settings for the ThemeMix Pro Genesis plugin.', 'thememix-pro-genesis' ),
+				'active_callback' => array( $this, 'test' ),
 			)
 		);
 
 	}
+
+function test() {
+
+	if ( 'page-private.php' == get_page_template_slug( get_the_ID() ) ) {
+		return true;
+	}
+
+	return false;
+}
 
 }
 new ThemeMix_Pro_Genesis_Theme_Customizer;

@@ -33,6 +33,7 @@ class ThemeMix_Page_Templates {
 				'capability'        => 'edit_theme_options',
 			)
 		);
+
 		$wp_customize->add_control(
 			new WP_Customize_Image_Control(
 				$wp_customize,
