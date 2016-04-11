@@ -1,11 +1,7 @@
 <?php
 /**
- * Plugin Name: Genesis Sandbox Featured Content Widget
- * Plugin URI: https://wpsmith.net/
- * Description: Based on the Genesis Featured Widget Amplified for additional functionality which allows support for custom post types, taxonomies, and extends the flexibility of the widget via action hooks to allow the elements to be re-positioned or other elements to be added.
- * Version: 1.1.8
- * Author: Travis Smith
- * Author URI: http://wpsmith.net/
+ * Based on "Genesis Sandbox Featured Content Widget" by Travis Smith
+ * https://wpsmith.net/
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
  * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume 
