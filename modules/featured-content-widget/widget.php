@@ -1975,17 +1975,19 @@ function thememixfcSave(t) {
 	 * 
 	 */
 	public static function before_widget( $b, $class = '' ) {
-	
+//echo $b;return;
 		/* Add the width from $widget_width to the class from the $before widget */
 		// no 'class' attribute - add one with the value of width
-		if( strpos( $b, 'class' ) === false ) {
-			$b = str_replace( '>', 'class="widget-wrap">', $b );
+//echo "\n\n\n\n\n".$b;die;
+		$string = 'class="widget featured-content"';
+		if( strpos( $b, $string ) === false ) {
 		}
 		// there is 'class' attribute - append width value to it
 		else {
-			$b = str_replace( 'class="', 'class="widget-wrap ', $b );
+			$b = str_replace( $string, 'class="widget featured-content featuredpost"', $b );
+//			$b = str_replace( 'class="', 'class="widget-wrap ', $b );
 		}
-		
+
 		/* Before widget */
 		echo $b;
 	}
