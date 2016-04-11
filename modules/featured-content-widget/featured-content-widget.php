@@ -140,16 +140,12 @@ function thememixprofc_get_image_sizes() {
  */
 function thememixprofc_requirements_notice() {
 
-	if ( genesis_html5() && class_exists( 'BP_Groups_Group' ) ) {
-		return;
-	}
-
-	echo '<div class="notice notice-success is-dismissible">';
-
 	if ( ! genesis_html5() ) {
-		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememix-pro-genesis' ) . '</p>';
-	}
 
-	echo '</div>';
+		echo '<div class="notice notice-success is-dismissible">';
+		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememix-pro-genesis' ) . '</p>';
+		echo '</div>';
+
+	}
 }
 add_action( 'admin_notices', 'thememixprofc_requirements_notice' );
