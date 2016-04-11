@@ -39,13 +39,13 @@ add_action( 'genesis_init', 'thememixfc_init', 50 );
  * @since 1.1.0
  */
 function thememixfc_init() {
-    if ( is_admin() ) {
-        require_once( 'thememixfc-settings.php' );
-        
-        global $_thememixfc_settings;
-        $_thememixfc_settings = new ThemeMixFC_Settings();
-    }
-    
+	if ( is_admin() ) {
+		require_once( 'thememixfc-settings.php' );
+		
+		global $_thememixfc_settings;
+		$_thememixfc_settings = new ThemeMixFC_Settings();
+	}
+	
 }
 
 require( 'widget.php' );
@@ -60,14 +60,14 @@ add_action( 'widgets_init', 'thememixfc_widgets_init', 50 );
  * @since 1.1.0
  */
 function thememixfc_widgets_init() {
-    if ( class_exists( 'Premise_Base' ) && !is_admin() ) {
-        return;
-    }
-    $gfwa = genesis_get_option( 'thememixfc_gfwa' );
-    if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa ) {
-        unregister_widget( 'Genesis_Featured_Widget_Amplified' );
-    }
-    register_widget( 'GS_Featured_Content' );
+	if ( class_exists( 'Premise_Base' ) && !is_admin() ) {
+		return;
+	}
+	$gfwa = genesis_get_option( 'thememixfc_gfwa' );
+	if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa ) {
+		unregister_widget( 'Genesis_Featured_Widget_Amplified' );
+	}
+	register_widget( 'GS_Featured_Content' );
 }
 
 add_filter( 'plugin_action_links', 'thememixfc_action_links', 10, 2 );
@@ -79,13 +79,13 @@ add_filter( 'plugin_action_links', 'thememixfc_action_links', 10, 2 );
  * @return array $links Maybe modified array of links.
  */
 function thememixfc_action_links( $links, $file ) {
-    if ( $file == plugin_basename( __FILE__ ) ) {
-        if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
-            array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=genesis' ), __( 'Settings', 'thememixfc' ) ) );
-        array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'widgets.php' ), __( 'Widgets', 'thememixfc' ) ) );
-        array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'thememixfc' ) ) );
-    }
-    return $links;
+	if ( $file == plugin_basename( __FILE__ ) ) {
+		if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
+			array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=genesis' ), __( 'Settings', 'thememixfc' ) ) );
+		array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'widgets.php' ), __( 'Widgets', 'thememixfc' ) ) );
+		array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'thememixfc' ) ) );
+	}
+	return $links;
 }
 
 add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
@@ -103,10 +103,10 @@ add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
  * @param  bool           $update                 Whether post is being updated
  */
 function thememixfc_save_post( $post_ID, $post, $update ) {
-    global $wpdb;
+	global $wpdb;
 
-    $query = apply_filters( 'thememixfc_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
-    $wpdb->query( $query );
+	$query = apply_filters( 'thememixfc_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
+	$wpdb->query( $query );
 
 }
 
@@ -118,25 +118,25 @@ function thememixfc_save_post( $post_ID, $post, $update ) {
  * @return array $sizes Data for all currently-registered image sizes.
  */
 function thememixprofc_get_image_sizes() {
-    global $_wp_additional_image_sizes;
+	global $_wp_additional_image_sizes;
 
-    $sizes = array();
+	$sizes = array();
 
-    foreach ( get_intermediate_image_sizes() as $_size ) {
-        if ( in_array( $_size, array('thumbnail', 'medium', 'medium_large', 'large') ) ) {
-            $sizes[ $_size ]['width']  = get_option( "{$_size}_size_w" );
-            $sizes[ $_size ]['height'] = get_option( "{$_size}_size_h" );
-            $sizes[ $_size ]['crop']   = (bool) get_option( "{$_size}_crop" );
-        } elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
-            $sizes[ $_size ] = array(
-                'width'  => $_wp_additional_image_sizes[ $_size ]['width'],
-                'height' => $_wp_additional_image_sizes[ $_size ]['height'],
-                'crop'   => $_wp_additional_image_sizes[ $_size ]['crop'],
-            );
-        }
-    }
+	foreach ( get_intermediate_image_sizes() as $_size ) {
+		if ( in_array( $_size, array('thumbnail', 'medium', 'medium_large', 'large') ) ) {
+			$sizes[ $_size ]['width']  = get_option( "{$_size}_size_w" );
+			$sizes[ $_size ]['height'] = get_option( "{$_size}_size_h" );
+			$sizes[ $_size ]['crop']   = (bool) get_option( "{$_size}_crop" );
+		} elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+			$sizes[ $_size ] = array(
+				'width'  => $_wp_additional_image_sizes[ $_size ]['width'],
+				'height' => $_wp_additional_image_sizes[ $_size ]['height'],
+				'crop'   => $_wp_additional_image_sizes[ $_size ]['crop'],
+			);
+		}
+	}
 
-    return $sizes;
+	return $sizes;
 }
 
 /**
@@ -144,14 +144,14 @@ function thememixprofc_get_image_sizes() {
  */
 function thememixprofc_html5_notice() {
 
-    if ( genesis_html5() ) {
-        return;
-    }
+	if ( genesis_html5() ) {
+		return;
+	}
 
-    ?>
-    <div class="notice notice-success is-dismissible">
-        <p><?php _e( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememixfc' ); ?></p>
-    </div>
-    <?php
+	?>
+	<div class="notice notice-success is-dismissible">
+		<p><?php _e( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememixfc' ); ?></p>
+	</div>
+	<?php
 }
 add_action( 'admin_notices', 'thememixprofc_html5_notice' );
