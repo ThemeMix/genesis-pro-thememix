@@ -138,3 +138,20 @@ function thememixprofc_get_image_sizes() {
 
     return $sizes;
 }
+
+/**
+ * Serve admin panel notice for users of child themes running in XHTML mode.
+ */
+function thememixprofc_html5_notice() {
+
+    if ( genesis_html5() ) {
+        return;
+    }
+
+    ?>
+    <div class="notice notice-success is-dismissible">
+        <p><?php _e( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememixfc' ); ?></p>
+    </div>
+    <?php
+}
+add_action( 'admin_notices', 'thememixprofc_html5_notice' );
