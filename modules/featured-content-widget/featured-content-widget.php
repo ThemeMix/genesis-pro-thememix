@@ -154,10 +154,6 @@ function thememixprofc_requirements_notice() {
 		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememix-pro-genesis' ) . '</p>';
 	}
 
-	if ( ! class_exists( 'BP_Groups_Group' ) ) {
-		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires BuddyPress to be activated and the Groups compontent turned on.', 'thememix-pro-genesis' ) . '</p>';
-	}
-
 	echo '</div>';
 }
 add_action( 'admin_notices', 'thememixprofc_requirements_notice' );
