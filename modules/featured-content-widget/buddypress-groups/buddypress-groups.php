@@ -80,7 +80,12 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 
 					// Add image link to image HTML
 					if ( isset( $settings[$key]['link_image'] ) && 1 == $settings[$key]['link_image'] ) {
-						$image_html = '<a href="' . esc_attr( bp_get_activity_user_link() ) . '">' . $image_html . '</a>';
+						if ( '' == $settings[$key]['gravatar_alignment'] ) {
+							$alignment = 'alignnone';
+						} else {
+							$alignment = $settings[$key]['gravatar_alignment'];
+						}
+						$image_html = '<a href="' . esc_attr( bp_get_activity_user_link() ) . '"><span class="' . esc_attr( $alignment ) . '">' . $image_html . '</span></a>';
 					}
 
 				}

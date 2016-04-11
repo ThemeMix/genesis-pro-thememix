@@ -588,6 +588,7 @@ function thememixfcSave(t) {
 	 * @param array $instance The settings for the particular instance of the widget.
 	 */
 	public static function do_gravatar( $instance ) {
+
 		if ( ! empty( $instance['show_gravatar'] ) ) {
 			
 			$tag = 'a';
@@ -1975,23 +1976,18 @@ function thememixfcSave(t) {
 	 * 
 	 */
 	public static function before_widget( $b, $class = '' ) {
-//echo $b;return;
-		/* Add the width from $widget_width to the class from the $before widget */
-		// no 'class' attribute - add one with the value of width
-//echo "\n\n\n\n\n".$b;die;
+
 		$string = 'class="widget featured-content"';
-		if( strpos( $b, $string ) === false ) {
-		}
-		// there is 'class' attribute - append width value to it
-		else {
+		if ( strpos( $b, $string ) === false ) {
+			// Do nothing
+		} else {
 			$b = str_replace( $string, 'class="widget featured-content featuredpost"', $b );
-//			$b = str_replace( 'class="', 'class="widget-wrap ', $b );
 		}
 
 		/* Before widget */
 		echo $b;
 	}
-   
+
 	/**
 	 * Linkify widget title
 	 * 
