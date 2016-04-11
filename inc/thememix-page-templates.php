@@ -15,7 +15,7 @@ class ThemeMix_Page_Templates {
 	public function __construct() {
 		add_filter( 'theme_page_templates', array( $this, 'add_page_templates' ) );
 		add_action( 'template_redirect',    array( $this, 'use_page_template' )  );
-		add_action( 'customize_register', array( $this, 'customizer' ), 11 );
+		add_action( 'customize_register',   array( $this, 'customizer' ), 11 );
 	}
 
 	/**
@@ -27,24 +27,21 @@ class ThemeMix_Page_Templates {
 
 		// Add header logo
 		$wp_customize->add_setting(
-			'login',
+			'logged-out-text',
 			array(
-				'type'              => 'option',
+				'type'              => 'theme_mod',
 				'capability'        => 'edit_theme_options',
 			)
 		);
-
 		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'header_logo',
-				array(
-					'label'    => __( 'Login', 'thememix-pro-genesis' ),
-					'section'  => 'thememix-pro-genesis',
-					'settings' => 'login',
-					'active_callback' => array( $this, 'if_login_page' ),
-				)
-			) 
+			'header_logo',
+			array(
+				'section'         => 'thememix-pro-genesis',
+				'label'           => __( 'Login page - Logged out text', 'thememix-pro-genesis' ),
+				'type'            => 'text',
+				'settings'        => 'logged-out-text',
+				'active_callback' => array( $this, 'if_login_page' ),
+			)
 		);
 
 	}
@@ -54,7 +51,7 @@ class ThemeMix_Page_Templates {
 	 */
 	public function if_login_page() {
 
-		if ( 'page-private.php' == get_page_template_slug( get_the_ID() ) ) {
+		if ( 'page-login.php' == get_page_template_slug( get_the_ID() ) ) {
 			return true;
 		}
 
