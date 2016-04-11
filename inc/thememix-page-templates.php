@@ -42,10 +42,23 @@ class ThemeMix_Page_Templates {
 					'label'    => __( 'Login', 'thememix-pro-genesis' ),
 					'section'  => 'thememix-pro-genesis',
 					'settings' => 'login',
+					'active_callback' => array( $this, 'if_login_page' ),
 				)
 			) 
 		);
 
+	}
+
+	/**
+	 * Conditional, for determining if on login page.
+	 */
+	public function if_login_page() {
+
+		if ( 'page-private.php' == get_page_template_slug( get_the_ID() ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 
