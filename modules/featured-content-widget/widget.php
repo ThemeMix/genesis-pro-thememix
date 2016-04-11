@@ -605,13 +605,21 @@ function thememixfcSave(t) {
 					$tag = 'span';
 					break;
 			}
-			
-			printf( '<%1$s %2$s class="%3$s">%4$s</%1$s>',
+
+			$gravatar_alignment = $instance['gravatar_alignment'];
+			if ( '' == $gravatar_alignment ) {
+				$gravatar_alignment = 'alignnone';
+			}
+
+			printf(
+				'<%1$s %2$s class="%3$s">%4$s</%1$s>',
 				$tag, 
 				$before, 
-				esc_attr( $instance['gravatar_alignment'] ), 
-				get_avatar( get_the_author_meta( 'ID' ), 
-				$instance['gravatar_size'] )
+				esc_attr( $gravatar_alignment ),
+				get_avatar(
+					get_the_author_meta( 'ID' ),
+					$instance['gravatar_size']
+				)
 			);
 			
 		}
@@ -1560,10 +1568,7 @@ function thememixfcSave(t) {
 			$tag .= $r[1][0];
 			
 			foreach( array_combine( $result[1], $result[2] ) as $attr => $value ) {
-				if ( 'class' == $attr )
-					$tag .= sprintf( ' %s="%s"', $attr, $value . ' additional-posts-title' );
-				else
-					$tag .= sprintf( ' %s="%s"', $attr, $value );
+				$tag .= sprintf( ' %s="%s"', $attr, $value );
 			}
 			
 			$tag .= '>';
