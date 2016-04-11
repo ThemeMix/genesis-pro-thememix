@@ -140,18 +140,24 @@ function thememixprofc_get_image_sizes() {
 }
 
 /**
- * Serve admin panel notice for users of child themes running in XHTML mode.
+ * Serve admin panel notice when site is missing functionality.
  */
-function thememixprofc_html5_notice() {
+function thememixprofc_requirements_notice() {
 
-	if ( genesis_html5() ) {
+	if ( genesis_html5() && class_exists( 'BP_Groups_Group' ) ) {
 		return;
 	}
 
-	?>
-	<div class="notice notice-success is-dismissible">
-		<p><?php _e( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememixfc' ); ?></p>
-	</div>
-	<?php
+	echo '<div class="notice notice-success is-dismissible">';
+
+	if ( ! genesis_html5() ) {
+		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememixfc' ) . '</p>';
+	}
+
+	if ( ! class_exists( 'BP_Groups_Group' ) ) {
+		echo '<p>' . __( 'The ThemeMix for Genesis plugin requires BuddyPress to be activated and the Groups compontent turned on.', 'thememixfc' ) . '</p>';
+	}
+
+	echo '</div>';
 }
-add_action( 'admin_notices', 'thememixprofc_html5_notice' );
+add_action( 'admin_notices', 'thememixprofc_requirements_notice' );
