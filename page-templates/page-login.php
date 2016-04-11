@@ -25,18 +25,7 @@ function thememix_do_login_form() {
 	if ( is_user_logged_in() ) { ?>
 
 		<h3>You are already logged in!</h3>
-		<?php 
-
-		if ( isset( $user->user_firstname ) && '' != $user->user_firstname ) {
-			$name = $user->user_firstname;
-		} elseif ( isset( $user->display_name ) && '' != $user->display_name ) {
-			$name = $user->display_name;
-		} else {
-			$name = '';
-		}
-
-		echo wpautop( sprintf( get_theme_mod( 'logged-out-text', 'Hello, %s, it looks like you are already signed in!' ), $name ) ); ?>
-
+		<p>Hello, <?php echo $user->user_firstname; ?>, it looks like you are already signed in!</p>
 		<p><a href="/">Go to Homepage</a> or <a href="<?php echo wp_logout_url( get_permalink() ); ?>">Log Out</a></p>
 
 	<?php
