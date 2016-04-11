@@ -105,7 +105,7 @@ class ThemeMix_Page_Templates {
 	 */
 	public function if_login_page() {
 
-		if ( 'page-login.php' == get_page_template_slug( get_the_ID() ) ) {
+		if ( 'page-required.php' == get_page_template_slug( get_the_ID() ) ) {
 			return true;
 		}
 
