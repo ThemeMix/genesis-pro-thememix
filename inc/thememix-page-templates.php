@@ -15,7 +15,38 @@ class ThemeMix_Page_Templates {
 	public function __construct() {
 		add_filter( 'theme_page_templates', array( $this, 'add_page_templates' ) );
 		add_action( 'template_redirect',    array( $this, 'use_page_template' )  );
+		add_action( 'customize_register', array( $this, 'customizer' ), 11 );
 	}
+
+	/**
+	 * Adds header options.
+	 *
+	 * @param $wp_customize Theme Customizer object
+	 */
+	public function customizer( $wp_customize ) {
+
+		// Add header logo
+		$wp_customize->add_setting(
+			'login',
+			array(
+				'type'              => 'option',
+				'capability'        => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control(
+				$wp_customize,
+				'header_logo',
+				array(
+					'label'    => __( 'Login', 'thememix-pro-genesis' ),
+					'section'  => 'thememix-pro-genesis',
+					'settings' => 'login',
+				)
+			) 
+		);
+
+	}
+
 
 	/**
 	 * Get the template name from template file.

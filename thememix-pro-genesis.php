@@ -31,6 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+require( 'inc/class-thememix-pro-genesis-theme-customizer.php' );
 require( 'inc/thememix-page-templates.php' );
 require( 'modules/featured-content-widget/featured-content-widget.php' );
 
@@ -50,20 +51,20 @@ register_activation_hook( __FILE__, 'thememix_genesis_translations_activation_ch
  * @version 0.1.0
  */
 function thememix_genesis_translations_activation_check() {
-    // Find Genesis Theme Data
-    $theme = wp_get_theme( 'genesis' );
-    // Get the version
-    $version = $theme->get( 'Version' );
-    // Set what we consider the minimum Genesis version
-    $minimum_genesis_version = '2.2.6';
-    // Restrict activation to only when the Genesis Framework is activated
-    if ( basename( get_template_directory() ) != 'genesis' ) {
-        deactivate_plugins( plugin_basename( __FILE__ ) );  // Deactivate ourself
-        wp_die( sprintf( __( 'Sorry, but the ThemeMix Pro for Genesis plugin only works if you have the  %1$sGenesis Framework%2$s or a Genesis Child Theme activated as your current theme.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', '</a>' ) );
-    }
-    // Set a minimum version of the Genesis Framework to be activated on
-    if ( version_compare( $version, $minimum_genesis_version, '<' ) ) {
-        deactivate_plugins( plugin_basename( __FILE__ ) );  // Deactivate ourself
-        wp_die( sprintf( __( 'We need you to be on %1$sGenesis Framework %2$s%3$s or greater for this plugin to work.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', $latest, '</a>' ) );
-    }
+	// Find Genesis Theme Data
+	$theme = wp_get_theme( 'genesis' );
+	// Get the version
+	$version = $theme->get( 'Version' );
+	// Set what we consider the minimum Genesis version
+	$minimum_genesis_version = '2.2.6';
+	// Restrict activation to only when the Genesis Framework is activated
+	if ( basename( get_template_directory() ) != 'genesis' ) {
+		deactivate_plugins( plugin_basename( __FILE__ ) );  // Deactivate ourself
+		wp_die( sprintf( __( 'Sorry, but the ThemeMix Pro for Genesis plugin only works if you have the  %1$sGenesis Framework%2$s or a Genesis Child Theme activated as your current theme.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', '</a>' ) );
+	}
+	// Set a minimum version of the Genesis Framework to be activated on
+	if ( version_compare( $version, $minimum_genesis_version, '<' ) ) {
+		deactivate_plugins( plugin_basename( __FILE__ ) );  // Deactivate ourself
+		wp_die( sprintf( __( 'We need you to be on %1$sGenesis Framework %2$s%3$s or greater for this plugin to work.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', $latest, '</a>' ) );
+	}
 }
