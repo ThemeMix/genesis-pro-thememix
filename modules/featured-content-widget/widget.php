@@ -1920,6 +1920,11 @@ function thememixfcSave(t) {
 
 							break;
 						case 'fontawesome' :
+							$path = dirname( __FILE__ ) . '/font-awesome/js/font-awesome-picker.js';
+							$contents = file_get_contents( $path );
+							$content = str_replace( '"', '\"', $contents );
+
+//							echo '<script>' . $contents . '</script>';
 
 							printf( '<input type="textbox" id="%1$s" name="%2$s" class="fontawesome-picker" widget-control-save" value="%3$s" />',
 								GS_Featured_Content::$self->get_field_id( 'fontawesome-icon' ),

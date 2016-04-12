@@ -19,7 +19,7 @@ function font_awesome_picker_scripts() {
 
 	wp_enqueue_style( 'font-awesome-picker',  $plugin_url . 'css/font-awesome-picker.css', array(), '1.0', false );
 	wp_enqueue_script( 'fontawesome-icons', $plugin_url . 'js/font-awesome-icons.js',   array(), '1.0', true  );
-	wp_enqueue_script( 'font-awesome-picker', $plugin_url . 'js/font-awesome-picker.js',   array( 'jquery'    ), '1.1', true  );
+	wp_enqueue_script( 'font-awesome-picker', $plugin_url . 'js/font-awesome-picker.js',   array( 'jquery', 'fontawesome-icons' ), '1.1', true  );
 }
 add_action( 'admin_enqueue_scripts', 'font_awesome_picker_scripts' );
 
