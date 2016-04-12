@@ -23,16 +23,6 @@ function font_awesome_picker_scripts() {
 }
 add_action( 'admin_enqueue_scripts', 'font_awesome_picker_scripts' );
 
-function themefix_font_awesome_settings_extension( $args ) {
-
-	$args['col2'][] = array(
-
-	);
-
-	return $args;
-}
-add_filter( 'thememixfc_form_fields', 'themefix_font_awesome_settings_extension' );
-
 function thememixfc_get_span_fontawesome( $text ) {
 	global $thememixfc_key;
 
