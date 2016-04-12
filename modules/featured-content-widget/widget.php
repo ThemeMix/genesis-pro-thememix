@@ -1913,9 +1913,9 @@ function thememixfcSave(t) {
 							</script>
 
 							<p>
-								<label for="' . GS_Featured_Content::$self->get_field_id( 'background' ) . '">' . __( 'Background Color:' ) . '</label> 
-								<input class="widefat" id="' . GS_Featured_Content::$self->get_field_id( 'background' ) . '" name="' . GS_Featured_Content::$self->get_field_name( 'background' ) . '" type="text" value="' . esc_attr( $instance['background'] ) . '" />
-								<div class="cw-color-picker" rel="' . GS_Featured_Content::$self->get_field_id( 'background' ) .'"></div>
+								<label for="' . esc_attr( GS_Featured_Content::$self->get_field_id( 'background' ) ) . '">' . __( 'Background Color:' ) . '</label> 
+								<input class="widefat" id="' . esc_attr( GS_Featured_Content::$self->get_field_id( 'background' ) ) . '" name="' . esc_attr( GS_Featured_Content::$self->get_field_name( 'background' ) ) . '" type="text" value="' . esc_attr( $instance['background'] ) . '" />
+								<div class="cw-color-picker" rel="' . esc_attr( GS_Featured_Content::$self->get_field_id( 'background' ) ) .'"></div>
 							</p>';
 
 							break;
@@ -1924,9 +1924,10 @@ function thememixfcSave(t) {
 							printf( '<input type="textbox" id="%1$s" name="%2$s" class="fontawesome-picker" widget-control-save" value="%3$s" />',
 								GS_Featured_Content::$self->get_field_id( 'fontawesome-icon' ),
 								GS_Featured_Content::$self->get_field_name( 'fontawesome-icon' ),
-								$instance['fontawesome-icon']
+								print_r( GS_Featured_Content::$self->get_instance( 'fontawesome-icon' ), true )
+//								$instance['fontawesome-icon']
 							);
-							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . $obj->get_field_id( $field_id ) ) . '" />';
+							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . GS_Featured_Content::$self->get_field_id( 'fontawesome-icon' ) ) . '" />';
 							break;
 						case 'p' :
 						case 'description' :

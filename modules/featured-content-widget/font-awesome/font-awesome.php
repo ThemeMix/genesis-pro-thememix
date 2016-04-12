@@ -122,11 +122,13 @@ function thememixfc_get_size_fontawesome( $key ) {
  * Add Font Awesome stylesheet.
  */
 function thememixfc_fontawesome_styles() {
+	$handle = 'font-awesome';
 	$plugin_url = plugin_dir_url( __FILE__ );
-	wp_enqueue_style( 'font-awesome',  $plugin_url . 'css/font-awesome.min.css', array(), '1.0', false );
+	wp_dequeue_style( $handle );
+	wp_enqueue_style( $handle,  $plugin_url . 'css/font-awesome.min.css', array(), '1.0', false );
 }
 add_action( 'admin_enqueue_scripts', 'thememixfc_fontawesome_styles' );
-add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles' );
+add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles', 11 );
 
 /**
  * Add Font Awesome related stylesheets.
