@@ -66,16 +66,6 @@ add_action( 'wp_footer', 'themefixfc_grid_styling' );
 add_filter( 'thememixfc_form_fields', 'themefix_column_grid_settings_extension' );
 function themefix_column_grid_settings_extension( $args ) {
 
-	$args['col2'][] = array(
-		'column-grid' => array(
-			'label'       => __( 'Number of columns', 'thememix-pro-genesis' ),
-			'description' => '',
-			'type'        => 'select',
-			'options'     => array(
-				1 => 1, 2 => 2, 3 => 3, 4 => 4,
-			),
-		),
-	);
 
 
 	return $args;

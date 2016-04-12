@@ -1181,6 +1181,15 @@ function thememixfcSave(t) {
 				),
 				'requires'    => '',
 			),
+			'column-grid' => array(
+				'label'       => __( 'Number of columns', 'thememix-pro-genesis' ),
+				'description' => '',
+				'type'        => 'select',
+				'options'     => array(
+					1 => 1, 2 => 2, 3 => 3, 4 => 4,
+				),
+			),
+
 		);
 		
 		$box_4 = array(
