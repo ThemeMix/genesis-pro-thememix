@@ -59,14 +59,3 @@ function themefixfc_grid_styling() {
 
 }
 add_action( 'wp_footer', 'themefixfc_grid_styling' );
-
-
-
-
-add_filter( 'thememixfc_form_fields', 'themefix_column_grid_settings_extension' );
-function themefix_column_grid_settings_extension( $args ) {
-
-
-
-	return $args;
-}
