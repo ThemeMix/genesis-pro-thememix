@@ -1147,59 +1147,14 @@ function thememixfcSave(t) {
 				),
 			),
 		);
-		
+
 		$box_3 = array(
-			'add_column_classes'     => array(
-				'label'       => __( 'Need to add column classes?', 'thememix-pro-genesis' ),
-				'description' => 'Check to add column classes to your site.',
-				'type'        => 'checkbox',
-				'requires'    => '',
-			),
-			'class'                 => array(
-				'label'       => __( 'Class', 'thememix-pro-genesis' ),
-				'description' => __( 'Fill in this field if you want to add a custom post class.', 'thememix-pro-genesis' ),
-				'type'        => 'text',
-				'requires'    => array(
-					'add_column_classes',
-					'',
-					true
-				),
-			),
-			'column_class'           => array(
-				'label'       => __( 'Column Class', 'thememix-pro-genesis' ),
-				'description' => __( 'Fill in this field if you want to add a custom post class. Will automagically add <code>first</code> where appropriate.', 'thememix-pro-genesis' ),
-				'type'        => 'select',
-				'options'     => array(
-					''              => __( 'Select Class', 'thememix-pro-genesis' ),
-					'one-half'      => __( 'One Half', 'thememix-pro-genesis' ),
-					'one-third'     => __( 'One Third', 'thememix-pro-genesis' ),
-					'one-fourth'    => __( 'One Fourth', 'thememix-pro-genesis' ),
-					'one-fifth'     => __( 'One Fifth', 'thememix-pro-genesis' ),
-					'one-sixith'    => __( 'One Sixth', 'thememix-pro-genesis' ),
-					'two-thirds'    => __( 'Two Thirds', 'thememix-pro-genesis' ),
-					'three-fourths' => __( 'Three Fourths', 'thememix-pro-genesis' ),
-					'two-fifths'    => __( 'Two Fifths', 'thememix-pro-genesis' ),
-					'three-fifths'  => __( 'Three Fifths', 'thememix-pro-genesis' ),
-					'four-fifths'   => __( 'Four Fifths', 'thememix-pro-genesis' ),
-					'five-sixths'   => __( 'Five Sixths', 'thememix-pro-genesis' ),
-				),
-				'requires'    => array(
-					'add_column_classes',
-					'',
-					true
-				),
-			),
 			'column-grid' => array(
 				'label'       => __( 'Number of columns', 'thememix-pro-genesis' ),
 				'description' => '',
 				'type'        => 'select',
 				'options'     => array(
 					1 => 1, 2 => 2, 3 => 3, 4 => 4,
-				),
-				'requires'    => array(
-					'add_column_classes',
-					'',
-					true
 				),
 			),
 
