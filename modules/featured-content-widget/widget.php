@@ -1897,6 +1897,20 @@ function thememixfcSave(t) {
 						case 'colour_picker':
 
 						echo '
+							<script type="text/javascript">
+							//<![CDATA[
+								jQuery(document).ready(function()
+								{
+									// colorpicker field
+									jQuery(\'.cw-color-picker\').each(function(){
+										var $this = jQuery(this),
+											id = $this.attr(\'rel\');
+
+										$this.farbtastic(\'#\' + id);
+									});
+								});
+							//]]>   
+							</script>
 
 							<p>
 								<label for="' . esc_attr( GS_Featured_Content::$self->get_field_id( 'background' ) ) . '">' . __( 'Background Color:' ) . '</label> 
