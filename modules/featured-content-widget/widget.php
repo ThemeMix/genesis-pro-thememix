@@ -1149,17 +1149,21 @@ function thememixfcSave(t) {
 		);
 		
 		$box_3 = array(
-			'class'                 => array(
-				'label'       => __( 'Class', 'thememix-pro-genesis' ),
-				'description' => __( 'Fill in this field if you want to add a custom post class.', 'thememix-pro-genesis' ),
-				'type'        => 'text',
-				'requires'    => '',
-			),
 			'add_column_classes'     => array(
 				'label'       => __( 'Need to add column classes?', 'thememix-pro-genesis' ),
 				'description' => 'Check to add column classes to your site.',
 				'type'        => 'checkbox',
 				'requires'    => '',
+			),
+			'class'                 => array(
+				'label'       => __( 'Class', 'thememix-pro-genesis' ),
+				'description' => __( 'Fill in this field if you want to add a custom post class.', 'thememix-pro-genesis' ),
+				'type'        => 'text',
+				'requires'    => array(
+					'add_column_classes',
+					'',
+					true
+				),
 			),
 			'column_class'           => array(
 				'label'       => __( 'Column Class', 'thememix-pro-genesis' ),
@@ -1179,7 +1183,11 @@ function thememixfcSave(t) {
 					'four-fifths'   => __( 'Four Fifths', 'thememix-pro-genesis' ),
 					'five-sixths'   => __( 'Five Sixths', 'thememix-pro-genesis' ),
 				),
-				'requires'    => '',
+				'requires'    => array(
+					'add_column_classes',
+					'',
+					true
+				),
 			),
 			'column-grid' => array(
 				'label'       => __( 'Number of columns', 'thememix-pro-genesis' ),
@@ -1187,6 +1195,11 @@ function thememixfcSave(t) {
 				'type'        => 'select',
 				'options'     => array(
 					1 => 1, 2 => 2, 3 => 3, 4 => 4,
+				),
+				'requires'    => array(
+					'add_column_classes',
+					'',
+					true
 				),
 			),
 
