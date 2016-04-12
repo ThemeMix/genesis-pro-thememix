@@ -124,7 +124,7 @@ class GS_Featured_Content extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => 'featured-content',
-			'description' => __( 'Displays featured posts with thumbnails', 'thememix-pro-genesis' ),
+			'description' => __( 'Displays featured content with thumbnails', 'thememix-pro-genesis' ),
 		);
 
 		$control_ops = array(
@@ -140,7 +140,7 @@ class GS_Featured_Content extends WP_Widget {
 			$name = apply_filters( 'thememixfc_widget_name', false );
 		}
 
-		parent::__construct( 'featured-content', sprintf( __( '%s - Featured Content', 'thememix-pro-genesis' ), $name ), $widget_ops, $control_ops );
+		parent::__construct( 'featured-content', $name, $widget_ops, $control_ops );
 
 		GS_Featured_Content::add();
 		do_action( 'thememixfc_actions', $this );
@@ -923,7 +923,7 @@ function thememixfcSave(t) {
 		$pt_obj = get_post_type_object( GS_Featured_Content::$widget_instance['post_type'] );
 		$box   = array(
 			'widget_title_link'     => array(
-				'label'       => __( 'Link Title?', 'thememix-pro-genesis' ),
+				'label'       => __( 'Would you like to link the Widget title to a link?', 'thememix-pro-genesis' ),
 				'description' => '',
 				'type'        => 'checkbox',
 				'requires'    => '',
