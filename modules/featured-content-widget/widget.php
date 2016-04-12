@@ -1238,6 +1238,70 @@ function thememixfcSave(t) {
 		);
 		
 		$box_5 = array(
+			'font-awesome'             => array(
+				'label'       => __( 'Display Font Awesome icon', 'thememix-pro-genesis' ),
+				'description' => '',
+				'type'        => 'checkbox',
+			),
+			'fontawesome-icon' => array(
+				'label'       => __( 'Icon', 'thememix-pro-genesis' ),
+				'description' => '',
+				'type'        => 'fontawesome',
+				'requires'    => array(
+					'font-awesome',
+					'',
+					true
+				),
+			),
+
+			'fontawesome-colour' => array(
+				'label'       => __( 'Colour', 'thememix-pro-genesis' ),
+				'description' => '',
+				'type'        => 'colour_picker',
+				'requires'    => array(
+					'font-awesome',
+					'',
+					true
+				),
+			),
+
+			'fontawesome-size' => array(
+				'label'       => __( 'Size', 'thememix-pro-genesis' ),
+				'description' => '',
+				'type'        => 'select',
+				'options'     => array(
+					'lg' => __( 'Normal', 'thememix-pro-genesis' ),
+					'1x' => '1x',
+					'2x' => '2x',
+					'3x' => '3x',
+					'4x' => '4x',
+					'5x' => '5x',
+					'6x' => '6x',
+				),
+				'requires'    => array(
+					'font-awesome',
+					'',
+					true
+				),
+			),
+
+			'fontawesome-position' => array(
+				'label'       => __( 'Position', 'thememix-pro-genesis' ),
+				'description' => '',
+				'type'        => 'select',
+				'options'     => array(
+					'before_title'        => __( 'Before title (centered)', 'thememix-pro-genesis' ),
+					'inline_before_title' => __( 'Inline before title', 'thememix-pro-genesis' ),
+					'inline_after_title'  => __( 'Inline after title', 'thememix-pro-genesis' ),
+					'after_title'         => __( 'After title (centered)', 'thememix-pro-genesis' ),
+				),
+				'requires'    => array(
+					'font-awesome',
+					'',
+					true
+				),
+			),
+
 			'show_image'              => array(
 				'label'       => __( 'Show Featured Image', 'thememix-pro-genesis' ),
 				'description' => '',
