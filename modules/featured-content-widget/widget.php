@@ -923,7 +923,7 @@ function thememixfcSave(t) {
 		$pt_obj = get_post_type_object( GS_Featured_Content::$widget_instance['post_type'] );
 		$box   = array(
 			'widget_title_link'     => array(
-				'label'       => __( 'Add widget title link', 'thememix-pro-genesis' ),
+				'label'       => __( 'Would you like to link the Widget title to a URL?', 'thememix-pro-genesis' ),
 				'description' => '',
 				'type'        => 'checkbox',
 				'requires'    => '',
