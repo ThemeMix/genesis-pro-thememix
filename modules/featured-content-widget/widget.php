@@ -1897,20 +1897,6 @@ function thememixfcSave(t) {
 						case 'colour_picker':
 
 						echo '
-							<script type="text/javascript">
-							//<![CDATA[
-								jQuery(document).ready(function()
-								{
-									// colorpicker field
-									jQuery(\'.cw-color-picker\').each(function(){
-										var $this = jQuery(this),
-											id = $this.attr(\'rel\');
-
-										$this.farbtastic(\'#\' + id);
-									});
-								});
-							//]]>   
-							</script>
 
 							<p>
 								<label for="' . esc_attr( GS_Featured_Content::$self->get_field_id( 'background' ) ) . '">' . __( 'Background Color:' ) . '</label> 
@@ -1924,8 +1910,7 @@ function thememixfcSave(t) {
 							printf( '<input type="textbox" id="%1$s" name="%2$s" class="fontawesome-picker" widget-control-save" value="%3$s" />',
 								GS_Featured_Content::$self->get_field_id( 'fontawesome-icon' ),
 								GS_Featured_Content::$self->get_field_name( 'fontawesome-icon' ),
-								print_r( GS_Featured_Content::$self->get_instance( 'fontawesome-icon' ), true )
-//								$instance['fontawesome-icon']
+								$instance['fontawesome-icon']
 							);
 							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . GS_Featured_Content::$self->get_field_id( 'fontawesome-icon' ) ) . '" />';
 							break;
