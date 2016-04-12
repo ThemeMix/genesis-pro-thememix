@@ -1914,13 +1914,7 @@ function thememixfcSave(t) {
 
 							<p>
 								<label for="' . GS_Featured_Content::$self->get_field_id( 'background' ) . '">' . __( 'Background Color:' ) . '</label> 
-								<input class="widefat" id="' . GS_Featured_Content::$self->get_field_id( 'background' ) . '" name="' . GS_Featured_Content::$self->get_field_name( 'background' ) . '" type="text" value="';
-						if ( $background ) {
-							echo $background;
-						} else {
-							echo '#fff';
-						} 
-						echo '" />
+								<input class="widefat" id="' . GS_Featured_Content::$self->get_field_id( 'background' ) . '" name="' . GS_Featured_Content::$self->get_field_name( 'background' ) . '" type="text" value="' . esc_attr( $instance['background'] ) . '" />
 								<div class="cw-color-picker" rel="' . GS_Featured_Content::$self->get_field_id( 'background' ) .'"></div>
 							</p>';
 
@@ -1928,9 +1922,9 @@ function thememixfcSave(t) {
 						case 'fontawesome' :
 
 							printf( '<input type="textbox" id="%1$s" name="%2$s" class="fontawesome-picker" widget-control-save" value="%3$s" />',
-								$obj->get_field_id( $field_id ),
-								$obj->get_field_name( $field_id ),
-								$instance[$field_id]
+								GS_Featured_Content::$self->get_field_id( 'fontawesome-icon' ),
+								GS_Featured_Content::$self->get_field_name( 'fontawesome-icon' ),
+								$instance['fontawesome-icon']
 							);
 							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . $obj->get_field_id( $field_id ) ) . '" />';
 							break;
