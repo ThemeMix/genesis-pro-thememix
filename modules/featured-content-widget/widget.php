@@ -1221,19 +1221,31 @@ function thememixfcSave(t) {
 				'label'       => __( 'Delete Transients?', 'thememix-pro-genesis' ),
 				'description' => '',
 				'type'        => 'checkbox',
-				'requires'    => '',
+				'requires'    => array(
+					'optimize',
+					'',
+					true
+				),
 			),
 			'transients_time'         => array(
 				'label'       => __( 'Set Transients Expiration (seconds)', 'thememix-pro-genesis' ),
 				'description' => '',
 				'type'        => 'text',
-				'requires'    => '',
+				'requires'    => array(
+					'optimize',
+					'',
+					true
+				),
 			),
 			'custom_field'            => array(
 				'label'       => __( 'Instance Identification Field', 'thememix-pro-genesis' ),
 				'description' => __( 'Fill in this field if you need to test against an $instance value not included in the form', 'thememix-pro-genesis' ),
 				'type'        => 'text',
-				'requires'    => '',
+				'requires'    => array(
+					'optimize',
+					'',
+					true
+				),
 			),
 		);
 		
