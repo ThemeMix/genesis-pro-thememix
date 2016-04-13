@@ -3,16 +3,8 @@
 /**
  *
  * Integrate WooCommerce with Genesis.
- *
- * Unhook WooCommerce wrappers and
- * Replace with Genesis wrappers.
- *
- * Reference Genesis file:
- * genesis/lib/framework.php
- *
- * @author AlphaBlossom / Tony Eppright
- * @link http://www.alphablossom.com
- *
+ * Partially based on Genesis Connect for WooCommerce by StudioPress (http://www.studiopress.com/plugins/genesis-connect-woocommerce)
+ * Partially based on work by AlphaBlossom / Tony Eppright (http://www.alphablossom.com)
  */
 class ThemeMix_Pro_Genesis_WooCommerce {
 
@@ -33,6 +25,8 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 		add_action( 'woocommerce_before_main_content', array( $this, 'theme_wrapper_start' ), 10 );
 		add_action( 'woocommerce_after_main_content', array( $this, 'theme_wrapper_end' ), 10 );
 
+		// Setup theme
+		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 	}
 
 	/**
@@ -71,6 +65,62 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 
 		echo '</div>'; //* end .content-sidebar-wrap or #content-sidebar-wrap
 		do_action( 'genesis_after_content_sidebar_wrap' );
+
+	}
+
+	/**
+	 * Setup integration.
+	 *
+	 * Checks whether WooCommerce is active, then checks if relevant
+	 * theme support exists. Once past these checks, loads the necessary
+	 * files, actions and filters for the plugin to do its thing.
+	 */
+	public function setup() {
+
+		/** Fail silently if WooCommerce is not activated */
+		if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			return;
+		}
+
+		/** Fail silently if theme doesn't support GCW */
+		if ( ! current_theme_supports( 'genesis-connect-woocommerce' ) ) {
+			return;
+		}
+
+		/** Environment is OK, let's go! */
+
+		global $woocommerce;
+
+		/** Load GCW files */
+		require( 'genesis-connect-woocommerce/template-loader.php' );
+
+		// Load modified Genesis breadcrumb filters and callbacks
+		if ( ! current_theme_supports( 'gencwooc-woo-breadcrumbs') ) {
+			require( 'genesis-connect-woocommerce/breadcrumb.php' );
+		}
+
+		// Ensure WooCommerce 2.0+ compatibility
+		add_theme_support( 'woocommerce' );
+
+		// Add Genesis Layout and SEO options to Product edit screen
+		add_post_type_support( 'product', array( 'genesis-layouts', 'genesis-seo' ) );
+
+		// Add Studiopress plugins support
+		add_post_type_support( 'product', array( 'genesis-simple-sidebars', 'genesis-simple-menus' ) );
+
+		// Take control of shop template loading
+		remove_filter( 'template_include', array( &$woocommerce, 'template_loader' ) );
+		add_filter( 'template_include', 'gencwooc_template_loader', 20 );
+
+		// Integration - Genesis Simple Sidebars
+		if ( in_array( 'genesis-simple-sidebars/plugin.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			require( 'genesis-connect-woocommerce/genesis-simple-sidebars.php' );
+		}
+
+		// Integration - Genesis Simple Menus
+		if ( in_array( 'genesis-simple-menus/simple-menu.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			require( 'genesis-connect-woocommerce/genesis-simple-menus.php' );
+		}
 
 	}
 
