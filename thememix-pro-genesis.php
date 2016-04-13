@@ -33,7 +33,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 require( 'inc/thememix-page-templates.php' );
 require( 'modules/featured-content-widget/featured-content-widget.php' );
-require( 'modules/class-thememix-pro-genesis-woocommerce-compatibility.php' );
+require( 'modules/class-thememix-pro-genesis-woocommerce.php' );
+require( 'modules/class-thememix-pro-genesis-edd.php' );
 
 /**
  * Load the text domain for translation of the plugin

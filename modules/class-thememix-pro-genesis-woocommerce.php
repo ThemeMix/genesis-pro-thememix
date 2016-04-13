@@ -14,7 +14,7 @@
  * @link http://www.alphablossom.com
  *
  */
-class ThemeMix_Pro_Genesis_WooCommerce_Compatibility {
+class ThemeMix_Pro_Genesis_WooCommerce {
 
 	public function __construct() {
 		add_theme_support( 'woocommerce' );
@@ -75,4 +75,4 @@ class ThemeMix_Pro_Genesis_WooCommerce_Compatibility {
 	}
 
 }
-new ThemeMix_Pro_Genesis_WooCommerce_Compatibility;
+new ThemeMix_Pro_Genesis_WooCommerce;
