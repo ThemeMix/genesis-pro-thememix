@@ -1233,7 +1233,6 @@ function thememixfcSave(t) {
 					true
 				),
 			),
-
 			'fontawesome-colour' => array(
 				'label'       => __( 'Colour', 'thememix-pro-genesis' ),
 				'description' => '',
@@ -1244,7 +1243,6 @@ function thememixfcSave(t) {
 					true
 				),
 			),
-
 			'fontawesome-size' => array(
 				'label'       => __( 'Size', 'thememix-pro-genesis' ),
 				'description' => '',
@@ -1264,7 +1262,6 @@ function thememixfcSave(t) {
 					true
 				),
 			),
-
 			'fontawesome-position' => array(
 				'label'       => __( 'Position', 'thememix-pro-genesis' ),
 				'description' => '',
@@ -1281,6 +1278,10 @@ function thememixfcSave(t) {
 					true
 				),
 			),
+
+		);
+		
+		$box_6 = array(
 
 			'show_image'              => array(
 				'label'       => __( 'Show Featured Image', 'thememix-pro-genesis' ),
@@ -1357,7 +1358,7 @@ function thememixfcSave(t) {
 		);
 		
 		//* Box 2
-		$box_6 = array(
+		$box_7 = array(
 			'show_title'              => array(
 				'label'       => __( 'Show Post Title', 'thememix-pro-genesis' ),
 				'description' => '',
@@ -1509,7 +1510,7 @@ function thememixfcSave(t) {
 			),
 		);
 
-		$box_7 = array(
+		$box_8 = array(
 			'extra_posts'             => array(
 				'label'       => __( 'Display List of Additional Posts', 'thememix-pro-genesis' ),
 				'description' => '',
@@ -1599,6 +1600,7 @@ function thememixfcSave(t) {
 				$box_5,
 				$box_6,
 				$box_7,
+				$box_8,
 			),
 		);
 		return apply_filters( 'thememixfc_form_fields', $columns, GS_Featured_Content::$widget_instance, compact( "box_1", "box_2", "box_3", "box_4", "box_5", "box_6", "box_7" ) );
