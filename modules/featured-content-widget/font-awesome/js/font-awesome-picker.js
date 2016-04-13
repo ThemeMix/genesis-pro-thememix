@@ -87,10 +87,12 @@
 					}
 				} );
 
-				$( document ).bind( 'mouseup.fontawesome-picker', function ( e ) {
-					if ( ! popup.is( e.target ) && popup.has( e.target ).length === 0 ) {
-						removePopup();
-					}
+                $( 'input[type=text].fontawesome-picker' ).on( 'click', 'button.fontawesome-picker', function ( event ) {
+
+//				$( document ).bind( 'mouseup.fontawesome-picker', function ( e ) {
+//					if ( ! popup.is( e.target ) && popup.has( e.target ).length === 0 ) {
+//						removePopup();
+//					}
 				} );
 			}
 
@@ -104,5 +106,10 @@
 	$( function () {
 		$( '.fontawesome-picker' ).fontawesomePicker();
 	} );
+
+	$(document).on('widget-updated widget-added', function( event, $widget ){
+    	$widget.find( '.fontawesome-picker' ).fontawesomePicker();
+	});
+
 
 }( jQuery ) );
