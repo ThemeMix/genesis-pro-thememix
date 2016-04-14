@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  * Integrate WooCommerce with Genesis.
  * Partially based on Genesis Connect for WooCommerce by StudioPress (http://www.studiopress.com/plugins/genesis-connect-woocommerce)
  * Partially based on work by AlphaBlossom / Tony Eppright (http://www.alphablossom.com)
@@ -9,6 +8,7 @@
 class ThemeMix_Pro_Genesis_WooCommerce {
 
 	public function __construct() {
+
 		add_theme_support( 'woocommerce' );
 
 		// Add WooCommerce support for Genesis layouts (sidebar, full-width, etc) - Thank you Kelly Murray/David Wang
@@ -37,14 +37,12 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 		do_action( 'genesis_before_content_sidebar_wrap' );
 		genesis_markup( array(
 			'html5' => '<div %s>',
-			'xhtml' => '<div id="content-sidebar-wrap">',
 			'context' => 'content-sidebar-wrap',
 		) );
 
 		do_action( 'genesis_before_content' );
 		genesis_markup( array(
 			'html5' => '<main %s>',
-			'xhtml' => '<div id="content" class="hfeed">',
 			'context' => 'content',
 		) );
 		do_action( 'genesis_before_loop' );
@@ -96,7 +94,7 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 
 		// Load modified Genesis breadcrumb filters and callbacks
 		if ( ! current_theme_supports( 'gencwooc-woo-breadcrumbs') ) {
-			require( 'genesis-connect-woocommerce/breadcrumb.php' );
+			require( 'genesis-connect-woocommerce/lib/breadcrumb.php' );
 		}
 
 		// Ensure WooCommerce 2.0+ compatibility
