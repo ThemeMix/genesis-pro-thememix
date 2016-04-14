@@ -29,7 +29,6 @@ class Genesis_BBPress_Compatibility {
 		// available to bbPress in the Genesis page load process.
 		add_action( 'genesis_before',     array( $this, 'genesis_post_actions'        ) );
 		add_action( 'genesis_before',     array( $this, 'check_genesis_forum_sidebar' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'front_styles'                ) );
 		
 		// Configure which Genesis layout to apply
 		add_filter( 'genesis_pre_get_option_site_layout', array( $this, 'genesis_layout' ) );
@@ -121,20 +120,6 @@ class Genesis_BBPress_Compatibility {
 				add_filter( 'bbp_get_single_forum_description', '__return_false' );
 				add_filter( 'bbp_get_single_topic_description', '__return_false' );
 			}
-		}
-	}
-
-	/**
-	 * Load optional CSS.
-	 *
-	 * This has been deprecated and will not run if you are running > 0.8.4.
-	 */
-	public function front_styles() {
-
-		if ( get_option( 'bbpge_version') == false ) {
-			if ( apply_filters( 'bbpge_css', true ) ) {
-				wp_enqueue_style( 'bbpress-genesis-extend', plugins_url( 'style.css', __FILE__ ), array(), null, 'all' );
-			}	
 		}
 	}
 
@@ -286,14 +271,16 @@ class Genesis_BBPress_Compatibility {
 	 * Set sanitizations.
 	 */
 	public function sanitization_filters() {
+
 		// bbp_forum_layout
 		genesis_add_option_filter( 'no_html', GENESIS_SETTINGS_FIELD,  array( 'bbp_forum_layout'  ) );
 
 		// bbp_forum_sidebar
 		genesis_add_option_filter( 'one_zero', GENESIS_SETTINGS_FIELD, array( 'bbp_forum_sidebar' ) );
-		
+
 		// bbp_forum_desc
 		genesis_add_option_filter( 'one_zero', GENESIS_SETTINGS_FIELD, array( 'bbp_forum_desc'    ) );
+
 	}
 
 	/**
