@@ -12,6 +12,22 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 	 */
 	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
+		add_action( 'template_redirect', array( $this, 'post_meta' ) );
+	}
+
+	/**
+	 * Remove default post info & meta.
+	 */
+	public function post_meta() {
+
+		// Only remove meta on download post-type
+		if ( 'download' == get_post_type() ) {
+			remove_action( 'genesis_before_post_content', 'genesis_post_info'     );
+			remove_action( 'genesis_after_post_content',  'genesis_post_meta'     );
+			remove_action( 'genesis_entry_header',        'genesis_post_info', 12 );
+			remove_action( 'genesis_entry_footer',        'genesis_post_meta'     );
+		}
+
 	}
 
 	/**
@@ -30,9 +46,6 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 
 		// Load stuff only for the frontend
 		if ( ! is_admin() ) {
-
-			// Adjust post meta info for "Downloads"
-			add_filter( 'genesis_post_meta', array( $this, 'post_meta' ), 20 );
 
 		}
 
@@ -69,10 +82,8 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 
 	}
 
-	/** 
-	 * Sets the Genesis Post Meta for the Download post type
-	 * to use "edd_download_category" and "edd_download_tag" taxonomies
-	 * and for backward compatibility to use "download_category" and "download_tag" taxonomies
+	/**
+	 * Check and retrieve the correct ID/tag of the registered post type 'Download' by EDD.
 	 *
 	 * Based on work by David Decker.
 	 * @author     David Decker - DECKERWEB
@@ -81,53 +92,24 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 	 * @license    http://www.opensource.org/licenses/gpl-license.php GPL-2.0+
 	 * @copyright  Copyright (c) 2012-2013, David Decker - DECKERWEB
 	 *
-	 * @param  $post_meta
-	 * @global $post
-	 * @return strings Post meta info for "Download" post type taxonomies.
+	 * @return string "Downloads" post type slug.
 	 */
-	public function post_meta( $post_meta ) {
-		global $post;
+	public function download_cpt() {
 
-		// Bail early, if we are not on a page, and, if EDD taxonomies do not exist.
-		if ( is_page() && ! taxonomy_exists( array( 'download_category', 'download_tag' ) ) ) {
-			return;
-		}
+		// Get the proper 'Download' post type ID/tag
+		if ( post_type_exists( 'edd_download' ) ) {
 
-		// Get "Download" CPT slug
-		$download_cpt = ddw_gcedd_download_cpt();
+			$gcedd_download_cpt = 'edd_download';
 
-		$terms_edd_categories = wp_get_object_terms( get_the_ID(), 'download_category' );
-		$terms_edd_tags = wp_get_object_terms( get_the_ID(), 'download_tag' );
+		} elseif ( post_type_exists( 'download' ) ) {
 
-		// Modify Post Meta for EDD Downloads
-		if ( $download_cpt == get_post_type() ) {
-
-			// Case I: post has terms for both tax
-			if ( ( count( $terms_edd_categories ) > 0 ) && ( count( $terms_edd_tags ) > 0 ) ) {
-				$post_meta = do_shortcode( '[post_terms taxonomy="' . $download_cpt . '_category"] <span class="post-meta-sep">' . _x( '&#x00B7;', 'Translators: Taxonomy separator for Genesis child themes (default: &#x00B7; = &middot;)', 'genesis-connect-edd' ) . '</span> [post_terms before="' . __( 'Tagged:', 'genesis-connect-edd' ) . ' " taxonomy="' . $download_cpt . '_tag"]<br /><br />' );
-			}
-
-			// Case II: post has terms only for category
-			elseif ( ( count( $terms_edd_categories ) > 0 ) && ! $terms_edd_tags ) {
-				$post_meta = do_shortcode( '[post_terms taxonomy="' . $download_cpt . '_category"]<br /><br />' );
-			}
-
-			// Case III: post has terms only for tag
-			elseif ( ! $terms_edd_categories && ( count( $terms_edd_tags ) > 0 ) ) {
-				$post_meta = do_shortcode( '[post_terms before="' . __( 'Tagged:', 'genesis-connect-edd' ) . ' " taxonomy="' . $download_cpt . '_tag"]<br /><br />' );
-			}
-
-			// Case IV: post has no terms for both tax
-			elseif ( ! $terms_edd_categories && ! $terms_edd_tags ) {
-
-				$post_meta = '';
-
-			}
+			$gcedd_download_cpt = 'download';
 
 		}
 
-		// Return altered Post Meta string to Genesis filter
-		return $post_meta;
+		// EDD "Downloads" post type slug
+		return $gcedd_download_cpt;
+
 	}
 
 }
