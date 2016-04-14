@@ -2,9 +2,10 @@
 
 /**
  * Main bbPress Genesis compatibility class.
+ *
+ * Uses code from bbPress Genesis Extend (http://wordpress.org/extend/plugins/bbpress-genesis-extend/) by Jared Atchison (http://jaredatchison.com/).
  */
-
-class Genesis_BBPress_Compatibility {
+class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 	/**
 	 * The main bbPress Genesis loader.
@@ -202,10 +203,10 @@ class Genesis_BBPress_Compatibility {
 		$parent   = false;
 
 		// Check and see if a layout has been set for the parent forum
-		if ( !empty( $forum_id ) ) {
+		if ( ! empty( $forum_id ) ) {
 			$parent = esc_attr( get_post_meta( $forum_id, '_genesis_layout' , true ) );
 
-			if ( !empty( $parent ) ) {
+			if ( ! empty( $parent ) ) {
 				return apply_filters( 'bbp_genesis_layout', $parent );
 			}
 		}
@@ -313,8 +314,7 @@ class Genesis_BBPress_Compatibility {
 		<p>
 			<input type="checkbox" id="bbp_forum_desc" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[bbp_forum_desc]" value="1" <?php checked( genesis_get_option( 'bbp_forum_desc' ) ); ?> />
 			<label for="bbp_forum_desc"><?php _e( 'Remove forum and topic descriptions. E.g. "This forum contains [&hellip;]" notices.', 'bbpress-genesis-extend' ); ?></label>
-		</p>
-		<?php
+		</p><?php
 	}
 
 }
