@@ -112,12 +112,12 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 
 		// Integration - Genesis Simple Sidebars
 		if ( in_array( 'genesis-simple-sidebars/plugin.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			require( 'genesis-connect-woocommerce/genesis-simple-sidebars.php' );
+//			require( 'genesis-connect-woocommerce/genesis-simple-sidebars.php' );
 		}
 
 		// Integration - Genesis Simple Menus
 		if ( in_array( 'genesis-simple-menus/simple-menu.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			require( 'genesis-connect-woocommerce/genesis-simple-menus.php' );
+//			require( 'genesis-connect-woocommerce/genesis-simple-menus.php' );
 		}
 
 	}
