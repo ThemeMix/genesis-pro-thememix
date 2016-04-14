@@ -22,10 +22,7 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 
 		// Only remove meta on download post-type
 		if ( 'download' == get_post_type() ) {
-			remove_action( 'genesis_before_post_content', 'genesis_post_info'     );
-			remove_action( 'genesis_after_post_content',  'genesis_post_meta'     );
-			remove_action( 'genesis_entry_header',        'genesis_post_info', 12 );
-			remove_action( 'genesis_entry_footer',        'genesis_post_meta'     );
+			$this->remove_post_meta();
 		}
 
 	}

@@ -51,25 +51,17 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		 */		
 		if ( is_bbpress() ) {
 
-			/** Remove Actions ************************************************/
-
 			/**
-			 * Remove genesis breadcrumbs
+			 * Remove genesis breadcrumbs.
 			 *
 			 * bbPress packs its own breadcrumbs, so we don't need the G version.
 			 */
 			remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
 
 			/**
-			 * Remove post info & meta
-			 * 
-			 * If you moved the info/meta from their default locations, you are
-			 * on your own.
+			 * Remove post info & meta.
 			 */
-			remove_action( 'genesis_before_post_content', 'genesis_post_info'     );
-			remove_action( 'genesis_after_post_content',  'genesis_post_meta'     );
-			remove_action( 'genesis_entry_header',        'genesis_post_info', 12 );
-			remove_action( 'genesis_entry_footer',        'genesis_post_meta'     );
+			$this->remove_post_meta();
 
 			/**
 			 * Remove Genesis post image and content
