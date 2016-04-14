@@ -75,26 +75,18 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 	 */
 	public function setup() {
 
-		/** Fail silently if WooCommerce is not activated */
-		if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			return;
-		}
-
 		/** Fail silently if theme doesn't support GCW */
 		if ( ! current_theme_supports( 'genesis-connect-woocommerce' ) ) {
-			return;
+//			return;
 		}
 
 		/** Environment is OK, let's go! */
 
 		global $woocommerce;
 
-		/** Load GCW files */
-		require( 'genesis-connect-woocommerce/template-loader.php' );
-
 		// Load modified Genesis breadcrumb filters and callbacks
 		if ( ! current_theme_supports( 'gencwooc-woo-breadcrumbs') ) {
-			require( 'genesis-connect-woocommerce/lib/breadcrumb.php' );
+//			require( 'genesis-connect-woocommerce/lib/breadcrumb.php' );
 		}
 
 		// Ensure WooCommerce 2.0+ compatibility
