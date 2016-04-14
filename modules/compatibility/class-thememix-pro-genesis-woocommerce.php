@@ -98,10 +98,6 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 		// Add Studiopress plugins support
 		add_post_type_support( 'product', array( 'genesis-simple-sidebars', 'genesis-simple-menus' ) );
 
-		// Take control of shop template loading
-		remove_filter( 'template_include', array( &$woocommerce, 'template_loader' ) );
-		add_filter( 'template_include', 'gencwooc_template_loader', 20 );
-
 		// Integration - Genesis Simple Sidebars
 		if ( in_array( 'genesis-simple-sidebars/plugin.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 //			require( 'genesis-connect-woocommerce/genesis-simple-sidebars.php' );
