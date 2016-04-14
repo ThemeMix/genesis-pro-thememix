@@ -82,35 +82,5 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 
 	}
 
-	/**
-	 * Check and retrieve the correct ID/tag of the registered post type 'Download' by EDD.
-	 *
-	 * Based on work by David Decker.
-	 * @author     David Decker - DECKERWEB
-	 * @link       http://genesisthemes.de/en/wp-plugins/genesis-connect-edd/
-	 * @link       http://deckerweb.de/twitter
-	 * @license    http://www.opensource.org/licenses/gpl-license.php GPL-2.0+
-	 * @copyright  Copyright (c) 2012-2013, David Decker - DECKERWEB
-	 *
-	 * @return string "Downloads" post type slug.
-	 */
-	public function download_cpt() {
-
-		// Get the proper 'Download' post type ID/tag
-		if ( post_type_exists( 'edd_download' ) ) {
-
-			$gcedd_download_cpt = 'edd_download';
-
-		} elseif ( post_type_exists( 'download' ) ) {
-
-			$gcedd_download_cpt = 'download';
-
-		}
-
-		// EDD "Downloads" post type slug
-		return $gcedd_download_cpt;
-
-	}
-
 }
 new Genesis_EDD_Compatibility;
