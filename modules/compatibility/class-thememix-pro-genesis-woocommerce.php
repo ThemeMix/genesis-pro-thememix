@@ -35,14 +35,12 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 		do_action( 'genesis_before_content_sidebar_wrap' );
 		genesis_markup( array(
 			'html5' => '<div %s>',
-			'xhtml' => '<div id="content-sidebar-wrap">',
 			'context' => 'content-sidebar-wrap',
 		) );
 
 		do_action( 'genesis_before_content' );
 		genesis_markup( array(
 			'html5' => '<main %s>',
-			'xhtml' => '<div id="content" class="hfeed">',
 			'context' => 'content',
 		) );
 		do_action( 'genesis_before_loop' );
