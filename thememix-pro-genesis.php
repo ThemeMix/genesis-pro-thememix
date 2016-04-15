@@ -32,6 +32,8 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 require( 'modules/compatibility/class-genesis-compatibility.php' );
+new Genesis_Compatibility;
+
 //require( 'inc/thememix-page-templates.php' );
 //require( 'modules/featured-content-widget/featured-content-widget.php' );
 //require( 'modules/class-thememix-pro-genesis-woocommerce.php' );

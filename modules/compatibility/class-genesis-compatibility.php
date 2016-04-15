@@ -1,21 +1,45 @@
 <?php
 
+/**
+ * Genesis Compatibility.
+ * Fixes problems commonly experienced when using the Genesis Theme Framework
+ * with bbPress, Easy Digital Downloads, BuddyPress and WooCommerce.
+ */
 class Genesis_Compatibility {
 
 	/**
-	 * Load the translation component.
+	 * Class constructor.
 	 */
 	public function __construct() {
-		require( 'class-genesis-bbpress-compatibility.php' );
-		require( 'class-genesis-edd-compatibility.php' );
-		require( 'class-genesis-buddypress-compatibility.php' );
-		require( 'class-thememix-pro-genesis-woocommerce.php' );
-
+		add_action( 'plugins_loaded', array( $this, 'load_layers' ) );
 		add_action( 'init', array( $this, 'translate' ) );
 	}
 
 	/**
-	 * Load the textdomain so we can support other languages
+	 * Load the compatibility layers.
+	 */
+	public function load_layers() {
+
+		if ( class_exists( 'bbPress' ) ) {
+			require( 'class-genesis-bbpress-compatibility.php' );
+		}
+
+		if ( class_exists( 'Easy_Digital_Downloads' ) ) {
+			require( 'class-genesis-edd-compatibility.php' );
+		}
+
+		if ( class_exists( 'BuddyPress' ) ) {
+			require( 'class-genesis-buddypress-compatibility.php' );
+		}
+
+		if ( class_exists( 'WooCommerce' ) ) {
+			require( 'class-thememix-pro-genesis-woocommerce.php' );
+		}
+
+	}
+
+	/**
+	 * Load the textdomain so we can support other languages.
 	 */
 	public function translate() {
 		load_plugin_textdomain( 'genesis-compatibility', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
