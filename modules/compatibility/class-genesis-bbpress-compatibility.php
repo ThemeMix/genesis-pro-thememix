@@ -124,8 +124,8 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		if ( genesis_get_option( 'bbp_forum_sidebar' ) ) {
 			genesis_register_sidebar( array( 
 				'id'          => 'sidebar-genesis-bbpress', 
-				'name'        => __( 'Forum Sidebar', 'bbpress-genesis-extend' ), 
-				'description' => __( 'This is the primary sidebar used on the forums.', 'bbpress-genesis-extend' )
+				'name'        => __( 'Forum Sidebar', 'genesis-compatibility' ), 
+				'description' => __( 'This is the primary sidebar used on the forums.', 'genesis-compatibility' )
 			) );
 		}
 	}
@@ -160,10 +160,10 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		if ( ! dynamic_sidebar( 'sidebar-genesis-bbpress' ) ) {
 			echo '<div class="widget widget_text"><div class="widget-wrap">';
 				echo '<h4 class="widgettitle">';
-					__( 'Forum Sidebar Widget Area', 'bbpress-genesis-extend' );
+					__( 'Forum Sidebar Widget Area', 'genesis-compatibility' );
 				echo '</h4>';
 				echo '<div class="textwidget"><p>';
-					printf( __( 'This is the Forum Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'bbpress-genesis-extend' ), admin_url( 'widgets.php' ) );
+					printf( __( 'This is the Forum Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'genesis-compatibility' ), admin_url( 'widgets.php' ) );
 				echo '</p></div>';
 			echo '</div></div>';
 		}
@@ -289,9 +289,9 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	public function settings_box() {	
 		?>
 		<p>
-			<label for="bbp_forum_layout"><?php _e( 'Forum Layout: ', 'bbpress-genesis-extend' ); ?></label>
+			<label for="bbp_forum_layout"><?php _e( 'Forum Layout: ', 'genesis-compatibility' ); ?></label>
 			<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[bbp_forum_layout]" id="bbp_forum_layout">
-				<option value="genesis-default" <?php selected( genesis_get_option( 'bbp_forum_layout' ), 'genesis-default' ); ?>><?php _e( 'Genesis default', 'bbpress-genesis-extend' ); ?></option> 
+				<option value="genesis-default" <?php selected( genesis_get_option( 'bbp_forum_layout' ), 'genesis-default' ); ?>><?php _e( 'Genesis default', 'genesis-compatibility' ); ?></option> 
 				<?php
 				foreach ( genesis_get_layouts() as $id => $data ) {	
 					echo '<option value="' . esc_attr( $id ) . '" ' . selected( genesis_get_option( 'bbp_forum_layout' ), esc_attr( $id ) ) . '>' . esc_attr( $data['label'] ) . '</option>';
@@ -301,11 +301,11 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		</p>
 		<p>
 			<input type="checkbox" id="bbp_forum_sidebar" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[bbp_forum_sidebar]" value="1" <?php checked( genesis_get_option( 'bbp_forum_sidebar' ) ); ?> />
-			<label for="bbp_forum_sidebar"><?php _e( 'Register a forum specific sidebar that will be used on all forum pages', 'bbpress-genesis-extend' ); ?></label>
+			<label for="bbp_forum_sidebar"><?php _e( 'Register a forum specific sidebar that will be used on all forum pages', 'genesis-compatibility' ); ?></label>
 		</p>
 		<p>
 			<input type="checkbox" id="bbp_forum_desc" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[bbp_forum_desc]" value="1" <?php checked( genesis_get_option( 'bbp_forum_desc' ) ); ?> />
-			<label for="bbp_forum_desc"><?php _e( 'Remove forum and topic descriptions. E.g. "This forum contains [&hellip;]" notices.', 'bbpress-genesis-extend' ); ?></label>
+			<label for="bbp_forum_desc"><?php _e( 'Remove forum and topic descriptions. E.g. "This forum contains [&hellip;]" notices.', 'genesis-compatibility' ); ?></label>
 		</p><?php
 	}
 
