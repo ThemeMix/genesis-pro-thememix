@@ -54,12 +54,12 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 		
 		do_action( 'genesis_after_loop' );
 		genesis_markup( array(
-			'html5' => '</main>', //* end .content
-			'xhtml' => '</div>', //* end #content
+			'html5' => '</main>', // end .content
+			'xhtml' => '</div>', // end #content
 		) );
 		do_action( 'genesis_after_content' );
 		
-		echo '</div>'; //* end .content-sidebar-wrap or #content-sidebar-wrap
+		echo '</div>'; // end .content-sidebar-wrap or #content-sidebar-wrap
 		do_action( 'genesis_after_content_sidebar_wrap' );
 
 	}

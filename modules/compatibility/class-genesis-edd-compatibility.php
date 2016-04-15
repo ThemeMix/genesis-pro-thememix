@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main EDD Genesis compatibility class.
+ * EDD Genesis compatibility class.
  *
  * Uses code from Genesis EDD Connect (https://wordpress.org/plugins/genesis-connect-edd/) by David Decker (http://deckerweb.de/).
  */
@@ -35,11 +35,6 @@ class Genesis_EDD_Compatibility extends Genesis_Compatibility {
 	 * for the plugin to do its thing.
 	 */
 	public function setup() {
-
-		// Bail out now, if EDD not activated
-		if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-			return;
-		}
 
 		// Load stuff only for the frontend
 		if ( ! is_admin() ) {

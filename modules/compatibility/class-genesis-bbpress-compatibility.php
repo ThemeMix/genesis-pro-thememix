@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Main bbPress Genesis compatibility class.
+ * bbPress Genesis compatibility class.
  *
  * Uses code from bbPress Genesis Extend (http://wordpress.org/extend/plugins/bbpress-genesis-extend/) by Jared Atchison (http://jaredatchison.com/).
  */
 class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 	/**
-	 * The main bbPress Genesis loader.
+	 * Class constructor.
 	 */
 	public function __construct() {
 		add_action( 'bbp_ready',  array( $this, 'setup_actions' ) );
@@ -128,6 +128,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 				'description' => __( 'This is the primary sidebar used on the forums.', 'genesis-compatibility' )
 			) );
 		}
+
 	}
 
 	/**
@@ -158,14 +159,15 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 		// Throw up placeholder content if the sidebar is active but empty
 		if ( ! dynamic_sidebar( 'sidebar-genesis-bbpress' ) ) {
-			echo '<div class="widget widget_text"><div class="widget-wrap">';
-				echo '<h4 class="widgettitle">';
-					__( 'Forum Sidebar Widget Area', 'genesis-compatibility' );
-				echo '</h4>';
-				echo '<div class="textwidget"><p>';
-					printf( __( 'This is the Forum Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'genesis-compatibility' ), admin_url( 'widgets.php' ) );
-				echo '</p></div>';
-			echo '</div></div>';
+			echo '
+			<div class="widget widget_text">
+				<div class="widget-wrap">
+					<h4 class="widgettitle">' . __( 'Forum Sidebar Widget Area', 'genesis-compatibility' ) . '</h4>
+					<div class="textwidget">
+						<p>' . sprintf( __( 'This is the Forum Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'genesis-compatibility' ), admin_url( 'widgets.php' ) ) . '</p>
+					</div>
+				</div>
+			</div>';
 		}
 	}
 
@@ -230,20 +232,15 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 			remove_action( 'show_user_profile', 'genesis_user_layout_fields'  );
 			remove_action( 'edit_user_profile', 'genesis_user_layout_fields'  );
 		}
+
 	}
 
 	/**
 	 * Initialising the admin sections.
 	 */
 	public function admin_init() {	
-
-		// Option default values
 		add_filter( 'genesis_theme_settings_defaults',  array( $this, 'options_defaults'      ) );
-		
-		// Saniztize options
 		add_action( 'genesis_settings_sanitizer_init',  array( $this, 'sanitization_filters'  ) );
-
-		// Register settings
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'register_settings_box' ) );
 	}
 
@@ -264,20 +261,15 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	 * Set sanitizations.
 	 */
 	public function sanitization_filters() {
-
-		// bbp_forum_layout
 		genesis_add_option_filter( 'no_html', GENESIS_SETTINGS_FIELD,  array( 'bbp_forum_layout'  ) );
-
-		// bbp_forum_sidebar
 		genesis_add_option_filter( 'one_zero', GENESIS_SETTINGS_FIELD, array( 'bbp_forum_sidebar' ) );
-
-		// bbp_forum_desc
 		genesis_add_option_filter( 'one_zero', GENESIS_SETTINGS_FIELD, array( 'bbp_forum_desc'    ) );
-
 	}
 
 	/**
 	 * Register the settings metabox.
+	 *
+	 * @param string The Genesis theme settings page hook
 	 */
 	public function register_settings_box( $_genesis_theme_settings_pagehook ) {
 		add_meta_box( 'bbpress-genesis-options', 'bbPress', array( $this, 'settings_box' ), $_genesis_theme_settings_pagehook, 'main', 'high' );
@@ -291,12 +283,15 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		<p>
 			<label for="bbp_forum_layout"><?php _e( 'Forum Layout: ', 'genesis-compatibility' ); ?></label>
 			<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[bbp_forum_layout]" id="bbp_forum_layout">
-				<option value="genesis-default" <?php selected( genesis_get_option( 'bbp_forum_layout' ), 'genesis-default' ); ?>><?php _e( 'Genesis default', 'genesis-compatibility' ); ?></option> 
-				<?php
-				foreach ( genesis_get_layouts() as $id => $data ) {	
+				<option value="genesis-default" <?php selected( genesis_get_option( 'bbp_forum_layout' ), 'genesis-default' ); ?>><?php _e( 'Genesis default', 'genesis-compatibility' ); ?></option><?php
+
+				foreach ( genesis_get_layouts() as $id => $data ) {
+					echo "\n\t\t\t\t";
 					echo '<option value="' . esc_attr( $id ) . '" ' . selected( genesis_get_option( 'bbp_forum_layout' ), esc_attr( $id ) ) . '>' . esc_attr( $data['label'] ) . '</option>';
 				}
+
 				?>
+
 			</select>
 		</p>
 		<p>

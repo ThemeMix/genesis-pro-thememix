@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main BuddyPress Genesis compatibility class.
+ * BuddyPress Genesis compatibility class.
  */
 class Genesis_BuddyPress_Compatibility extends Genesis_Compatibility {
 
