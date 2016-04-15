@@ -32,10 +32,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 require( 'modules/compatibility/class-genesis-compatibility.php' );
-require( 'modules/compatibility/class-genesis-bbpress-compatibility.php' );
-require( 'modules/compatibility/class-genesis-edd-compatibility.php' );
-require( 'modules/compatibility/class-genesis-buddypress-compatibility.php' );
-require( 'modules/compatibility/class-thememix-pro-genesis-woocommerce.php' );
 //require( 'inc/thememix-page-templates.php' );
 //require( 'modules/featured-content-widget/featured-content-widget.php' );
 //require( 'modules/class-thememix-pro-genesis-woocommerce.php' );

@@ -6,6 +6,11 @@ class Genesis_Compatibility {
 	 * Load the translation component.
 	 */
 	public function __construct() {
+		require( 'class-genesis-bbpress-compatibility.php' );
+		require( 'class-genesis-edd-compatibility.php' );
+		require( 'class-genesis-buddypress-compatibility.php' );
+		require( 'class-thememix-pro-genesis-woocommerce.php' );
+
 		add_action( 'init', array( $this, 'translate' ) );
 	}
 
