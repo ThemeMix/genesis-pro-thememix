@@ -35,8 +35,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		add_filter( 'genesis_pre_get_option_site_layout', array( $this, 'genesis_layout' ) );
 
 		// Add Layout and SEO options to Forums
-		add_post_type_support( bbp_get_forum_post_type(), 'genesis-layouts' );
-		add_post_type_support( bbp_get_forum_post_type(), 'genesis-seo'     );
+		add_post_type_support( bbp_get_forum_post_type(), array( 'genesis-layouts', 'genesis-seo', 'genesis-scripts', 'genesis-ss' ) );
 
 	}
 
@@ -144,7 +143,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 			// If Genesis Simple Sidebar plugin is in place, nuke it
 			remove_action( 'genesis_sidebar', 'ss_do_sidebar'          );
 
-			// Nuke Genesis Simple Sidebars sidebar
+			// Nuke Genesis Genesis Connect for WooCommerce sidebar
 			remove_action( 'genesis_sidebar', 'gencwooc_ss_do_sidebar' );
 
 			// Load up the Genisis-bbPress sidebar
