@@ -16,7 +16,7 @@
  * Plugin Name:       ThemeMix Pro for Genesis
  * Plugin URI:        https://thememix.com/plugins/thememix-pro-genesis
  * Description:       A plugin that enhances, adds, modifies or removes certain elements
- * Version:           0.9
+ * Version:           0.1.0
  * Author:            ThemeMix
  * Author URI:        https://thememix.com
  * Text Domain:       thememix-pro-genesis
@@ -31,8 +31,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+require( 'modules/compatibility/class-genesis-compatibility.php' );
+new Genesis_Compatibility;
+
 require( 'inc/thememix-page-templates.php' );
 require( 'modules/featured-content-widget/featured-content-widget.php' );
+
 
 /**
  * Load the text domain for translation of the plugin
@@ -67,3 +71,23 @@ function thememix_genesis_translations_activation_check() {
         wp_die( sprintf( __( 'We need you to be on %1$sGenesis Framework %2$s%3$s or greater for this plugin to work.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', $latest, '</a>' ) );
     }
 }
+
+
+/**
+ * Serve admin panel notice when site is missing functionality.
+ */
+function thememix_pro_genesis_requirements_notice() {
+
+    if ( genesis_html5() && class_exists( 'BP_Groups_Group' ) ) {
+        return;
+    }
+
+    echo '<div class="notice notice-success is-dismissible">';
+
+    if ( ! genesis_html5() ) {
+        echo '<p>' . __( 'The ThemeMix for Genesis plugin requires your Genesis theme to use HTML5 mode.', 'thememix-pro-genesis' ) . '</p>';
+    }
+
+    echo '</div>';
+}
+add_action( 'admin_notices', 'thememix_pro_genesis_requirements_notice' );

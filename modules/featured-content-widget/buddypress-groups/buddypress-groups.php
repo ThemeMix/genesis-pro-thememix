@@ -18,12 +18,12 @@ function themefix_buddypress_groups_settings_extension( $args ) {
 
 	$extra = array(
 		'buddypress-group' => array(
-			'label'       => __( 'Display a BuddyPress Group activity instead of post(s)', 'thememixfc' ),
+			'label'       => __( 'Display a BuddyPress Group activity instead of post(s)', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'checkbox',
 		),
 		'buddypress-group-group' => array(
-			'label'       => __( 'BuddyPress Group', 'thememixfc' ),
+			'label'       => __( 'BuddyPress Group', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'select',
 			'options'     => $the_groups,
@@ -34,7 +34,7 @@ function themefix_buddypress_groups_settings_extension( $args ) {
 			),
 		),
 		'buddypress-group-count' => array(
-			'label'       => __( 'Number of activities to show', 'thememixfc' ),
+			'label'       => __( 'Number of activities to show', 'thememix-pro-genesis' ),
 			'description' => '',
 			'type'        => 'select',
 			'options'     => array( 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 9 ),
@@ -80,7 +80,12 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 
 					// Add image link to image HTML
 					if ( isset( $settings[$key]['link_image'] ) && 1 == $settings[$key]['link_image'] ) {
-						$image_html = '<a href="' . esc_attr( bp_get_activity_user_link() ) . '">' . $image_html . '</a>';
+						if ( '' == $settings[$key]['gravatar_alignment'] ) {
+							$alignment = 'alignnone';
+						} else {
+							$alignment = $settings[$key]['gravatar_alignment'];
+						}
+						$image_html = '<a href="' . esc_attr( bp_get_activity_user_link() ) . '"><span class="' . esc_attr( $alignment ) . '">' . $image_html . '</span></a>';
 					}
 
 				}

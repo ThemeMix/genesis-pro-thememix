@@ -18,83 +18,10 @@ function font_awesome_picker_scripts() {
 	$plugin_url = plugin_dir_url( __FILE__ );
 
 	wp_enqueue_style( 'font-awesome-picker',  $plugin_url . 'css/font-awesome-picker.css', array(), '1.0', false );
-	wp_enqueue_script( 'fontawesome-icons', $plugin_url . 'js/font-awesome-icons.js',   array(), '1.0', true  );
-	wp_enqueue_script( 'font-awesome-picker', $plugin_url . 'js/font-awesome-picker.js',   array( 'jquery'    ), '1.1', true  );
+	wp_enqueue_script( 'fontawesome-icons', $plugin_url . 'js/font-awesome-icons.js',   array(), '1.0', false  );
+	wp_enqueue_script( 'font-awesome-picker', $plugin_url . 'js/font-awesome-picker.js',   array( 'jquery', 'fontawesome-icons' ), '1.1', true  );
 }
 add_action( 'admin_enqueue_scripts', 'font_awesome_picker_scripts' );
-
-function themefix_font_awesome_settings_extension( $args ) {
-
-	$args['col2'][] = array(
-		'font-awesome'             => array(
-			'label'       => __( 'Display Font Awesome icon', 'thememixfc' ),
-			'description' => '',
-			'type'        => 'checkbox',
-		),
-		'fontawesome-icon' => array(
-			'label'       => __( 'Icon', 'thememixfc' ),
-			'description' => '',
-			'type'        => 'fontawesome',
-			'requires'    => array(
-				'font-awesome',
-				'',
-				true
-			),
-		),
-
-		'fontawesome-colour' => array(
-			'label'       => __( 'Colour', 'thememixfc' ),
-			'description' => '',
-			'type'        => 'colour_picker',
-			'requires'    => array(
-				'font-awesome',
-				'',
-				true
-			),
-		),
-
-		'fontawesome-size' => array(
-			'label'       => __( 'Size', 'thememixfc' ),
-			'description' => '',
-			'type'        => 'select',
-			'options'     => array(
-				'lg' => __( 'Normal', 'thememix-pro-genesis' ),
-				'1x' => '1x',
-				'2x' => '2x',
-				'3x' => '3x',
-				'4x' => '4x',
-				'5x' => '5x',
-				'6x' => '6x',
-			),
-			'requires'    => array(
-				'font-awesome',
-				'',
-				true
-			),
-		),
-
-		'fontawesome-position' => array(
-			'label'       => __( 'Position', 'thememixfc' ),
-			'description' => '',
-			'type'        => 'select',
-			'options'     => array(
-				'before_title'        => __( 'Before title (centered)', 'thememix-pro-genesis' ),
-				'inline_before_title' => __( 'Inline before title', 'thememix-pro-genesis' ),
-				'inline_after_title'  => __( 'Inline after title', 'thememix-pro-genesis' ),
-				'after_title'         => __( 'After title (centered)', 'thememix-pro-genesis' ),
-			),
-			'requires'    => array(
-				'font-awesome',
-				'',
-				true
-			),
-		),
-
-	);
-
-	return $args;
-}
-add_filter( 'thememixfc_form_fields', 'themefix_font_awesome_settings_extension' );
 
 function thememixfc_get_span_fontawesome( $text ) {
 	global $thememixfc_key;
@@ -104,9 +31,9 @@ function thememixfc_get_span_fontawesome( $text ) {
 
 	// Bail out if Font Awesome not on
 	if (
-		isset( $settings[$key] ) && 1 != $settings[$key]
+		isset( $settings[$key]['font-awesome'] ) && 1 != $settings[$key]['font-awesome']
 		||
-		! isset( $settings[$key] )
+		! isset( $settings[$key]['font-awesome'] )
 	) {
 		return $text;
 	}
@@ -195,11 +122,13 @@ function thememixfc_get_size_fontawesome( $key ) {
  * Add Font Awesome stylesheet.
  */
 function thememixfc_fontawesome_styles() {
+	$handle = 'font-awesome';
 	$plugin_url = plugin_dir_url( __FILE__ );
-	wp_enqueue_style( 'font-awesome',  $plugin_url . 'css/font-awesome.min.css', array(), '1.0', false );
+	wp_dequeue_style( $handle );
+	wp_enqueue_style( $handle,  $plugin_url . 'css/font-awesome.min.css', array(), '1.0', false );
 }
 add_action( 'admin_enqueue_scripts', 'thememixfc_fontawesome_styles' );
-add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles' );
+add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles', 11 );
 
 /**
  * Add Font Awesome related stylesheets.
