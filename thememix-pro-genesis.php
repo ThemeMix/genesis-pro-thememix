@@ -45,7 +45,7 @@ require( 'modules/featured-content-widget/featured-content-widget.php' );
  */
 load_plugin_textdomain( 'thememix-pro-genesis', false, '/languages' );
 
-register_activation_hook( __FILE__, 'thememix_genesis_translations_activation_check' );
+register_activation_hook( __FILE__, 'thememix_pro_genesis_activation_check' );
 /**
  * Checks for activated Genesis Framework and its minimum version before allowing plugin to activate
  *
@@ -53,7 +53,7 @@ register_activation_hook( __FILE__, 'thememix_genesis_translations_activation_ch
  * @since 0.1.0
  * @version 0.1.0
  */
-function thememix_genesis_translations_activation_check() {
+function thememix_pro_genesis_activation_check() {
     // Find Genesis Theme Data
     $theme = wp_get_theme( 'genesis' );
     // Get the version
