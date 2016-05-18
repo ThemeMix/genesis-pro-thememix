@@ -16,7 +16,7 @@
  * Plugin Name:       ThemeMix Pro for Genesis
  * Plugin URI:        https://thememix.com/plugins/thememix-pro-genesis
  * Description:       A plugin that enhances, adds, modifies or removes certain elements
- * Version:           0.1.0
+ * Version:           1.0.1
  * Author:            ThemeMix
  * Author URI:        https://thememix.com
  * Text Domain:       thememix-pro-genesis
@@ -45,7 +45,7 @@ require( 'modules/featured-content-widget/featured-content-widget.php' );
  */
 load_plugin_textdomain( 'thememix-pro-genesis', false, '/languages' );
 
-register_activation_hook( __FILE__, 'thememix_genesis_translations_activation_check' );
+register_activation_hook( __FILE__, 'thememix_pro_genesis_activation_check' );
 /**
  * Checks for activated Genesis Framework and its minimum version before allowing plugin to activate
  *
@@ -53,13 +53,13 @@ register_activation_hook( __FILE__, 'thememix_genesis_translations_activation_ch
  * @since 0.1.0
  * @version 0.1.0
  */
-function thememix_genesis_translations_activation_check() {
+function thememix_pro_genesis_activation_check() {
     // Find Genesis Theme Data
     $theme = wp_get_theme( 'genesis' );
     // Get the version
     $version = $theme->get( 'Version' );
     // Set what we consider the minimum Genesis version
-    $minimum_genesis_version = '2.2.6';
+    $minimum_genesis_version = '2.2.0';
     // Restrict activation to only when the Genesis Framework is activated
     if ( basename( get_template_directory() ) != 'genesis' ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );  // Deactivate ourself
