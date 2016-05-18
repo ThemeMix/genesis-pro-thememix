@@ -11,8 +11,8 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 	 */
 	public function __construct() {
 
-		// Add WooCommerce support for Genesis layouts (sidebar, full-width, etc) - Thank you Kelly Murray/David Wang
-		add_post_type_support( 'product', array( 'genesis-layouts', 'genesis-seo' ) );
+		// Add WooCommerce support for Genesis Features
+		add_post_type_support( 'product', array( 'genesis-layouts', 'genesis-seo', 'genesis-scripts', 'genesis-ss' ) );
 
 		// Unhook WooCommerce Sidebar - use Genesis Sidebars instead
 		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -24,6 +24,11 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 		// Hook new functions with Genesis wrappers
 		add_action( 'woocommerce_before_main_content', array( $this, 'theme_wrapper_start' ), 10 );
 		add_action( 'woocommerce_after_main_content', array( $this, 'theme_wrapper_end' ), 10 );
+		add_action( 'woocommerce_before_main_content', array( $this, 'shop_page_wrapper_start' ), 15 );
+		add_action( 'woocommerce_after_main_content', array( $this, 'shop_page_wrapper_end' ), 5 );
+
+		// move WooCommerce breadcrumbs in the same location as default Genesis
+		add_action( 'init', array( $this,  'reposition_breadcrumbs' ) );
 
 	}
 
@@ -33,16 +38,22 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 	public function theme_wrapper_start() {
 
 		do_action( 'genesis_before_content_sidebar_wrap' );
-		genesis_markup( array(
-			'html5' => '<div %s>',
-			'context' => 'content-sidebar-wrap',
-		) );
+			genesis_markup(
+		   		array(
+			       'html5' => '<div %s>',
+			       'xhtml' => '<div id="content-sidebar-wrap">',
+			       'context' => 'content-sidebar-wrap',
+		   		)
+	   		);
 
 		do_action( 'genesis_before_content' );
-		genesis_markup( array(
-			'html5' => '<main %s>',
-			'context' => 'content',
-		) );
+			genesis_markup(
+				array(
+					'html5' => '<main %s>',
+					'xhtml' => '<div id="content" class="hfeed">',
+					'context' => 'content',
+		   		)
+			);
 		do_action( 'genesis_before_loop' );
 
 	}
@@ -51,17 +62,47 @@ class ThemeMix_Pro_Genesis_WooCommerce {
 	 * Add closing wrapper after WooCommerce loop.
 	 */
 	public function theme_wrapper_end() {
-		
-		do_action( 'genesis_after_loop' );
-		genesis_markup( array(
-			'html5' => '</main>', // end .content
-			'xhtml' => '</div>', // end #content
-		) );
-		do_action( 'genesis_after_content' );
-		
-		echo '</div>'; // end .content-sidebar-wrap or #content-sidebar-wrap
-		do_action( 'genesis_after_content_sidebar_wrap' );
 
+		do_action( 'genesis_after_loop' );
+			genesis_markup(
+				array(
+		    		'html5' => '</main>', //* end .content
+		      		'xhtml' => '</div>', //* end #content
+		  		)
+	  		);
+		  do_action( 'genesis_after_content' );
+
+		  echo '</div>'; //* end .content-sidebar-wrap or #content-sidebar-wrap
+		  do_action( 'genesis_after_content_sidebar_wrap' );
+	}
+
+	/**
+	 * Adds Article Wrapper on Shop page
+	 */
+	public function shop_page_wrapper_start() {
+		if ( ! is_shop() ) {
+			return;
+		}
+		echo '<article class="entry">';
+
+	}
+
+	/**
+	 * Closes Article Wrapper on Shop page
+	 */
+	public function shop_page_wrapper_end() {
+		if ( ! is_shop() ) {
+			return;
+		}
+		echo '</article>';
+
+	}
+
+	/**
+	 * Removes WooCommerce Breadcrumbs (and allows for Genesis default breadcrumbs)
+	 */
+	public function reposition_breadcrumbs() {
+		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
 }
