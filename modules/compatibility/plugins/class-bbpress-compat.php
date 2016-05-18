@@ -30,10 +30,10 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		// available to bbPress in the Genesis page load process.
 		add_action( 'genesis_before',     array( $this, 'genesis_post_actions'        ) );
 		add_action( 'genesis_before',     array( $this, 'check_genesis_forum_sidebar' ) );
-		
+
 		// Configure which Genesis layout to apply
 		add_filter( 'genesis_pre_get_option_site_layout', array( $this, 'genesis_layout' ) );
-		
+
 		// Add Layout and SEO options to Forums
 		add_post_type_support( bbp_get_forum_post_type(), 'genesis-layouts' );
 		add_post_type_support( bbp_get_forum_post_type(), 'genesis-seo'     );
@@ -48,7 +48,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 		/**
 		 * If the current theme is a child theme of Genesis that also includes
 		 * the template files bbPress needs, we can leave things how they are.
-		 */		
+		 */
 		if ( is_bbpress() ) {
 
 			/**
@@ -76,7 +76,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 			/**
 			 * Remove authorbox
-			 * 
+			 *
 			 * In some odd cases the Genesis authorbox could appear
 			 */
 			remove_action( 'genesis_after_post',   'genesis_do_author_box_single' );
@@ -88,7 +88,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 			 * Make sure the Genesis navigation doesn't try to show after the loop.
 			 */
 			remove_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
-			
+
 			/** Add Actions ***************************************************/
 
 			/**
@@ -100,7 +100,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 			add_action( 'genesis_post_content',  'the_content' );
 			add_action( 'genesis_entry_content', 'the_content' );
 
-			/** Filters *******************************************************/	
+			/** Filters *******************************************************/
 
 			/**
 			 * Remove forum/topic descriptions
@@ -122,9 +122,9 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	public function register_genesis_forum_sidebar() {
 
 		if ( genesis_get_option( 'bbp_forum_sidebar' ) ) {
-			genesis_register_sidebar( array( 
-				'id'          => 'sidebar-genesis-bbpress', 
-				'name'        => __( 'Forum Sidebar', 'genesis-compatibility' ), 
+			genesis_register_sidebar( array(
+				'id'          => 'sidebar-genesis-bbpress',
+				'name'        => __( 'Forum Sidebar', 'genesis-compatibility' ),
 				'description' => __( 'This is the primary sidebar used on the forums.', 'genesis-compatibility' )
 			) );
 		}
@@ -135,21 +135,21 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	 * Setup forum specific sidebar on bbPress pages if enabled.
 	 */
 	public function check_genesis_forum_sidebar() {
-		
+
 		if ( is_bbpress() && genesis_get_option( 'bbp_forum_sidebar' ) ) {
 
 			// Remove the default Genesis sidebar
 			remove_action( 'genesis_sidebar', 'genesis_do_sidebar'     );
-			
+
 			// If Genesis Simple Sidebar plugin is in place, nuke it
 			remove_action( 'genesis_sidebar', 'ss_do_sidebar'          );
 
-			// Genesis Connect WooCommerce sidebar
+			// Nuke Genesis Simple Sidebars sidebar
 			remove_action( 'genesis_sidebar', 'gencwooc_ss_do_sidebar' );
-			
+
 			// Load up the Genisis-bbPress sidebar
 			add_action( 'genesis_sidebar', array( $this, 'load_genesis_forum_sidebar' ) );
-		}	
+		}
 	}
 
 	/**
@@ -173,7 +173,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 	/**
 	 * Genesis bbPress layout control.
-	 * 
+	 *
 	 * If you set a specific layout for a forum, that will be used for that forum
 	 * and it's topics. If you set one in the Genesis-bbPress setting, that gets
 	 * checked next. Otherwise bbPress will display itself in Genesis default layout.
@@ -185,14 +185,14 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 		// Bail if no bbPress
 		if ( ! is_bbpress() ) {
-			return $layout;	
+			return $layout;
 		}
 
 		// Set some defaults
 		$forum_id = bbp_get_forum_id();
 		// For some reason, if we use the cached version, weird things seem to happen.
 		// This needs more investigation, for now we pass false as a work around.
-		$settings = get_option( GENESIS_SETTINGS_FIELD, null ); 
+		$settings = get_option( GENESIS_SETTINGS_FIELD, null );
 		$retval   = isset( $settings['site_layout'] ) ? $settings['site_layout'] : null;
 		$parent   = false;
 
@@ -216,7 +216,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 
 	/**
 	 * Remove Genesis profile fields
-	 * 
+	 *
 	 * In some use cases the Genesis fields were showing (incorrectly)
 	 * on the bbPress profile edit pages, so we remove them entirely.
 	 */
@@ -238,7 +238,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	/**
 	 * Initialising the admin sections.
 	 */
-	public function admin_init() {	
+	public function admin_init() {
 		add_filter( 'genesis_theme_settings_defaults',  array( $this, 'options_defaults'      ) );
 		add_action( 'genesis_settings_sanitizer_init',  array( $this, 'sanitization_filters'  ) );
 		add_action( 'genesis_theme_settings_metaboxes', array( $this, 'register_settings_box' ) );
@@ -278,7 +278,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	/**
 	 * Render the settings metabox.
 	 */
-	public function settings_box() {	
+	public function settings_box() {
 		?>
 		<p>
 			<label for="bbp_forum_layout"><?php _e( 'Forum Layout: ', 'genesis-compatibility' ); ?></label>

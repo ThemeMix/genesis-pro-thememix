@@ -21,19 +21,19 @@ class Genesis_Compatibility {
 	public function load_layers() {
 
 		if ( class_exists( 'bbPress' ) ) {
-			require( 'class-genesis-bbpress-compatibility.php' );
+			require( 'plugins/class-bbpress-compat.php' );
 		}
 
 		if ( class_exists( 'Easy_Digital_Downloads' ) ) {
-			require( 'class-genesis-edd-compatibility.php' );
+			require( 'plugins/class-edd-compat.php' );
 		}
 
 		if ( class_exists( 'BuddyPress' ) ) {
-			require( 'class-genesis-buddypress-compatibility.php' );
+			require( 'plugins/class-buddypress-compat.php' );
 		}
 
 		if ( class_exists( 'WooCommerce' ) ) {
-			require( 'class-thememix-pro-genesis-woocommerce.php' );
+			require( 'plugins/class-woocommerce-compat.php' );
 		}
 
 	}
