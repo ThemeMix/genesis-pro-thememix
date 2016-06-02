@@ -3,11 +3,11 @@
  * Based on "Genesis Sandbox Featured Content Widget" by Travis Smith
  * https://wpsmith.net/
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
- * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume
  * that you can use any other version of the GPL.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  */
@@ -37,11 +37,11 @@ add_action( 'genesis_init', 'thememixfc_init', 50 );
 function thememixfc_init() {
 	if ( is_admin() ) {
 		require_once( 'thememixfc-settings.php' );
-		
+
 		global $_thememixfc_settings;
 		$_thememixfc_settings = new ThemeMixFC_Settings();
 	}
-	
+
 }
 
 require( 'widget.php' );
@@ -66,32 +66,13 @@ function thememixfc_widgets_init() {
 	register_widget( 'GS_Featured_Content' );
 }
 
-add_filter( 'plugin_action_links', 'thememixfc_action_links', 10, 2 );
-/**
- * Add Menus & Donate Action Link.
- * 
- * @param array $links Array of links.
- * @param string $file Basename of plugin.
- * @return array $links Maybe modified array of links.
- */
-function thememixfc_action_links( $links, $file ) {
-	if ( $file == plugin_basename( __FILE__ ) ) {
-		if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
-			array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=genesis' ), __( 'Settings', 'thememix-pro-genesis' ) ) );
-		array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'widgets.php' ), __( 'Widgets', 'thememix-pro-genesis' ) ) );
-		array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'thememix-pro-genesis' ) ) );
-	}
-	return $links;
-}
-
 add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
 /**
  * Hooks into save_post to remove all THEMEMIXFC Transients.
  *
  * Contains a filter thememixfc_save_post_query for anyone to modify the query.
  *
- * @since  1.1.5
- * @date   2014-06-24
+ * @since  1.0.0
  * @author Travis Smith <t(at)wpsmith.net>}
  *
  * @param  int            $post_ID                Post ID.

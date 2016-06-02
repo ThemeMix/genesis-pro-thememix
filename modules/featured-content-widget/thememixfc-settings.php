@@ -3,22 +3,22 @@
  * Genesis Featured Content Widget Settings.
  * Requires Genesis 1.8 or later
  *
- * This file registers all of this child theme's 
+ * This file registers all of this child theme's
  * specific Theme Settings, accessible from
  * Genesis > Sandbox Settings.
  *
  * @category   Genesis_Featured_Content
  * @package    Admin
  * @subpackage Settings
- * @author     Travis Smith
+ * @author     Travis Smith, ThemeMix
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
- * @link       http://wpsmith.net/
- * @since      1.1.0
+ * @link       https://thememix.com/
+ * @since      1.0.0
  */
 
 /** Exit if accessed directly */
 if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
- 
+
 /**
  * Adds a new metabox to Genesis Theme Settings Page.
  *
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
  * @since      1.1.0
  */
 class ThemeMixFC_Settings extends Genesis_Admin_Settings {
-    
+
     /**
      * Loads on proper hook, genesis_init.
      *
@@ -39,21 +39,21 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
     public function __construct() {
         add_action( 'genesis_init', array( $this, 'load' ), 15 );
     }
-    
+
     /**
      * Add THEMEMIXFC Settings.
      *
      * @since 1.1.0
      */
     public function load() {
-        
+
         /** Add THEMEMIXFC Settings */
         remove_action( 'after_setup_theme', 'genesis_add_admin_menu' );
         add_action( 'after_setup_theme', array( $this, 'add_admin_menu' ) );
         add_action( 'genesis_admin_before_metaboxes', array( $this, 'add_metabox' ) );
         add_action( 'genesis_theme_settings_defaults', array( $this, 'add_defaults' ) );
     }
-    
+
     /**
      * Add Genesis top-level item in admin menu.
      *
@@ -80,7 +80,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
         $user = wp_get_current_user();
         if ( ! get_the_author_meta( 'genesis_admin_menu', $user->ID ) )
             return;
-            
+
         parent::__construct();
         $_genesis_admin_settings = $_thememixfc_settings;
 
@@ -90,7 +90,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
 
         do_action( 'genesis_admin_menu' );
     }
-    
+
     /**
      * Adds THEMEMIXFC Metabox to Theme Settings Page.
      *
@@ -98,9 +98,9 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
      */
     public function add_metabox() {
         if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
-            add_meta_box( 'thememixfc-settings', __( 'ThemeMix Genesis Featured Content Settings', 'thememix-pro-genesis' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
+            add_meta_box( 'thememixfc-settings', __( 'Genesis Featured Content Settings', 'thememix-pro-genesis' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
     }
-    
+
     /**
      * Adds THEMEMIXFC defaults to Genesis options.
      *
@@ -110,7 +110,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
         $defaults['thememixfc_gfwa'] = 0;
         return $defaults;
     }
-    
+
     /**
      * Outputs THEMEMIXFC metabox markup contents.
      *
@@ -122,5 +122,5 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
         <?php _e( 'Have ThemeMix Genesis Featured Content Widget take over Genesis Featured Widget Amplified?', 'thememix-pro-genesis' ); ?></label>
     <?php
     }
-    
+
 }
