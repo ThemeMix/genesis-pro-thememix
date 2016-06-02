@@ -1,14 +1,15 @@
 <?php
 
 /**
- * Genesis Sandbox Featured Post Widget Classes
+ * ThemeMix Pro for Genesis Widget Classes
  *
- * @category   Genesis_Sandbox
- * @package    Widgets
+ * @category   ThemeMix_Pro_for_Genesis
+ * @package    Featured Content Widget
  * @author     Travis Smith
+ * @author     ThemeMix
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
- * @link       http://wpsmith.net/
- * @since      1.1.0
+ * @link       https://thememix.com/
+ * @since      1.0.0
  */
 
 /** Exit if accessed directly */
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
  *
  * @since 0.1.8
  *
- * @category   Genesis_Sandbox
+ * @category   ThemeMix_Pro_for_Genesis
  * @package    Widgets
  */
 if ( ! class_exists( 'GS_Featured_Content' ) ) {
@@ -1780,10 +1781,11 @@ function thememixfcSave(t) {
 
 							foreach ( $taxonomies as $taxonomy ) {
 								$query_label = '';
-								if ( !empty( $taxonomy->query_var ) )
+								if ( !empty( $taxonomy->query_var ) ) {
 									$query_label = $taxonomy->query_var;
-								else
+								} else {
 									$query_label = $taxonomy->name;
+								}
 
 								echo '<optgroup label="'. esc_attr( $taxonomy->labels->name ) .'">
 									<option class="gs-tax-optgroup" value="'. esc_attr( $query_label ) .'" '. selected( esc_attr( $query_label ), $instance['posts_term'], false ) .'>'. $taxonomy->labels->all_items .'</option>';
@@ -1996,10 +1998,11 @@ function thememixfcSave(t) {
 	 * @return string Imploded array.
 	 */
 	public static function data_implode( $a ) {
-		if ( is_array( $a ) && !empty( $a ) )
+		if ( is_array( $a ) && !empty( $a ) ) {
 			return sprintf( ' data-requires-key="%s" data-requires-val="%s"', $a[0], $a[1] );
-		else
+		} else {
 			return '';
+		}
 	}
 
 	/**
@@ -2046,8 +2049,9 @@ function thememixfcSave(t) {
 	 */
 	public function widget_title( $widget_title, $instance, $id_base ) {
 
-		if ( isset( $instance['widget_title_link'] ) && isset( $instance['widget_title_link_href'] ) && $instance['widget_title_link_href'] )
+		if ( isset( $instance['widget_title_link'] ) && isset( $instance['widget_title_link_href'] ) && $instance['widget_title_link_href'] ) {
 			return apply_filters( 'thememixfc_widget_title_link', sprintf( '<a href="%s">%s</a>', $instance['widget_title_link_href'], $widget_title ), $widget_title, $instance, $id_base );
+		}
 
 		return $widget_title;
 	}

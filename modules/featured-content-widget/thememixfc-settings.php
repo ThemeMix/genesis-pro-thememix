@@ -22,19 +22,19 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
 /**
  * Adds a new metabox to Genesis Theme Settings Page.
  *
- * @category   Genesis_Sandbox_Featured_Content
+ * @category   ThemeMix_Pro_for_Genesis_Featured_Content
  * @package    Admin
  * @author     Travis Smith
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
  * @link       http://wpsmith.net/
- * @since      1.1.0
+ * @since      1.0.0
  */
 class ThemeMixFC_Settings extends Genesis_Admin_Settings {
 
     /**
      * Loads on proper hook, genesis_init.
      *
-     * @since 1.1.0
+     * @since 1.0.0
      */
     public function __construct() {
         add_action( 'genesis_init', array( $this, 'load' ), 15 );
@@ -43,7 +43,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
     /**
      * Add THEMEMIXFC Settings.
      *
-     * @since 1.1.0
+     * @since 1.0.0
      */
     public function load() {
 
@@ -68,18 +68,21 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
      * @return null Returns null if Genesis menu is disabled, or disabled for current user
      */
     public function add_admin_menu() {
-        if ( ! is_admin() )
+        if ( ! is_admin() ) {
             return;
+        }
 
         global $_genesis_admin_settings, $_thememixfc_settings;
 
-        if ( ! current_theme_supports( 'genesis-admin-menu' ) )
+        if ( ! current_theme_supports( 'genesis-admin-menu' ) ) {
             return;
+        }
 
         //* Don't add menu item if disabled for current user
         $user = wp_get_current_user();
-        if ( ! get_the_author_meta( 'genesis_admin_menu', $user->ID ) )
+        if ( ! get_the_author_meta( 'genesis_admin_menu', $user->ID ) ) {
             return;
+        }
 
         parent::__construct();
         $_genesis_admin_settings = $_thememixfc_settings;
@@ -94,17 +97,18 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
     /**
      * Adds THEMEMIXFC Metabox to Theme Settings Page.
      *
-     * @since 1.1.0
+     * @since 1.0.0
      */
     public function add_metabox() {
-        if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
+        if ( class_exists( 'GS_Featured_Content' ) ) {
             add_meta_box( 'thememixfc-settings', __( 'Genesis Featured Content Settings', 'thememix-pro-genesis' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
+        }
     }
 
     /**
      * Adds THEMEMIXFC defaults to Genesis options.
      *
-     * @since 1.1.0
+     * @since 1.0.0
      */
     public function add_defaults( $defaults ) {
         $defaults['thememixfc_gfwa'] = 0;
@@ -114,12 +118,12 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
     /**
      * Outputs THEMEMIXFC metabox markup contents.
      *
-     * @since 1.1.0
+     * @since 1.0.0
      */
     public function settings() {
     ?>
         <label for="<?php echo $this->get_field_id( 'thememixfc_gfwa' ); ?>"><input type="checkbox" name="<?php echo $this->get_field_name( 'thememixfc_gfwa' ); ?>" id="<?php echo $this->get_field_id( 'thememixfc_gfwa' ); ?>" value="1"<?php checked( $this->get_field_value( 'thememixfc_gfwa' ) ); ?> />
-        <?php _e( 'Have ThemeMix Genesis Featured Content Widget take over Genesis Featured Widget Amplified?', 'thememix-pro-genesis' ); ?></label>
+        <?php _e( 'Have the Genesis Featured Content Widget take over Genesis Featured Widget Amplified?', 'thememix-pro-genesis' ); ?></label>
     <?php
     }
 

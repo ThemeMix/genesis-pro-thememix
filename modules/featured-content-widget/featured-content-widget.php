@@ -15,26 +15,29 @@
 /**
  * Genesis Featured Content by ThemeMix Widget
  *
- * @category   Genesis_Sandbox_Featured_Content
- * @package    Widgets
+ * @category   ThemeMix_Pro_for_Genesis_Featured_Content
+ * @package    Featured Content Widget
  * @author     Travis Smith
+ * @author     ThemeMix
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
- * @link       http://wpsmith.net/
- * @since      1.1.0
+ * @link       https://thememix.com/
+ * @since      1.0.0
  */
 
 /** Exit if accessed directly */
-if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Cheatin&#8217; uh?' );
+}
 
 define( 'THEMEMIXFC_PLUGIN_NAME', basename( dirname( __FILE__ ) ) );
-define( 'THEMEMIXFC_PLUGIN_VERSION', '1.1.0' );
+define( 'THEMEMIXFC_PLUGIN_VERSION', '1.0.0' );
 
-add_action( 'genesis_init', 'thememixfc_init', 50 );
+add_action( 'genesis_init', 'thememix_featured_content_widget_init', 50 );
 /**
  * Initializes Widget & Admin Settings
- * @since 1.1.0
+ * @since 1.0.0
  */
-function thememixfc_init() {
+function thememix_featured_content_widget_init() {
 	if ( is_admin() ) {
 		require_once( 'thememixfc-settings.php' );
 
@@ -53,7 +56,7 @@ add_action( 'widgets_init', 'thememixfc_widgets_init', 50 );
 /**
  * Register THEMEMIXFC for use in the Genesis theme.
  *
- * @since 1.1.0
+ * @since 1.0.0
  */
 function thememixfc_widgets_init() {
 	if ( class_exists( 'Premise_Base' ) && !is_admin() ) {
@@ -73,7 +76,7 @@ add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
  * Contains a filter thememixfc_save_post_query for anyone to modify the query.
  *
  * @since  1.0.0
- * @author Travis Smith <t(at)wpsmith.net>}
+ * @author Travis Smith
  *
  * @param  int            $post_ID                Post ID.
  * @param  WP_Post        $post                   Post object.
