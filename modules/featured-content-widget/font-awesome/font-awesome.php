@@ -70,6 +70,11 @@ function thememixfc_get_span_fontawesome( $text ) {
 }
 
 add_filter( 'thememixfc_post_title_add_extra', 'thememixfc_modify_title' );
+/**
+ * [thememixfc_modify_title description]
+ * @param  [type] $title [description]
+ * @return [type]        [description]
+ */
 function thememixfc_modify_title( $title ) {
 
 	$title = str_replace( '[thememixfc_block_title]', '<div style="width:100%;text-align:center;"><span class="fa fa-', $title );
@@ -98,7 +103,7 @@ function thememixfc_span_fontawesome( $key, $inline = false ) {
 		echo '<div style="width:100%;text-align:center;">';
 	}
 
-	echo '<span class="fa fa-' . $icon . ' fa-' . thememixfc_get_size_fontawesome( $key ) . '"></span>';
+	echo '<span class="fa fa-' . $icon . ' fa-' . thememixfc_get_size_fontawesome( $key ) . 'aria-hidden="true"></span>';
 
 	if ( false == $inline ) {
 		echo '</div>';
@@ -118,6 +123,8 @@ function thememixfc_get_size_fontawesome( $key ) {
 	return $size;
 }
 
+add_action( 'admin_enqueue_scripts', 'thememixfc_fontawesome_styles' );
+add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles', 11 );
 /**
  * Add Font Awesome stylesheet.
  */
@@ -127,22 +134,19 @@ function thememixfc_fontawesome_styles() {
 	wp_dequeue_style( $handle );
 	wp_enqueue_style( $handle,  $plugin_url . 'css/font-awesome.min.css', array(), '1.0', false );
 }
-add_action( 'admin_enqueue_scripts', 'thememixfc_fontawesome_styles' );
-add_action( 'wp_enqueue_scripts', 'thememixfc_fontawesome_styles', 11 );
 
+add_action( 'admin_print_scripts-widgets.php', 'thememixfc_fontawesome_color_picker_style' );
 /**
  * Add Font Awesome related stylesheets.
  */
 function thememixfc_fontawesome_color_picker_style() {
-	wp_enqueue_style('farbtastic');	
+	wp_enqueue_style( 'farbtastic' );
 }
-add_action( 'admin_print_scripts-widgets.php', 'thememixfc_fontawesome_color_picker_style' );
 
+add_action( 'admin_print_scripts-widgets.php', 'thememixfc_fontawesome_color_picker_script' );
 /**
  * Add Farbtastic colour picker script.
  */
 function thememixfc_fontawesome_color_picker_script() {
 	wp_enqueue_script( 'farbtastic' );
 }
-add_action('admin_print_scripts-widgets.php', 'thememixfc_fontawesome_color_picker_script');
-

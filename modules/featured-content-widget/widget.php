@@ -53,8 +53,9 @@ class GS_Featured_Content extends WP_Widget {
 
 		GS_Featured_Content::$self = $this;
 		$gfwa = genesis_get_option( 'thememixfc_gfwa' );
-		if ( $gfwa )
+		if ( $gfwa ) {
 			GS_Featured_Content::$base = 'featured-post';
+		}
 
 		$this->defaults = apply_filters(
 			'thememixfc_defaults',
@@ -134,7 +135,7 @@ class GS_Featured_Content extends WP_Widget {
 			'height'  => 350,
 		);
 
-		$name = __( 'Genesis Featured Content by ThemeMix', 'thememix-pro-genesis' );
+		$name = __( 'Genesis - All Featured Content', 'thememix-pro-genesis' );
 		if ( defined( 'CHILD_NAME' ) && true === apply_filters( 'thememixfc_widget_name', false ) ) {
 			$name = CHILD_THEME_NAME;
 		} elseif ( apply_filters( 'thememixfc_widget_name', false ) ) {
