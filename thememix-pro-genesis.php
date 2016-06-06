@@ -2,7 +2,7 @@
 /**
  * ThemeMix Pro for Genesis
  *
- * A plugin that enhances, adds, modifies or removes certain elements
+ * A plugin that adds modules to a Genesis framework powered site.
  * of the Genesis Framework.
  *
  *
@@ -30,6 +30,32 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+add_action( 'admin_init', 'thememix_plugin_deactivate' );
+add_action( 'switch_theme', 'thememix_plugin_deactivate' );
+/**
+ * This function is triggered when the WordPress theme is changed.
+ * It checks if the Genesis Framework is active. If not, it deactivates the plugin.
+ *
+ * @since 1.0
+ */
+function thememix_plugin_deactivate() {
+    if ( ! function_exists( 'genesis' ) ) {
+        // Deactivate.
+        deactivate_plugins( plugin_basename( __FILE__ ) );
+        add_action( 'admin_notices', 'thememix_admin_notice_deactivation' );
+    }
+}
+
+function thememix_admin_notice_deactivation() {
+    echo '<div class="notice notice-success is-dismissible">';
+
+        echo '<p>' . __( 'The ThemeMix Pro for Genesis plugin requires Genesis to be activated (as parent theme). This is no longer the case and this plugin has therefor been deactivated.', 'thememix-pro-genesis' ) . '</p>';
+
+    echo '</div>';
+
+}
+
 
 require( 'modules/compatibility/class-genesis-compatibility.php' );
 new Genesis_Compatibility;
@@ -72,7 +98,7 @@ function thememix_pro_genesis_activation_check() {
     }
 }
 
-
+//add_action( 'admin_notices', 'thememix_pro_genesis_requirements_notice' );
 /**
  * Serve admin panel notice when site is missing functionality.
  */
@@ -90,4 +116,3 @@ function thememix_pro_genesis_requirements_notice() {
 
     echo '</div>';
 }
-add_action( 'admin_notices', 'thememix_pro_genesis_requirements_notice' );

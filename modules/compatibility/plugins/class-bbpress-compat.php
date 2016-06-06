@@ -120,7 +120,7 @@ class Genesis_BBPress_Compatibility extends Genesis_Compatibility {
 	 */
 	public function register_genesis_forum_sidebar() {
 
-		if ( genesis_get_option( 'bbp_forum_sidebar' ) ) {
+		if ( function_exists( 'genesis_get_option' ) && genesis_get_option( 'bbp_forum_sidebar' ) ) {
 			genesis_register_sidebar( array(
 				'id'          => 'sidebar-genesis-bbpress',
 				'name'        => __( 'Forum Sidebar', 'genesis-compatibility' ),
