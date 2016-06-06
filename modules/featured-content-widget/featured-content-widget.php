@@ -56,7 +56,7 @@ add_action( 'widgets_init', 'thememixfc_widgets_init', 50 );
  * @since 1.1.0
  */
 function thememixfc_widgets_init() {
-	if ( class_exists( 'Premise_Base' ) && !is_admin() ) {
+	if ( ! function_exists( 'genesis_get_option' ) || ( class_exists( 'Premise_Base' ) && !is_admin() ) ) {
 		return;
 	}
 	$gfwa = genesis_get_option( 'thememixfc_gfwa' );
