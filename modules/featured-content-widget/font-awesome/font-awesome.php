@@ -74,11 +74,17 @@ add_filter( 'thememixfc_post_title_add_extra', 'thememixfc_modify_title' );
  * [thememixfc_modify_title description]
  * @param  [type] $title [description]
  * @return [type]        [description]
+ * @global int  The widget key
  */
 function thememixfc_modify_title( $title ) {
+	global $thememixfc_key;
 
-	$title = str_replace( '[thememixfc_block_title]', '<div style="width:100%;text-align:center;"><span class="fa fa-', $title );
-	$title = str_replace( '[thememixfc_inline_title]', '<span class="fa fa-', $title );
+	$settings = get_option( 'widget_featured-content' );
+	$key = $thememixfc_key;
+	$colour = $settings[$key]['background'];
+
+	$title = str_replace( '[thememixfc_block_title]', '<div style="' . esc_attr( 'width:100%;text-align:center;color: ' . $colour ) . '"><span class="fa fa-', $title );
+	$title = str_replace( '[thememixfc_inline_title]', '<span style="' . esc_attr( 'color:' . $colour ) . '" class="fa fa-', $title );
 	$title = str_replace( '|||', ' fa-', $title );
 	$title = str_replace( '[/thememixfc_block_title]', '"></span></div>', $title );
 	$title = str_replace( '[/thememixfc_inline_title]', '"></span>', $title );
