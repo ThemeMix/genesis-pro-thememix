@@ -4,8 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Watchya doin?' );
 }
 
-$file = dirname( __FILE__ ) . '/css/_variables.scss';
-$scss = file_get_contents( $file );
+$scss = file_get_contents( 'https://github.com/FortAwesome/Font-Awesome/raw/master/scss/_variables.scss' );
 
 $exploded = explode( '$fa-var-', $scss );
 $js = "var all_font_awesome_icons = [\n";

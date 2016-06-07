@@ -1,9 +1,23 @@
 <?php
 
+add_action( 'admin_init', 'font_awesome_generate' );
 /**
  * Script for regeneration of the Font Awesome JS icons.
- * require('generate-font-awesome.php');}
+ * Accessed whilst logged in as an admin via /wp-admin/?generate-font-awesome=yes
  */
+function font_awesome_generate() {
+	if (
+		is_admin()
+		&&
+		current_user_can( 'manage_options' )
+		&&
+		isset( $_GET['generate-font-awesome'] )
+		&&
+		'yes' == $_GET['generate-font-awesome']
+	) {
+		require('generate-font-awesome.php');
+	}
+}
 
 /**
  * Enqueue font awesome picker scripts.
