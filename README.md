@@ -52,6 +52,10 @@ This feature currently is still in beta, but we believe it to be stable enough t
 
 Glad you asked. Our internal roadmap is not public (yet), but we sure are curious what you think this plugin should offer. Find us on [twitter](https://twitter.com/thememix/) and let us know!
 
+= How can I update the list of Font Awesome icons in the widget
+
+Upgrading to the latest version of the plugin should fix this, although theh is also an advanced setting which allows you to manually update it by going to /wp-admin/?generate-font-awesome=yes whilst logged in as an administrator. Note that any changes you make will be wiped out during the next plugin update, but those changes will likely be included in the new version anyway.
+
 ## Changelog
 
 ### 1.0.1
