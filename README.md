@@ -1,6 +1,6 @@
 # ThemeMix Pro for Genesis
 
-* Contributors: thememix, defries, ryanhellyer
+* Contributors: thememix, defries
 * Tags: genesis, page templates, genesis compatibility, genesis, thememix
 * Requires at least: 4.3
 * Tested up to: 4.5.2
@@ -33,9 +33,15 @@ By activating ThemeMix Pro for Genesis you'll have Genesis play nice with the fo
 * WooCommerce
 * Easy Digital Downloads
 
-### Genesis Featured Content (beta)
+### Genesis Featured Content
 
 We've added an up to date Genesis Featured Content widget that is based on the various solutions out there, but made more modern. We've also, as a bonus, made it compatible with displaying featured BuddyPress Groups.
+
+#### Features:
+
+* Featured Content (Posts, Pages, Custom Post Types)
+* FontAwesome Icon selector integration
+* BuddyPress Group as Featured Page selector
 
 This feature currently is still in beta, but we believe it to be stable enough to use on your live site.
 
@@ -55,6 +61,10 @@ Glad you asked. Our internal roadmap is not public (yet), but we sure are curiou
 #### How can I update the list of Font Awesome icons in the widget
 
 Upgrading to the latest version of the plugin should fix this, although there is also an advanced setting which allows you to manually update it by going to /wp-admin/?generate-font-awesome=yes whilst logged in as an administrator. Note that any changes you make will be wiped out during the next plugin update, but those changes will likely be included in the new version anyway.
+
+### Where can I follow development and report bugs?
+
+Head over to our [Github repo](https://github.com/thememix/thememix-pro-genesis) if you'd like to contribute or create an issue.
 
 ## Changelog
 
