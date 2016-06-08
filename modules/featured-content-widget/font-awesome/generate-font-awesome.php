@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $path = 'https://github.com/FortAwesome/Font-Awesome/raw/master/';
 
+/**
+ * Generating new icon list in JS.
+ */
 $scss = file_get_contents( $path . 'scss/_variables.scss' );
 
 $exploded = explode( '$fa-var-', $scss );
@@ -24,29 +27,23 @@ file_put_contents( dirname( __FILE__ ) . '/js/font-awesome-icons.js', $js );
 echo "New JS file has been generated and added to the following location: \n"  . dirname( __FILE__ ) . '/js/font-awesome-icons.js';
 
 /**
- * Copying CSS across.
- */
-$contents = file_get_contents( $path . 'css/font-awesome.css' );
-file_put_contents( dirname( __FILE__ ) . '/css/font-awesome.css', $contents );
-
-$contents = file_get_contents( $path . 'css/font-awesome.css.map' );
-file_put_contents( dirname( __FILE__ ) . '/css/font-awesome.css.map', $contents );
-
-$contents = file_get_contents( $path . 'css/font-awesome.min.css' );
-file_put_contents( dirname( __FILE__ ) . '/css/font-awesome.min.css', $contents );
-
-echo '<br /><br />CSS files have been copied over.';
-
-/**
- * Copying the fonts across.
+ * Copying files across.
  */
 $files = array(
-	'FontAwesome.otf',
-	'fontawesome-webfont.eot',
-	'fontawesome-webfont.svg',
-	'fontawesome-webfont.ttf',
-	'fontawesome-webfont.woff',
-	'fontawesome-webfont.woff2',
+	'css/font-awesome.css',
+	'css/font-awesome.css.map',
+	'css/font-awesome.min.css',
+	'fonts/FontAwesome.otf',
+	'fonts/fontawesome-webfont.eot',
+	'fonts/fontawesome-webfont.svg',
+	'fonts/fontawesome-webfont.ttf',
+	'fonts/fontawesome-webfont.woff',
+	'fonts/fontawesome-webfont.woff2',
 );
+foreach ( $files as $file ) {
+	$contents = file_get_contents( $path . $file );
+	file_put_contents( dirname( __FILE__ ) . '/' . $file, $contents );
+}
+echo '<br /><br />CSS files have been copied over.';
 
 die;
