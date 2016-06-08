@@ -2,10 +2,10 @@
 
 * Contributors: thememix, defries, ryanhellyer
 * Tags: genesis, page templates, genesis compatibility, genesis, thememix
-* Requires at least: 4.4
+* Requires at least: 4.3
 * Tested up to: 4.5.2
-* Version: 1.0.1
-* Stable tag: 1.0.1
+* Version: 1.0.2
+* Stable tag: 1.0.2
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,15 +48,25 @@ This feature currently is still in beta, but we believe it to be stable enough t
 
 ## Frequently Asked Questions
 
-# What are some of your features you have on your roadmap
+#### What are some of your features you have on your roadmap
 
 Glad you asked. Our internal roadmap is not public (yet), but we sure are curious what you think this plugin should offer. Find us on [twitter](https://twitter.com/thememix/) and let us know!
 
-# How can I update the list of Font Awesome icons in the widget
+#### How can I update the list of Font Awesome icons in the widget
 
 Upgrading to the latest version of the plugin should fix this, although there is also an advanced setting which allows you to manually update it by going to /wp-admin/?generate-font-awesome=yes whilst logged in as an administrator. Note that any changes you make will be wiped out during the next plugin update, but those changes will likely be included in the new version anyway.
 
 ## Changelog
+
+### 1.0.2
+
+* Fixing bug/fatal error when the plugin was activated but the theme switched away from Genesis.
+* Fixing bug where the color set for the selected font icon wasn't reflected in the output.
+* Fixing bug where the icon font selector didn't display previous and next button to access the full set.
+* Fixing bug where the Featured Content Widget was not displayed properly within the context of the Customizer. Todo: make the font icon selector work as intended in the Customizer as well.
+* Updating to FontAwesome  4.6.3.
+* Adding FontAwesome updater seperate from plugin update.
+* Fixing prefixes and namespaces to be more congruent.
 
 ### 1.0.1
 
