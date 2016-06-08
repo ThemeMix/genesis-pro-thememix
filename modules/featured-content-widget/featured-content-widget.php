@@ -29,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Cheatin&#8217; uh?' );
 }
 
-define( 'THEMEMIXFC_PLUGIN_NAME', basename( dirname( __FILE__ ) ) );
-define( 'THEMEMIXFC_PLUGIN_VERSION', '1.0.0' );
+define( 'THEMEMIX_FEATURED_CONTENT_PLUGIN_NAME', basename( dirname( __FILE__ ) ) );
+define( 'THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION', '1.0.0' );
 
 add_action( 'genesis_init', 'thememix_featured_content_widget_init', 50 );
 /**
@@ -42,7 +42,7 @@ function thememix_featured_content_widget_init() {
 		require_once( 'thememixfc-settings.php' );
 
 		global $_thememix_featured_content_settings;
-		$_thememix_featured_content_settings = new ThemeMixFC_Settings();
+		$_thememix_featured_content_settings = new THEMEMIX_FEATURED_CONTENT_Settings();
 	}
 
 }

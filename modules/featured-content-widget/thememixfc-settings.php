@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
  * @link       http://wpsmith.net/
  * @since      1.0.0
  */
-class ThemeMixFC_Settings extends Genesis_Admin_Settings {
+class THEMEMIX_FEATURED_CONTENT_Settings extends Genesis_Admin_Settings {
 
     /**
      * Loads on proper hook, genesis_init.
