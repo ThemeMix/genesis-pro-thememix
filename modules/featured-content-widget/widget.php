@@ -1903,7 +1903,7 @@ function thememix_featured_contentSave(t) {
 							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . ThemeMix_Featured_Content::$self->get_field_id( 'fontawesome-icon' ) ) . '" />';
 							echo '</div>';
 							echo '<div class="font-awesome-location">';
-							echo __( 'To edit the Font Awesome Icon used, please visit the primary widgets page in WordPress.', 'thememix-pro-genesis' );
+							echo sprintf( __( 'To edit the Font Awesome Icon used, please visit the <a href="%s">primary widgets page</a> in WordPress.', 'thememix-pro-genesis' ), admin_url() . 'widgets.php' );
 							echo '</div>';
 							break;
 						case 'p' :
