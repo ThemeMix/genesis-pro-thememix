@@ -54,6 +54,15 @@ Glad you asked. Our internal roadmap is not public (yet), but we sure are curiou
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixing bug/fatal error when the plugin was activated but the theme switched away from Genesis.
+* Fixing bug where the color set for the selected font icon wasn't reflected in the output.
+* Fixing bug where the icon font selector didn't display previous and next button to access the full set.
+* Fixing bug where the Featured Content Widget was not displayed properly within the context of the Customizer. Todo: make the font icon selector work as intended in the Customizer as well.
+* Updating to FontAwesome  4.6.3.
+* Adding FontAwesome updater seperate from plugin update.
+* Fixing prefixes and namespaces to be more congruent.
+
 = 1.0.1 =
 * Fixing activation function clashing with Genesis Translations plugin.
 
