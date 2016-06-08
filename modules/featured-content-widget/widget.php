@@ -588,8 +588,14 @@ function thememix_featured_contentSave(t) {
 
 		$plugin_path = basename( dirname( dirname( dirname( __FILE__ ) ) ) );
 		$module = basename( dirname( __FILE__ ) );
+
 		$url = plugins_url( $plugin_path . '/modules/' . $module . '/css/thememix-featured-content-admin' . $min . 'css' );
 		wp_enqueue_style( 'thememix-featured-content-admin-widget', $url, null, THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
+		if ( '/wp-admin/customize.php' == $_SERVER['PHP_SELF'] ) {
+			$url = plugins_url( $plugin_path . '/modules/' . $module . '/css/thememix-featured-content-customizer.css' );
+			wp_enqueue_style( 'thememix-featured-content-admin-customizer', $url, null, THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
+		}
+
 	}
 
 	/**
@@ -1888,12 +1894,17 @@ function thememix_featured_contentSave(t) {
 
 							break;
 						case 'fontawesome' :
+							echo '<div class="font-awesome">';
 							printf( '<input type="textbox" id="%1$s" name="%2$s" class="fontawesome-picker" widget-control-save" value="%3$s" />',
 								ThemeMix_Featured_Content::$self->get_field_id( 'fontawesome-icon' ),
 								ThemeMix_Featured_Content::$self->get_field_name( 'fontawesome-icon' ),
 								$instance['fontawesome-icon']
 							);
 							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . ThemeMix_Featured_Content::$self->get_field_id( 'fontawesome-icon' ) ) . '" />';
+							echo '</div>';
+							echo '<div class="font-awesome-location">';
+							echo __( 'To edit the Font Awesome Icon used, please visit the primary widgets page in WordPress.', 'thememix-pro-genesis' );
+							echo '</div>';
 							break;
 						case 'p' :
 						case 'description' :

@@ -67,3 +67,11 @@
 .thememix-featured-content-small {
     width: 40px;
 }
+
+.font-awesome {
+    display: block;
+}
+
+.font-awesome-location {
+    display: none;
+}
