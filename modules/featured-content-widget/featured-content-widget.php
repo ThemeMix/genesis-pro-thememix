@@ -66,7 +66,7 @@ function thememixfc_widgets_init() {
 	if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa ) {
 		unregister_widget( 'Genesis_Featured_Widget_Amplified' );
 	}
-	register_widget( 'GS_Featured_Content' );
+	register_widget( 'ThemeMix_Featured_Content' );
 }
 
 add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
