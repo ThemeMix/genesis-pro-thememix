@@ -39,7 +39,7 @@ add_action( 'genesis_init', 'thememix_featured_content_widget_init', 50 );
  */
 function thememix_featured_content_widget_init() {
 	if ( is_admin() ) {
-		require_once( 'thememixfc-settings.php' );
+		require_once( 'thememix-featured-content-settings.php' );
 
 		global $_thememix_featured_content_settings;
 		$_thememix_featured_content_settings = new THEMEMIX_FEATURED_CONTENT_Settings();
@@ -85,7 +85,7 @@ add_action( 'save_post', 'thememix_featured_content_save_post', 10, 3 );
 function thememix_featured_content_save_post( $post_ID, $post, $update ) {
 	global $wpdb;
 
-	$query = apply_filters( 'thememix_featured_content_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
+	$query = apply_filters( 'thememix_featured_content_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememix_featured_content%'", $post_ID, $post, $update );
 	$wpdb->query( $query );
 
 }
