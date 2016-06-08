@@ -50,6 +50,7 @@
 			text-decoration: none;
 			line-height: 32px;
 			width: 25px;
+			background: red;
 		}
 			.fontawesome-picker-control a span {
 				display: inline;

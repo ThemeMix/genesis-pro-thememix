@@ -2,10 +2,10 @@
 Contributors: thememix, defries, ryanhellyer
 
 Tags: genesis, page templates, genesis compatibility, genesis, thememix
-Requires at least: 4.4
+Requires at least: 4.3
 Tested up to: 4.5.2
-Stable tag: 1.0.1
-Version: 1.0.1
+Stable tag: 1.0.2
+Version: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,15 @@ This feature currently is still in beta, but we believe it to be stable enough t
 Glad you asked. Our internal roadmap is not public (yet), but we sure are curious what you think this plugin should offer. Find us on [twitter](https://twitter.com/thememix/) and let us know!
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixing bug/fatal error when the plugin was activated but the theme switched away from Genesis.
+* Fixing bug where the color set for the selected font icon wasn't reflected in the output.
+* Fixing bug where the icon font selector didn't display previous and next button to access the full set.
+* Fixing bug where the Featured Content Widget was not displayed properly within the context of the Customizer. Todo: make the font icon selector work as intended in the Customizer as well.
+* Updating to FontAwesome  4.6.3.
+* Adding FontAwesome updater seperate from plugin update.
+* Fixing prefixes and namespaces to be more congruent.
 
 = 1.0.1 =
 * Fixing activation function clashing with Genesis Translations plugin.

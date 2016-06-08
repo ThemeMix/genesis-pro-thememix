@@ -3,11 +3,11 @@
  * Based on "Genesis Sandbox Featured Content Widget" by Travis Smith
  * https://wpsmith.net/
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
- * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume
  * that you can use any other version of the GPL.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  */
@@ -15,33 +15,36 @@
 /**
  * Genesis Featured Content by ThemeMix Widget
  *
- * @category   Genesis_Sandbox_Featured_Content
- * @package    Widgets
+ * @category   ThemeMix_Pro_for_Genesis_Featured_Content
+ * @package    Featured Content Widget
  * @author     Travis Smith
+ * @author     ThemeMix
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
- * @link       http://wpsmith.net/
- * @since      1.1.0
+ * @link       https://thememix.com/
+ * @since      1.0.0
  */
 
 /** Exit if accessed directly */
-if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Cheatin&#8217; uh?' );
+}
 
-define( 'THEMEMIXFC_PLUGIN_NAME', basename( dirname( __FILE__ ) ) );
-define( 'THEMEMIXFC_PLUGIN_VERSION', '1.1.0' );
+define( 'THEMEMIX_FEATURED_CONTENT_PLUGIN_NAME', basename( dirname( __FILE__ ) ) );
+define( 'THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION', '1.0.0' );
 
-add_action( 'genesis_init', 'thememixfc_init', 50 );
+add_action( 'genesis_init', 'thememix_featured_content_widget_init', 50 );
 /**
  * Initializes Widget & Admin Settings
- * @since 1.1.0
+ * @since 1.0.0
  */
-function thememixfc_init() {
+function thememix_featured_content_widget_init() {
 	if ( is_admin() ) {
 		require_once( 'thememixfc-settings.php' );
-		
-		global $_thememixfc_settings;
-		$_thememixfc_settings = new ThemeMixFC_Settings();
+
+		global $_thememix_featured_content_settings;
+		$_thememix_featured_content_settings = new THEMEMIX_FEATURED_CONTENT_Settings();
 	}
-	
+
 }
 
 require( 'widget.php' );
@@ -49,59 +52,40 @@ require( 'font-awesome/font-awesome.php' );
 require( 'buddypress-groups/buddypress-groups.php' );
 require( 'column-grid/column-grid.php' );
 
-add_action( 'widgets_init', 'thememixfc_widgets_init', 50 );
+add_action( 'widgets_init', 'thememix_featured_content_widgets_init', 50 );
 /**
  * Register THEMEMIXFC for use in the Genesis theme.
  *
- * @since 1.1.0
+ * @since 1.0.0
  */
-function thememixfc_widgets_init() {
-	if ( class_exists( 'Premise_Base' ) && !is_admin() ) {
+function thememix_featured_content_widgets_init() {
+	if ( ! function_exists( 'genesis_get_option' ) || ( class_exists( 'Premise_Base' ) && !is_admin() ) ) {
 		return;
 	}
-	$gfwa = genesis_get_option( 'thememixfc_gfwa' );
+	$gfwa = genesis_get_option( 'thememix_featured_content_gfwa' );
 	if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa ) {
 		unregister_widget( 'Genesis_Featured_Widget_Amplified' );
 	}
-	register_widget( 'GS_Featured_Content' );
+	register_widget( 'ThemeMix_Featured_Content' );
 }
 
-add_filter( 'plugin_action_links', 'thememixfc_action_links', 10, 2 );
-/**
- * Add Menus & Donate Action Link.
- * 
- * @param array $links Array of links.
- * @param string $file Basename of plugin.
- * @return array $links Maybe modified array of links.
- */
-function thememixfc_action_links( $links, $file ) {
-	if ( $file == plugin_basename( __FILE__ ) ) {
-		if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) )
-			array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=genesis' ), __( 'Settings', 'thememix-pro-genesis' ) ) );
-		array_unshift( $links, sprintf( '<a href="%s">%s</a>', admin_url( 'widgets.php' ), __( 'Widgets', 'thememix-pro-genesis' ) ) );
-		array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'thememix-pro-genesis' ) ) );
-	}
-	return $links;
-}
-
-add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
+add_action( 'save_post', 'thememix_featured_content_save_post', 10, 3 );
 /**
  * Hooks into save_post to remove all THEMEMIXFC Transients.
  *
- * Contains a filter thememixfc_save_post_query for anyone to modify the query.
+ * Contains a filter thememix_featured_content_save_post_query for anyone to modify the query.
  *
- * @since  1.1.5
- * @date   2014-06-24
- * @author Travis Smith <t(at)wpsmith.net>}
+ * @since  1.0.0
+ * @author Travis Smith
  *
  * @param  int            $post_ID                Post ID.
  * @param  WP_Post        $post                   Post object.
  * @param  bool           $update                 Whether post is being updated
  */
-function thememixfc_save_post( $post_ID, $post, $update ) {
+function thememix_featured_content_save_post( $post_ID, $post, $update ) {
 	global $wpdb;
 
-	$query = apply_filters( 'thememixfc_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
+	$query = apply_filters( 'thememix_featured_content_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
 	$wpdb->query( $query );
 
 }
