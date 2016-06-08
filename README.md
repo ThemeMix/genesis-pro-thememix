@@ -2,10 +2,10 @@
 
 * Contributors: thememix, defries, ryanhellyer
 * Tags: genesis, page templates, genesis compatibility, genesis, thememix
-* Requires at least: 4.4
+* Requires at least: 4.3
 * Tested up to: 4.5.2
-* Version: 1.0.1
-* Stable tag: 1.0.1
+* Version: 1.0.2
+* Stable tag: 1.0.2
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
