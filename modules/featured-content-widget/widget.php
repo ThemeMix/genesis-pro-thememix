@@ -52,13 +52,13 @@ class ThemeMix_Featured_Content extends WP_Widget {
 	function __construct() {
 
 		ThemeMix_Featured_Content::$self = $this;
-		$gfwa = genesis_get_option( 'thememixfc_gfwa' );
+		$gfwa = genesis_get_option( 'thememix_featured_content_gfwa' );
 		if ( $gfwa ) {
 			ThemeMix_Featured_Content::$base = 'featured-post';
 		}
 
 		$this->defaults = apply_filters(
-			'thememixfc_defaults',
+			'thememix_featured_content_defaults',
 			array(
 				'add_column_classes'      => 0,
 				'archive_link'            => '',
@@ -136,16 +136,16 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		);
 
 		$name = __( 'Genesis - All Featured Content', 'thememix-pro-genesis' );
-		if ( defined( 'CHILD_NAME' ) && true === apply_filters( 'thememixfc_widget_name', false ) ) {
+		if ( defined( 'CHILD_NAME' ) && true === apply_filters( 'thememix_featured_content_widget_name', false ) ) {
 			$name = CHILD_THEME_NAME;
-		} elseif ( apply_filters( 'thememixfc_widget_name', false ) ) {
-			$name = apply_filters( 'thememixfc_widget_name', false );
+		} elseif ( apply_filters( 'thememix_featured_content_widget_name', false ) ) {
+			$name = apply_filters( 'thememix_featured_content_widget_name', false );
 		}
 
 		parent::__construct( 'featured-content', $name, $widget_ops, $control_ops );
 
 		ThemeMix_Featured_Content::add();
-		do_action( 'thememixfc_actions', $this );
+		do_action( 'thememix_featured_content_actions', $this );
 	}
 
 	/**
@@ -156,7 +156,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		$self = ThemeMix_Featured_Content::$self;
 
 		//* Form Fields
-		add_action( 'thememixfc_output_form_fields', array( 'ThemeMix_Featured_Content', 'do_form_fields' ), 10, 2 );
+		add_action( 'thememix_featured_content_output_form_fields', array( 'ThemeMix_Featured_Content', 'do_form_fields' ), 10, 2 );
 
 		//* Post Class
 		add_filter( 'post_class', array( 'ThemeMix_Featured_Content', 'post_class' ) );
@@ -166,42 +166,42 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		add_filter( 'excerpt_more', array( 'ThemeMix_Featured_Content', 'excerpt_more' ) );
 
 		//* Do Post Image
-		add_filter( 'genesis_attr_thememixfc-entry-image-widget', array( 'ThemeMix_Featured_Content', 'attributes_thememixfc_entry_image_widget' ) );
-		add_action( 'thememixfc_before_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
-		add_action( 'thememixfc_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
-		add_action( 'thememixfc_after_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
+		add_filter( 'genesis_attr_thememixfc-entry-image-widget', array( 'ThemeMix_Featured_Content', 'attributes_thememix_featured_content_entry_image_widget' ) );
+		add_action( 'thememix_featured_content_before_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
+		add_action( 'thememix_featured_content_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
+		add_action( 'thememix_featured_content_after_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
 
 		//* Do before widget post content
-		add_action( 'thememixfc_before_post_content', array( 'ThemeMix_Featured_Content', 'do_gravatar' ) );
-		add_action( 'thememixfc_before_post_content', array( 'ThemeMix_Featured_Content', 'do_post_title' ) );
+		add_action( 'thememix_featured_content_before_post_content', array( 'ThemeMix_Featured_Content', 'do_gravatar' ) );
+		add_action( 'thememix_featured_content_before_post_content', array( 'ThemeMix_Featured_Content', 'do_post_title' ) );
 
 		//* Maybe Linkify Widget Title
-		add_action( 'thememixfc_widget_title', array( $self, 'widget_title' ), 999, 3 );
+		add_action( 'thememix_featured_content_widget_title', array( $self, 'widget_title' ), 999, 3 );
 
 		//* Do Post Info By Line
-		add_action( 'thememixfc_before_post_content', array( 'ThemeMix_Featured_Content', 'do_byline' ), 5 );
-		add_action( 'thememixfc_post_content', array( 'ThemeMix_Featured_Content', 'do_byline' ), 2 );
-		add_action( 'thememixfc_after_post_content', array( 'ThemeMix_Featured_Content', 'do_byline' ) );
+		add_action( 'thememix_featured_content_before_post_content', array( 'ThemeMix_Featured_Content', 'do_byline' ), 5 );
+		add_action( 'thememix_featured_content_post_content', array( 'ThemeMix_Featured_Content', 'do_byline' ), 2 );
+		add_action( 'thememix_featured_content_after_post_content', array( 'ThemeMix_Featured_Content', 'do_byline' ) );
 
 		//* Do widget post content
-		add_action( 'thememixfc_post_content', array( 'ThemeMix_Featured_Content', 'do_post_content' ) );
+		add_action( 'thememix_featured_content_post_content', array( 'ThemeMix_Featured_Content', 'do_post_content' ) );
 
 		//* Do after widget post content
-		add_action( 'thememixfc_after_post_content', array( 'ThemeMix_Featured_Content', 'do_post_meta' ) );
+		add_action( 'thememix_featured_content_after_post_content', array( 'ThemeMix_Featured_Content', 'do_post_meta' ) );
 
 		//* Do after loop
-		add_action( 'thememixfc_endwhile', array( 'ThemeMix_Featured_Content', 'do_posts_nav' ) );
+		add_action( 'thememix_featured_content_endwhile', array( 'ThemeMix_Featured_Content', 'do_posts_nav' ) );
 
 		//* Do after loop reset
-		add_action( 'thememixfc_after_loop_reset', array( 'ThemeMix_Featured_Content', 'do_extra_posts' ) );
-		add_action( 'thememixfc_after_loop_reset', array( 'ThemeMix_Featured_Content', 'do_more_from_category' ) );
+		add_action( 'thememix_featured_content_after_loop_reset', array( 'ThemeMix_Featured_Content', 'do_extra_posts' ) );
+		add_action( 'thememix_featured_content_after_loop_reset', array( 'ThemeMix_Featured_Content', 'do_more_from_category' ) );
 
 		//* Admin Scripts
 		add_action( 'admin_enqueue_scripts', array( 'ThemeMix_Featured_Content', 'admin_scripts' ) );
 		add_action( 'admin_print_footer_scripts', array( 'ThemeMix_Featured_Content', 'admin_footer_script' ) );
 
 		//* Frontend Scripts
-		add_action( 'thememixfc_before_widget', array( 'ThemeMix_Featured_Content', 'enqueue_style' ) );
+		add_action( 'thememix_featured_content_before_widget', array( 'ThemeMix_Featured_Content', 'enqueue_style' ) );
 	}
 
 	/**
@@ -357,8 +357,8 @@ class ThemeMix_Featured_Content extends WP_Widget {
 			$byline = sprintf( '<p class="entry-meta">%s</p>', do_shortcode( $instance['post_info'] ) );
 		}
 
-		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememixfc_before_post_content', 'byline_position', 'before-title', $byline );
-		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememixfc_post_content', 'byline_position', 'after-title', $byline );
+		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememix_featured_content_before_post_content', 'byline_position', 'before-title', $byline );
+		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememix_featured_content_post_content', 'byline_position', 'after-title', $byline );
 	}
 
 	/**
@@ -372,7 +372,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 	 *
 	 * @return array Amended attributes.
 	 */
-	public static function attributes_thememixfc_entry_image_widget( $attributes ) {
+	public static function attributes_thememix_featured_content_entry_image_widget( $attributes ) {
 
 		global $post;
 
@@ -398,7 +398,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 
 		$align = $instance['image_alignment'] ? esc_attr( $instance['image_alignment'] ) : 'alignnone';
 		$link  = $instance['link_image_field'] ? $instance['link_image_field'] : get_permalink();
-		$link  = '' !== genesis_get_custom_field( 'thememixfc_link_image_field' ) ? genesis_get_custom_field( 'thememixfc_link_image_field' ) : $link;
+		$link  = '' !== genesis_get_custom_field( 'thememix_featured_content_link_image_field' ) ? genesis_get_custom_field( 'thememix_featured_content_link_image_field' ) : $link;
 		$image = genesis_get_image( array(
 				'format'  => 'html',
 				'size'    => $instance['image_size'],
@@ -408,9 +408,9 @@ class ThemeMix_Featured_Content extends WP_Widget {
 
 		$image = $instance['link_image'] == 1 ? sprintf( '<a href="%s" title="%s" class="%s">%s</a>', $link, the_title_attribute( 'echo=0' ), $align, $image ) : $image;
 
-		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememixfc_before_post_content', 'image_position', 'before-title', $image );
-		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememixfc_post_content', 'image_position', 'after-title', $image );
-		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememixfc_after_post_content', 'image_position', 'after-content', $image );
+		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememix_featured_content_before_post_content', 'image_position', 'before-title', $image );
+		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememix_featured_content_post_content', 'image_position', 'after-title', $image );
+		ThemeMix_Featured_Content::maybe_echo( $instance, 'thememix_featured_content_after_post_content', 'image_position', 'after-content', $image );
 	}
 
 	/**
@@ -433,7 +433,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 	 */
 	public static function action( $name, $instance ) {
 		if ( 'gs_before_loop' == $name ) {
-			_deprecated_argument( 'ThemeMix_Featured_Content::action', '1.1.5', __( 'Please use thememixfc_before_loop hook.','thememix-pro-genesis' ) );
+			_deprecated_argument( 'ThemeMix_Featured_Content::action', '1.1.5', __( 'Please use thememix_featured_content_before_loop hook.','thememix-pro-genesis' ) );
 		}
 		do_action( $name, $instance );
 	}
@@ -457,11 +457,11 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		$key = str_replace( 'featured-content-', '', $instance['widget_args']['widget_id'] );
 		if ( ! isset( $settings[$key]['buddypress-group'] ) || 1 != $settings[$key]['buddypress-group'] ) {
 
-			add_filter( 'thememixfc_post_title_pattern', 'thememixfc_get_span_fontawesome' );
+			add_filter( 'thememix_featured_content_post_title_pattern', 'thememix_featured_content_get_span_fontawesome' );
 
-			ThemeMix_Featured_Content::action( 'thememixfc_before_post_content', $instance );
-			ThemeMix_Featured_Content::action( 'thememixfc_post_content', $instance );
-			ThemeMix_Featured_Content::action( 'thememixfc_after_post_content', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_before_post_content', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_post_content', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_after_post_content', $instance );
 		} else {
 
 			themefix_buddypress_groups_widget( $settings, $key, $group );
@@ -499,16 +499,16 @@ class ThemeMix_Featured_Content extends WP_Widget {
 			$title = the_title_attribute( 'echo=0' );
 
 		if ( genesis_html5() ) {
-			$hclass = apply_filters( 'thememixfc_entry_title_class', ' class="entry-title"' );
+			$hclass = apply_filters( 'thememix_featured_content_entry_title_class', ' class="entry-title"' );
 		} else {
 			$hclass = '';
 		}
 
-		global $thememixfc_key;
-		$thememixfc_key = str_replace( 'featured-content-', '', $instance['widget_args']['widget_id'] );
-		$pattern = apply_filters( 'thememixfc_post_title_pattern', '<h2%s>%s%s%s</h2>' );
+		global $thememix_featured_content_key;
+		$thememix_featured_content_key = str_replace( 'featured-content-', '', $instance['widget_args']['widget_id'] );
+		$pattern = apply_filters( 'thememix_featured_content_post_title_pattern', '<h2%s>%s%s%s</h2>' );
 		$title = sprintf( $pattern, $hclass, $wrap_open, $title, $wrap_close );
-		$title = apply_filters( 'thememixfc_post_title_add_extra', $title );
+		$title = apply_filters( 'thememix_featured_content_post_title_add_extra', $title );
 		echo $title;
 	}
 
@@ -539,7 +539,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 				the_content( esc_html( $instance['more_text'] ) );
 				break;
 			default:
-				do_action( 'thememixfc_show_content' );
+				do_action( 'thememix_featured_content_show_content' );
 				break;
 		}
 		if ( '' !== $instance['show_content'] ) {
@@ -657,7 +657,7 @@ function thememixfcSave(t) {
 	 * @param string $name Transient name.
 	 */
 	protected static function get_transient( $name ) {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG || apply_filters( 'thememixfc_debug', false ) ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG || apply_filters( 'thememix_featured_content_debug', false ) ) {
 			ThemeMix_Featured_Content::delete_transient( $name );
 			return false;
 		}
@@ -749,9 +749,9 @@ function thememixfcSave(t) {
 		$taxonomy   = $instance['taxonomy'];
 
 		if ( ! empty( $instance['more_from_category'] ) && ! empty( $posts_term['0'] ) ) {
-			ThemeMix_Featured_Content::action( 'thememixfc_category_more', $instance );
-			ThemeMix_Featured_Content::action( 'thememixfc_taxonomy_more', $instance );
-			ThemeMix_Featured_Content::action( 'thememixfc_' . $taxonomy . '_more', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_category_more', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_taxonomy_more', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_' . $taxonomy . '_more', $instance );
 			$term = ThemeMix_Featured_Content::get_term_by( 'slug', $posts_term['1'], $taxonomy );
 			$link = $instance['archive_link'] ? $instance['archive_link'] : esc_url( get_term_link( $posts_term['1'], $taxonomy ) );
 			printf(
@@ -763,9 +763,9 @@ function thememixfcSave(t) {
 			);
 		}
 
-		ThemeMix_Featured_Content::action( 'thememixfc_after_category_more', $instance );
-		ThemeMix_Featured_Content::action( 'thememixfc_after_taxonomy_more', $instance );
-		ThemeMix_Featured_Content::action( 'thememixfc_after_' . $taxonomy . '_more', $instance );
+		ThemeMix_Featured_Content::action( 'thememix_featured_content_after_category_more', $instance );
+		ThemeMix_Featured_Content::action( 'thememix_featured_content_after_taxonomy_more', $instance );
+		ThemeMix_Featured_Content::action( 'thememix_featured_content_after_' . $taxonomy . '_more', $instance );
 	}
 
 	/**
@@ -797,26 +797,26 @@ function thememixfcSave(t) {
 			)
 		);
 
-		$extra_posts_args = apply_filters( 'thememixfc_extra_post_args', $extra_posts_args, $instance );
+		$extra_posts_args = apply_filters( 'thememix_featured_content_extra_post_args', $extra_posts_args, $instance );
 
 		if ( !empty( $instance['optimize'] ) && !empty( $instance['custom_field'] ) ) {
 			if ( ! empty( $instance['delete_transients'] ) )
-				ThemeMix_Featured_Content::delete_transient( 'thememixfc_extra_' . $instance['custom_field'] );
-			if ( false === ( $thememixfc_query = ThemeMix_Featured_Content::get_transient( 'thememixfc_extra_' . $instance['custom_field'] ) ) ) {
-				$thememixfc_query = new WP_Query( $extra_posts_args );
+				ThemeMix_Featured_Content::delete_transient( 'thememix_featured_content_extra_' . $instance['custom_field'] );
+			if ( false === ( $thememix_featured_content_query = ThemeMix_Featured_Content::get_transient( 'thememix_featured_content_extra_' . $instance['custom_field'] ) ) ) {
+				$thememix_featured_content_query = new WP_Query( $extra_posts_args );
 				$time = !empty( $instance['transients_time'] ) ? (int)$instance['transients_time'] : 60 * 60 * 24;
-				ThemeMix_Featured_Content::set_transient( 'thememixfc_extra_' . $instance['custom_field'], $thememixfc_query, $time );
+				ThemeMix_Featured_Content::set_transient( 'thememix_featured_content_extra_' . $instance['custom_field'], $thememix_featured_content_query, $time );
 			}
 		} else {
-			$thememixfc_query = new WP_Query( $extra_posts_args );
+			$thememix_featured_content_query = new WP_Query( $extra_posts_args );
 		}
 
 		$optitems = $listitems = '';
 		$items = array();
 
-		if ( $thememixfc_query->have_posts() ) :
-			ThemeMix_Featured_Content::action( 'thememixfc_before_list_items', $instance );
-			while ( $thememixfc_query->have_posts() ) : $thememixfc_query->the_post();
+		if ( $thememix_featured_content_query->have_posts() ) :
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_before_list_items', $instance );
+			while ( $thememix_featured_content_query->have_posts() ) : $thememix_featured_content_query->the_post();
 				$_genesis_displayed_ids[] = $id = get_the_ID();
 				$listitems .= sprintf( '<li><a href="%s" title="%s">%s</a></li>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
 				$optitems  .= sprintf( '<option class="%s" value="%s">%s</option>', $id, get_permalink(), get_the_title() );
@@ -826,7 +826,7 @@ function thememixfcSave(t) {
 			wp_reset_postdata();
 
 			if ( strlen( $listitems ) > 0 && ( 'drop_down' != $instance['extra_format'] ) )
-				echo apply_filters( 'thememixfc_list_items', sprintf( '<%1$s>%2$s</%1$s>', $instance['extra_format'], $listitems ), $instance, $listitems, $items );
+				echo apply_filters( 'thememix_featured_content_list_items', sprintf( '<%1$s>%2$s</%1$s>', $instance['extra_format'], $listitems ), $instance, $listitems, $items );
 			elseif ( strlen( $optitems ) > 0 ) {
 				printf(
 					'<select id="thememixfc-%1$s-extras" onchange="window.location=document.getElementById(\'thememixfc-%1$s-extras\').value;"><option value="none">%2$s</option>%3$s</select>',
@@ -836,7 +836,7 @@ function thememixfcSave(t) {
 				);
 			}
 
-			ThemeMix_Featured_Content::action( 'thememixfc_after_list_items', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_after_list_items', $instance );
 
 		endif;
 
@@ -852,7 +852,7 @@ function thememixfcSave(t) {
 	 */
 	public static function exclude_taxonomies( $taxonomy ) {
 		$filters = array( '', 'nav_menu' );
-		$filters = apply_filters( 'thememixfc_exclude_taxonomies', $filters );
+		$filters = apply_filters( 'thememix_featured_content_exclude_taxonomies', $filters );
 		return ( ! in_array( $taxonomy->name, $filters ) );
 	}
 
@@ -864,7 +864,7 @@ function thememixfcSave(t) {
 	 */
 	public static function exclude_post_types( $type ) {
 		$filters = array( '', 'attachment', 'soliloquy', );
-		$filters = apply_filters( 'thememixfc_exclude_post_types', $filters, ThemeMix_Featured_Content::$widget_instance );
+		$filters = apply_filters( 'thememix_featured_content_exclude_post_types', $filters, ThemeMix_Featured_Content::$widget_instance );
 		return( !in_array( $type, $filters ) );
 	}
 
@@ -1170,7 +1170,7 @@ function thememixfcSave(t) {
 				'requires'    => '',
 			),
 			'optimize_more_1' => array(
-				'description' => 'Your main widget transient id: thememixfc_main_' . ThemeMix_Featured_Content::$widget_instance['custom_field'],
+				'description' => 'Your main widget transient id: thememix_featured_content_main_' . ThemeMix_Featured_Content::$widget_instance['custom_field'],
 				'type'        => 'description',
 				'requires'    => array(
 					'optimize',
@@ -1179,7 +1179,7 @@ function thememixfcSave(t) {
 				),
 			),
 			'optimize_more_2' => array(
-				'description' => 'Your extra posts transient id: thememixfc_extra_' . ThemeMix_Featured_Content::$widget_instance['custom_field'],
+				'description' => 'Your extra posts transient id: thememix_featured_content_extra_' . ThemeMix_Featured_Content::$widget_instance['custom_field'],
 				'type'        => 'description',
 				'requires'    => array(
 					'optimize',
@@ -1605,7 +1605,7 @@ function thememixfcSave(t) {
 				$box_8,
 			),
 		);
-		return apply_filters( 'thememixfc_form_fields', $columns, ThemeMix_Featured_Content::$widget_instance, compact( "box_1", "box_2", "box_3", "box_4", "box_5", "box_6", "box_7" ) );
+		return apply_filters( 'thememix_featured_content_form_fields', $columns, ThemeMix_Featured_Content::$widget_instance, compact( "box_1", "box_2", "box_3", "box_4", "box_5", "box_6", "box_7" ) );
 	}
 
 	/**
@@ -1667,16 +1667,16 @@ function thememixfcSave(t) {
 	 */
 	protected static function get_taxonomies( $args = array(), $output = 'names', $operator = 'and' ) {
 
-		$cache_key  = 'thememixfc_get_tax_' . md5( ThemeMix_Featured_Content::$widget_instance['widget']->id );
+		$cache_key  = 'thememix_featured_content_get_tax_' . md5( ThemeMix_Featured_Content::$widget_instance['widget']->id );
 		$taxonomies = wp_cache_get( $cache_key, 'get_taxonomies' );
 
 		if ( false === $taxonomies || null === $taxonomies ) {
 			$taxonomies = get_taxonomies( $args, $output, $operator );
 			if ( $taxonomies && ! is_wp_error( $taxonomies ) ) {
-				wp_cache_set( $cache_key, $taxonomies, 'get_taxonomies', apply_filters( 'thememixfc_get_taxonomies_cache_expires', 0 ) );
+				wp_cache_set( $cache_key, $taxonomies, 'get_taxonomies', apply_filters( 'thememix_featured_content_get_taxonomies_cache_expires', 0 ) );
 			} else {
 				// if we get an invalid value, let's cache it anyway
-				wp_cache_set( $cache_key, array(), 'get_taxonomies', apply_filters( 'thememixfc_get_taxonomies_cache_expires', 0 ) );
+				wp_cache_set( $cache_key, array(), 'get_taxonomies', apply_filters( 'thememix_featured_content_get_taxonomies_cache_expires', 0 ) );
 			}
 		} else {
 			$taxonomies = get_taxonomies( $args, $output, $operator );
@@ -1768,7 +1768,7 @@ function thememixfcSave(t) {
 							break;
 
 						case 'select_taxonomy' :
-							$taxonomies = ThemeMix_Featured_Content::get_taxonomies( apply_filters( 'thememixfc_get_taxonomies_args', array( 'public' => true ), $instance, $obj ), 'objects' );
+							$taxonomies = ThemeMix_Featured_Content::get_taxonomies( apply_filters( 'thememix_featured_content_get_taxonomies_args', array( 'public' => true ), $instance, $obj ), 'objects' );
 
 							$taxonomies = array_filter( (array)$taxonomies, array( 'ThemeMix_Featured_Content', 'exclude_taxonomies' ) );
 
@@ -1892,7 +1892,7 @@ function thememixfcSave(t) {
 							echo $args['description'] ? wpautop( $args['description'] ) : '';
 							break;
 						default:
-							do_action( 'thememixfc_custom_field_' . $args['type'], $instance, $obj );
+							do_action( 'thememix_featured_content_custom_field_' . $args['type'], $instance, $obj );
 					}
 					echo '</div>';
 
@@ -1941,16 +1941,16 @@ function thememixfcSave(t) {
 		//* Title Field
 		echo '<p><label for="'. $this->get_field_id( 'title' ) .'">'. __( 'Title', 'thememix-pro-genesis' ) .':</label><input type="text" id="'. $this->get_field_id( 'title' ) .'" name="'. $this->get_field_name( 'title' ) .'" value="'. esc_attr( $instance['title'] ) .'" style="width:99%;" /></p>';
 
-		do_action( 'thememixfc_after_title_form_field', $instance, $this );
-		do_action( 'thememixfc_before_form_fields', $instance, $this );
+		do_action( 'thememix_featured_content_after_title_form_field', $instance, $this );
+		do_action( 'thememix_featured_content_before_form_fields', $instance, $this );
 
 		echo '<div class="thememixfc-widget-wrapper">';
 
-		do_action( 'thememixfc_output_form_fields', $instance, $this );
+		do_action( 'thememix_featured_content_output_form_fields', $instance, $this );
 
 		echo '</div>';
 
-		do_action( 'thememixfc_after_form_fields', $instance, $this );
+		do_action( 'thememix_featured_content_after_form_fields', $instance, $this );
 
 	}
 
@@ -2051,7 +2051,7 @@ function thememixfcSave(t) {
 	public function widget_title( $widget_title, $instance, $id_base ) {
 
 		if ( isset( $instance['widget_title_link'] ) && isset( $instance['widget_title_link_href'] ) && $instance['widget_title_link_href'] ) {
-			return apply_filters( 'thememixfc_widget_title_link', sprintf( '<a href="%s">%s</a>', $instance['widget_title_link_href'], $widget_title ), $widget_title, $instance, $id_base );
+			return apply_filters( 'thememix_featured_content_widget_title_link', sprintf( '<a href="%s">%s</a>', $instance['widget_title_link_href'], $widget_title ), $widget_title, $instance, $id_base );
 		}
 
 		return $widget_title;
@@ -2079,7 +2079,7 @@ function thememixfcSave(t) {
 		//* Merge with defaults
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
 
-		do_action( 'thememixfc_before_widget', $instance );
+		do_action( 'thememix_featured_content_before_widget', $instance );
 		ThemeMix_Featured_Content::before_widget( $before_widget, $instance['custom_field'] );
 		add_filter( 'post_class', array( 'ThemeMix_Featured_Content', 'post_class' ) );
 
@@ -2090,9 +2090,9 @@ function thememixfcSave(t) {
 		}
 		//* Set up the author bio
 		if ( ! empty( $instance['title'] ) ) {
-			do_action( 'thememixfc_before_widget_title', $instance );
-			echo $before_title . apply_filters( 'thememixfc_widget_title', apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ), $instance, $this->id_base ) . $after_title;
-			do_action( 'thememixfc_after_widget_title', $instance );
+			do_action( 'thememix_featured_content_before_widget_title', $instance );
+			echo $before_title . apply_filters( 'thememix_featured_content_widget_title', apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ), $instance, $this->id_base ) . $after_title;
+			do_action( 'thememix_featured_content_after_widget_title', $instance );
 		}
 
 		$q_args = array();
@@ -2172,7 +2172,7 @@ function thememixfcSave(t) {
 		if ( has_filter( 'gs_before_loop' ) ) {
 			ThemeMix_Featured_Content::action( 'gs_before_loop', $instance );
 		}
-		ThemeMix_Featured_Content::action( 'thememixfc_before_loop', $instance );
+		ThemeMix_Featured_Content::action( 'thememix_featured_content_before_loop', $instance );
 
 		if ( 0 === $instance['posts_num'] ) {
 			return;
@@ -2214,46 +2214,46 @@ function thememixfcSave(t) {
 		$instance['query_args'] = $query_args;
 		ThemeMix_Featured_Content::$widget_instance = $instance;
 
-		$query_args = apply_filters( 'thememixfc_query_args', $query_args, $instance );
+		$query_args = apply_filters( 'thememix_featured_content_query_args', $query_args, $instance );
 
 		// get transient
 		if ( !empty( $instance['optimize'] ) && !empty( $instance['custom_field'] ) ) {
 			if ( ! empty( $instance['delete_transients'] ) ) {
-				ThemeMix_Featured_Content::delete_transient( 'thememixfc_main_' . $instance['custom_field'] );
+				ThemeMix_Featured_Content::delete_transient( 'thememix_featured_content_main_' . $instance['custom_field'] );
 			}
 
 			// Get transient, set transient if transient does not exist
-			if ( false === ( $thememixfc_query = ThemeMix_Featured_Content::get_transient( 'thememixfc_main_' . $instance['custom_field'] ) ) ) {
-				$thememixfc_query = new WP_Query( $query_args );
+			if ( false === ( $thememix_featured_content_query = ThemeMix_Featured_Content::get_transient( 'thememix_featured_content_main_' . $instance['custom_field'] ) ) ) {
+				$thememix_featured_content_query = new WP_Query( $query_args );
 				$time = !empty( $instance['transients_time'] ) ? $instance['transients_time'] : 60 * 60 * 24;
-				ThemeMix_Featured_Content::set_transient( 'thememixfc_main_' . $instance['custom_field'], $thememixfc_query, $time );
+				ThemeMix_Featured_Content::set_transient( 'thememix_featured_content_main_' . $instance['custom_field'], $thememix_featured_content_query, $time );
 			} else {
-				$thememixfc_query = apply_filters( 'thememixfc_query_results', $thememixfc_query, $instance );
+				$thememix_featured_content_query = apply_filters( 'thememix_featured_content_query_results', $thememix_featured_content_query, $instance );
 			}
 		} else {
-			$thememixfc_query = apply_filters( 'thememixfc_query_results', new WP_Query( $query_args ) );
+			$thememix_featured_content_query = apply_filters( 'thememix_featured_content_query_results', new WP_Query( $query_args ) );
 		}
 
-		if ( $thememixfc_query->have_posts() ) :
-			while ( $thememixfc_query->have_posts() ) : $thememixfc_query->the_post();
+		if ( $thememix_featured_content_query->have_posts() ) :
+			while ( $thememix_featured_content_query->have_posts() ) : $thememix_featured_content_query->the_post();
 				$_genesis_displayed_ids[] = get_the_ID();
 
 				ThemeMix_Featured_Content::framework( $instance );
 
 			endwhile;
 
-			ThemeMix_Featured_Content::action( 'thememixfc_endwhile', $instance );
+			ThemeMix_Featured_Content::action( 'thememix_featured_content_endwhile', $instance );
 
 		endif;
 
 		$gs_counter = 0;
 
-		ThemeMix_Featured_Content::action( 'thememixfc_after_loop', $instance );
+		ThemeMix_Featured_Content::action( 'thememix_featured_content_after_loop', $instance );
 
 		//* Restore original query
 		wp_reset_query();
 
-		ThemeMix_Featured_Content::action( 'thememixfc_after_loop_reset', $instance );
+		ThemeMix_Featured_Content::action( 'thememix_featured_content_after_loop_reset', $instance );
 
 		echo $after_widget;
 		remove_filter( 'post_class', array( 'ThemeMix_Featured_Content', 'post_class' ) );
@@ -2282,14 +2282,14 @@ function thememixfcSave(t) {
 		$new_instance['post_info']      = wp_kses_post( $new_instance['post_info'] );
 		$new_instance['custom_field']   = $new_instance['custom_field'] ? sanitize_title_with_dashes( $new_instance['custom_field'] ) : ThemeMix_Featured_Content::set_custom_field( $new_instance );
 
-		ThemeMix_Featured_Content::delete_transient( 'thememixfc_extra_' . $new_instance['custom_field'] );
+		ThemeMix_Featured_Content::delete_transient( 'thememix_featured_content_extra_' . $new_instance['custom_field'] );
 		if ( $new_instance['custom_field'] != $old_instance['custom_field'] ) {
-			ThemeMix_Featured_Content::delete_transient( 'thememixfc_extra_' . $old_instance['custom_field'] );
+			ThemeMix_Featured_Content::delete_transient( 'thememix_featured_content_extra_' . $old_instance['custom_field'] );
 		}
 
-		ThemeMix_Featured_Content::delete_transient( 'thememixfc_main_' . $new_instance['custom_field'] );
+		ThemeMix_Featured_Content::delete_transient( 'thememix_featured_content_main_' . $new_instance['custom_field'] );
 		if ( $new_instance['custom_field'] != $old_instance['custom_field'] ) {
-			ThemeMix_Featured_Content::delete_transient( 'thememixfc_main_' . $old_instance['custom_field'] );
+			ThemeMix_Featured_Content::delete_transient( 'thememix_featured_content_main_' . $old_instance['custom_field'] );
 		}
 
 		// Fix potential issues
@@ -2297,7 +2297,7 @@ function thememixfcSave(t) {
 		$new_instance['include_exclude'] = 'page' !== $new_instance['post_type'] ? $new_instance['include_exclude'] : '';
 		$new_instance['link_title_field'] = $new_instance['link_title'] ? $new_instance['link_title_field'] : '';
 
-		return apply_filters( 'thememixfc_update', $new_instance, $old_instance );
+		return apply_filters( 'thememix_featured_content_update', $new_instance, $old_instance );
 
 	}
 

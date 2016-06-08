@@ -3,24 +3,24 @@
 $settings = get_option( 'widget_featured-content' );
 if ( is_array( $settings ) ) {
 	foreach ( $settings as $key => $setting ) {
-		$thememixfc_grid_counter[$key] = 0;
+		$thememix_featured_content_grid_counter[$key] = 0;
 	}
 }
 
 function themefixfc_grid_after() {
-	global $thememixfc_grid_counter;
+	global $thememix_featured_content_grid_counter;
 
 	$settings = get_option( 'widget_featured-content' );
 	foreach ( $settings as $key => $setting ) {
-		$thememixfc_grid_counter[$key]++;
+		$thememix_featured_content_grid_counter[$key]++;
 	}
 
 }
-add_action( 'thememixfc_after_post_content', 'themefixfc_grid_after' );
+add_action( 'thememix_featured_content_after_post_content', 'themefixfc_grid_after' );
 
 
 function themefixfc_grid_styling() {
-	global $thememixfc_grid_counter;
+	global $thememix_featured_content_grid_counter;
 
 	// Find chosen number of columns
 	$settings = get_option( 'widget_featured-content' );
@@ -35,8 +35,8 @@ function themefixfc_grid_styling() {
 		// Set actual number of columns based on how many posts are being loaded (no point in doing 25% width for a single post)
 		if  ( isset( $settings[$key]['buddypress-group'] ) || 1 == $settings[$key]['buddypress-group'] ) {
 			$actual_number_of_columns = $chosen_number_of_columns;
-		} elseif ( $thememixfc_grid_counter[$key] < $chosen_number_of_columns ) {
-			$actual_number_of_columns = $thememixfc_grid_counter[$key];
+		} elseif ( $thememix_featured_content_grid_counter[$key] < $chosen_number_of_columns ) {
+			$actual_number_of_columns = $thememix_featured_content_grid_counter[$key];
 		} else {
 			$actual_number_of_columns = $chosen_number_of_columns;
 		}

@@ -72,7 +72,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
             return;
         }
 
-        global $_genesis_admin_settings, $_thememixfc_settings;
+        global $_genesis_admin_settings, $_thememix_featured_content_settings;
 
         if ( ! current_theme_supports( 'genesis-admin-menu' ) ) {
             return;
@@ -85,7 +85,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
         }
 
         parent::__construct();
-        $_genesis_admin_settings = $_thememixfc_settings;
+        $_genesis_admin_settings = $_thememix_featured_content_settings;
 
         //* Set the old global pagehook var for backward compatibility
         global $_genesis_theme_settings_pagehook;
@@ -111,7 +111,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
      * @since 1.0.0
      */
     public function add_defaults( $defaults ) {
-        $defaults['thememixfc_gfwa'] = 0;
+        $defaults['thememix_featured_content_gfwa'] = 0;
         return $defaults;
     }
 
@@ -122,7 +122,7 @@ class ThemeMixFC_Settings extends Genesis_Admin_Settings {
      */
     public function settings() {
     ?>
-        <label for="<?php echo $this->get_field_id( 'thememixfc_gfwa' ); ?>"><input type="checkbox" name="<?php echo $this->get_field_name( 'thememixfc_gfwa' ); ?>" id="<?php echo $this->get_field_id( 'thememixfc_gfwa' ); ?>" value="1"<?php checked( $this->get_field_value( 'thememixfc_gfwa' ) ); ?> />
+        <label for="<?php echo $this->get_field_id( 'thememix_featured_content_gfwa' ); ?>"><input type="checkbox" name="<?php echo $this->get_field_name( 'thememix_featured_content_gfwa' ); ?>" id="<?php echo $this->get_field_id( 'thememix_featured_content_gfwa' ); ?>" value="1"<?php checked( $this->get_field_value( 'thememix_featured_content_gfwa' ) ); ?> />
         <?php _e( 'Have the Genesis Featured Content Widget take over Genesis Featured Widget Amplified?', 'thememix-pro-genesis' ); ?></label>
     <?php
     }

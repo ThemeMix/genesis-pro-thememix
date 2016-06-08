@@ -1,6 +1,6 @@
 <?php
 
-add_filter( 'thememixfc_form_fields', 'themefix_buddypress_groups_settings_extension' );
+add_filter( 'thememix_featured_content_form_fields', 'themefix_buddypress_groups_settings_extension' );
 function themefix_buddypress_groups_settings_extension( $args ) {
 
 	if ( ! class_exists( 'BP_Groups_Group' ) ) {
@@ -98,7 +98,7 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 				}
 
 				if ( 'before_title' == $fontawesome_position ) {
-					thememixfc_span_fontawesome( $key );
+					thememix_featured_content_span_fontawesome( $key );
 				}
 
 				echo '
@@ -109,7 +109,7 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 						<a href="' . esc_url( $url ) . '" title="' . esc_attr( $group->name ) . '">';
 
 				if ( 'inline_before_title' == $fontawesome_position ) {
-					thememixfc_span_fontawesome( $key, true );
+					thememix_featured_content_span_fontawesome( $key, true );
 					echo ' ';
 				}
 
@@ -117,7 +117,7 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 
 				if ( 'inline_after_title' == $fontawesome_position ) {
 					echo ' ';
-					thememixfc_span_fontawesome( $key, true );
+					thememix_featured_content_span_fontawesome( $key, true );
 				}
 
 				echo '</a>';
@@ -126,7 +126,7 @@ function themefix_buddypress_groups_widget( $settings, $key, $group ) {
 					</h2>';
 
 				if ( 'after_title' == $fontawesome_position ) {
-					thememixfc_span_fontawesome( $key );
+					thememix_featured_content_span_fontawesome( $key );
 				}
 
 				if ( isset( $settings[$key]['image_position'] ) && 'after-title' == $settings[$key]['image_position'] ) {

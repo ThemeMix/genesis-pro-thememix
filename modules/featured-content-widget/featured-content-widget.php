@@ -41,8 +41,8 @@ function thememix_featured_content_widget_init() {
 	if ( is_admin() ) {
 		require_once( 'thememixfc-settings.php' );
 
-		global $_thememixfc_settings;
-		$_thememixfc_settings = new ThemeMixFC_Settings();
+		global $_thememix_featured_content_settings;
+		$_thememix_featured_content_settings = new ThemeMixFC_Settings();
 	}
 
 }
@@ -52,28 +52,28 @@ require( 'font-awesome/font-awesome.php' );
 require( 'buddypress-groups/buddypress-groups.php' );
 require( 'column-grid/column-grid.php' );
 
-add_action( 'widgets_init', 'thememixfc_widgets_init', 50 );
+add_action( 'widgets_init', 'thememix_featured_content_widgets_init', 50 );
 /**
  * Register THEMEMIXFC for use in the Genesis theme.
  *
  * @since 1.0.0
  */
-function thememixfc_widgets_init() {
+function thememix_featured_content_widgets_init() {
 	if ( ! function_exists( 'genesis_get_option' ) || ( class_exists( 'Premise_Base' ) && !is_admin() ) ) {
 		return;
 	}
-	$gfwa = genesis_get_option( 'thememixfc_gfwa' );
+	$gfwa = genesis_get_option( 'thememix_featured_content_gfwa' );
 	if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa ) {
 		unregister_widget( 'Genesis_Featured_Widget_Amplified' );
 	}
 	register_widget( 'ThemeMix_Featured_Content' );
 }
 
-add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
+add_action( 'save_post', 'thememix_featured_content_save_post', 10, 3 );
 /**
  * Hooks into save_post to remove all THEMEMIXFC Transients.
  *
- * Contains a filter thememixfc_save_post_query for anyone to modify the query.
+ * Contains a filter thememix_featured_content_save_post_query for anyone to modify the query.
  *
  * @since  1.0.0
  * @author Travis Smith
@@ -82,10 +82,10 @@ add_action( 'save_post', 'thememixfc_save_post', 10, 3 );
  * @param  WP_Post        $post                   Post object.
  * @param  bool           $update                 Whether post is being updated
  */
-function thememixfc_save_post( $post_ID, $post, $update ) {
+function thememix_featured_content_save_post( $post_ID, $post, $update ) {
 	global $wpdb;
 
-	$query = apply_filters( 'thememixfc_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
+	$query = apply_filters( 'thememix_featured_content_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_thememixfc%'", $post_ID, $post, $update );
 	$wpdb->query( $query );
 
 }
