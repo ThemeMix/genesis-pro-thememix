@@ -575,7 +575,15 @@ function thememix_featured_contentSave(t) {
 	 * Form submit script.
 	 */
 	public static function admin_scripts() {
-		if ( ! ThemeMix_Featured_Content::is_widgets_page() ) return;
+
+		if (
+			! ThemeMix_Featured_Content::is_widgets_page()
+			&&
+			'/wp-admin/customize.php' != $_SERVER['PHP_SELF']
+		) {
+			return;
+		}
+
 		$min = ( defined( 'WP_DEBUG' ) || defined( 'SCRIPT_DEBUG' ) ) ? '.' : '.min.';
 
 		$plugin_path = basename( dirname( dirname( dirname( __FILE__ ) ) ) );
