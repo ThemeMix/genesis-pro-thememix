@@ -7,7 +7,7 @@ if ( is_array( $settings ) ) {
 	}
 }
 
-function themefixfc_grid_after() {
+function thememix_featured_content_grid_after() {
 	global $thememix_featured_content_grid_counter;
 
 	$settings = get_option( 'widget_featured-content' );
@@ -16,10 +16,10 @@ function themefixfc_grid_after() {
 	}
 
 }
-add_action( 'thememix_featured_content_after_post_content', 'themefixfc_grid_after' );
+add_action( 'thememix_featured_content_after_post_content', 'thememix_featured_content_grid_after' );
 
 
-function themefixfc_grid_styling() {
+function thememix_featured_content_grid_styling() {
 	global $thememix_featured_content_grid_counter;
 
 	// Find chosen number of columns
@@ -58,4 +58,4 @@ function themefixfc_grid_styling() {
 	}
 
 }
-add_action( 'wp_footer', 'themefixfc_grid_styling' );
+add_action( 'wp_footer', 'thememix_featured_content_grid_styling' );
