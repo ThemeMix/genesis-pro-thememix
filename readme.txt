@@ -62,6 +62,9 @@ Head over to our [Github repo](https://github.com/thememix/thememix-pro-genesis)
 
 == Changelog ==
 
+= 1.0.3 =
+* Fixing BuddyPress related PHP notices in the Customizer
+
 = 1.0.2 =
 * Fixing bug/fatal error when the plugin was activated but the theme switched away from Genesis.
 * Fixing bug where the color set for the selected font icon wasn't reflected in the output.
@@ -92,3 +95,10 @@ Head over to our [Github repo](https://github.com/thememix/thememix-pro-genesis)
 = 0.1.0 =
 * Into the light I command thee!
 * Adding page template functionality.
+
+== Upgrade Notice ==
+* Fixing BuddyPress related PHP notices in the Customizer
+* Fixing bug/fatal error when the plugin was activated but the theme switched away from Genesis.
+* Fixing bug where the color set for the selected font icon wasn't reflected in the output.
+* Fixing bug where the icon font selector didn't display previous and next button to access the full set.
+* Fixing bug where the Featured Content Widget was not displayed properly within the context of the Customizer. Todo: make the font icon selector work as intended in the Customizer as well.

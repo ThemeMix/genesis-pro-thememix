@@ -68,6 +68,9 @@ Head over to our [Github repo](https://github.com/thememix/thememix-pro-genesis)
 
 ## Changelog
 
+### 1.0.3
+* Fixing BuddyPress related PHP notices in the Customizer
+
 ### 1.0.2
 
 * Fixing bug/fatal error when the plugin was activated but the theme switched away from Genesis.
