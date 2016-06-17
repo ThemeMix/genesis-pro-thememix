@@ -33,9 +33,9 @@ function thememix_featured_content_grid_styling() {
 		}
 
 		// Set actual number of columns based on how many posts are being loaded (no point in doing 25% width for a single post)
-		if  ( isset( $settings[$key]['buddypress-group'] ) || 1 == $settings[$key]['buddypress-group'] ) {
+		if  ( isset( $settings[$key]['buddypress-group'] ) && 1 == $settings[$key]['buddypress-group'] ) {
 			$actual_number_of_columns = $chosen_number_of_columns;
-		} elseif ( $thememix_featured_content_grid_counter[$key] < $chosen_number_of_columns ) {
+		} elseif ( isset( $thememix_featured_content_grid_counter[$key] ) && ( $thememix_featured_content_grid_counter[$key] < $chosen_number_of_columns ) ) {
 			$actual_number_of_columns = $thememix_featured_content_grid_counter[$key];
 		} else {
 			$actual_number_of_columns = $chosen_number_of_columns;

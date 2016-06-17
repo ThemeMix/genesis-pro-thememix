@@ -166,7 +166,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		add_filter( 'excerpt_more', array( 'ThemeMix_Featured_Content', 'excerpt_more' ) );
 
 		//* Do Post Image
-		add_filter( 'genesis_attr_thememixfc-entry-image-widget', array( 'ThemeMix_Featured_Content', 'attributes_thememix_featured_content_entry_image_widget' ) );
+		add_filter( 'genesis_attr_thememix_featured_content-entry-image-widget', array( 'ThemeMix_Featured_Content', 'attributes_thememix_featured_content_entry_image_widget' ) );
 		add_action( 'thememix_featured_content_before_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
 		add_action( 'thememix_featured_content_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
 		add_action( 'thememix_featured_content_after_post_content', array( 'ThemeMix_Featured_Content', 'do_post_image' ) );
@@ -249,7 +249,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		if ( empty( $instance['add_column_classes'] ) ) return;
 		$suffix = ( defined( 'WP_DEBUG' ) || defined( 'SCRIPT_DEBUG' ) ) ? '.css' : '.min.css';
 		$deps    = defined( 'CHILD_THEME_NAME' ) && CHILD_THEME_NAME ? sanitize_title_with_dashes( CHILD_THEME_NAME ) : 'child-theme';
-		wp_enqueue_style( 'thememixfc-column-classes', plugins_url( THEMEMIX_FEATURED_CONTENT_PLUGIN_NAME . '/css/column-classes' . $suffix ), array( $deps, ), THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
+		wp_enqueue_style( 'thememix-featured-content-column-classes', plugins_url( THEMEMIX_FEATURED_CONTENT_PLUGIN_NAME . '/css/column-classes' . $suffix ), array( $deps, ), THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
 	}
 
 	/**
@@ -403,7 +403,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 				'format'  => 'html',
 				'size'    => $instance['image_size'],
 				'context' => 'featured-post-widget',
-				'attr'    => genesis_parse_attr( 'thememixfc-entry-image-widget', array( 'align' => $align, ) ),
+				'attr'    => genesis_parse_attr( 'thememix-featured-content-entry-image-widget', array( 'align' => $align, ) ),
 			) );
 
 		$image = $instance['link_image'] == 1 ? sprintf( '<a href="%s" title="%s" class="%s">%s</a>', $link, the_title_attribute( 'echo=0' ), $align, $image ) : $image;
@@ -564,7 +564,7 @@ class ThemeMix_Featured_Content extends WP_Widget {
 	public static function admin_footer_script() {
 		if ( ! ThemeMix_Featured_Content::is_widgets_page() ) return; ?>
 <script type="text/javascript">
-function thememixfcSave(t) {
+function thememix_featured_contentSave(t) {
 	wpWidgets.save( jQuery(t).closest('div.widget'), 0, 1, 0 );
 }
 </script>
@@ -575,13 +575,27 @@ function thememixfcSave(t) {
 	 * Form submit script.
 	 */
 	public static function admin_scripts() {
-		if ( ! ThemeMix_Featured_Content::is_widgets_page() ) return;
+
+		if (
+			! ThemeMix_Featured_Content::is_widgets_page()
+			&&
+			'/wp-admin/customize.php' != $_SERVER['PHP_SELF']
+		) {
+			return;
+		}
+
 		$min = ( defined( 'WP_DEBUG' ) || defined( 'SCRIPT_DEBUG' ) ) ? '.' : '.min.';
 
 		$plugin_path = basename( dirname( dirname( dirname( __FILE__ ) ) ) );
 		$module = basename( dirname( __FILE__ ) );
-		$url = plugins_url( $plugin_path . '/modules/' . $module . '/css/thememixfc-admin' . $min . 'css' );
-		wp_enqueue_style( 'thememixfc-admin-widget', $url, null, THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
+
+		$url = plugins_url( $plugin_path . '/modules/' . $module . '/css/thememix-featured-content-admin' . $min . 'css' );
+		wp_enqueue_style( 'thememix-featured-content-admin-widget', $url, null, THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
+		if ( '/wp-admin/customize.php' == $_SERVER['PHP_SELF'] ) {
+			$url = plugins_url( $plugin_path . '/modules/' . $module . '/css/thememix-featured-content-customizer.css' );
+			wp_enqueue_style( 'thememix-featured-content-admin-customizer', $url, null, THEMEMIX_FEATURED_CONTENT_PLUGIN_VERSION );
+		}
+
 	}
 
 	/**
@@ -829,7 +843,7 @@ function thememixfcSave(t) {
 				echo apply_filters( 'thememix_featured_content_list_items', sprintf( '<%1$s>%2$s</%1$s>', $instance['extra_format'], $listitems ), $instance, $listitems, $items );
 			elseif ( strlen( $optitems ) > 0 ) {
 				printf(
-					'<select id="thememixfc-%1$s-extras" onchange="window.location=document.getElementById(\'thememixfc-%1$s-extras\').value;"><option value="none">%2$s</option>%3$s</select>',
+					'<select id="thememix-featured-content-%1$s-extras" onchange="window.location=document.getElementById(\'thememix-featured-content-%1$s-extras\').value;"><option value="none">%2$s</option>%3$s</select>',
 					$instance['custom_field'],
 					__( 'Select', 'thememix-pro-genesis' ),
 					$optitems
@@ -1694,20 +1708,20 @@ function thememixfcSave(t) {
 	 */
 	public static function do_columns( $instance, $columns, $obj ) {
 
-		echo '<div class="thememixfc-widget-body">';
+		echo '<div class="thememix-featured-content-widget-body">';
 		foreach( $columns as $column => $boxes ) {
 			if( 'col1' == $column )
-				$col_class = 'thememixfc-left-box';
+				$col_class = 'thememix-featured-content-left-box';
 			elseif( 'col2' == $column )
-				$col_class = 'thememixfc-right-box';
+				$col_class = 'thememix-featured-content-right-box';
 			else
-				$col_class = 'thememixfc-wide-box';
+				$col_class = 'thememix-featured-content-wide-box';
 			printf( '<div class="%s">', $col_class );
 
 			foreach( $boxes as $box ) {
 				$box_style = isset( $box['box_requires'] ) ? ' style="'. ThemeMix_Featured_Content::get_display_option( $instance, $box['box_requires'] ) .'"' : '';
 				// $box_style = isset( $box['box_requires'] ) ? ' style="'. ThemeMix_Featured_Content::get_display_option( $instance, $box['box_requires'][0], $box['box_requires'][1], $box['box_requires'][2] ) .'"' : '';
-				printf( '<div class="thememixfc-box"%s>', $box_style );
+				printf( '<div class="thememix-featured-content-box"%s>', $box_style );
 
 				foreach( $box as $field_id => $args ) {
 					if ( 'box_requires' == $field_id ) continue;
@@ -1723,7 +1737,7 @@ function thememixfcSave(t) {
 
 					switch( $args['type'] ) {
 						case 'post_type_select' :
-							printf( '<label for="%1$s">%2$s</label><select onchange="thememixfcSave(this)" id="%1$s" name="%3$s">',
+							printf( '<label for="%1$s">%2$s</label><select onchange="thememix_featured_contentSave(this)" id="%1$s" name="%3$s">',
 								$obj->get_field_id( $field_id ),
 								$args['label'],
 								$obj->get_field_name( $field_id )
@@ -1748,7 +1762,7 @@ function thememixfcSave(t) {
 							break;
 
 						case 'page_select' :
-							printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="thememixfcSave(this)"><option value="" %4$s>%5$s</option>',
+							printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="thememix_featured_contentSave(this)"><option value="" %4$s>%5$s</option>',
 								$obj->get_field_id( $field_id ),
 								$args['label'],
 								$obj->get_field_name( $field_id ),
@@ -1772,7 +1786,7 @@ function thememixfcSave(t) {
 
 							$taxonomies = array_filter( (array)$taxonomies, array( 'ThemeMix_Featured_Content', 'exclude_taxonomies' ) );
 
-							printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="thememixfcSave(this)"><option value="" class="gs-pad-left-10" %4$s>%5$s</option>',
+							printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="thememix_featured_contentSave(this)"><option value="" class="gs-pad-left-10" %4$s>%5$s</option>',
 								$obj->get_field_id( $field_id ),
 								$args['label'],
 								$obj->get_field_name( $field_id ),
@@ -1818,7 +1832,7 @@ function thememixfcSave(t) {
 
 						case 'text_small' :
 							printf( '<label for="%1$s">%2$s:</label>', $obj->get_field_id( $field_id ), $args['label'] );
-							printf( '<input type="text" class="thememixfc-small" id="%s" name="%s" value="%s" />%s',
+							printf( '<input type="text" class="thememix-featured-content-small" id="%s" name="%s" value="%s" />%s',
 								$obj->get_field_id( $field_id ),
 								$obj->get_field_name( $field_id ),
 								esc_attr( $instance[$field_id] ),
@@ -1828,7 +1842,7 @@ function thememixfcSave(t) {
 							break;
 
 						case 'select' :
-							printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="thememixfcSave(this)">',
+							printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="thememix_featured_contentSave(this)">',
 								$obj->get_field_id( $field_id ),
 								$args['label'],
 								$obj->get_field_name( $field_id )
@@ -1880,12 +1894,17 @@ function thememixfcSave(t) {
 
 							break;
 						case 'fontawesome' :
+							echo '<div class="font-awesome">';
 							printf( '<input type="textbox" id="%1$s" name="%2$s" class="fontawesome-picker" widget-control-save" value="%3$s" />',
 								ThemeMix_Featured_Content::$self->get_field_id( 'fontawesome-icon' ),
 								ThemeMix_Featured_Content::$self->get_field_name( 'fontawesome-icon' ),
 								$instance['fontawesome-icon']
 							);
 							echo '<input class="button fontawesome-picker" type="button" value="Choose Icon" data-target="' . esc_attr( '#' . ThemeMix_Featured_Content::$self->get_field_id( 'fontawesome-icon' ) ) . '" />';
+							echo '</div>';
+							echo '<div class="font-awesome-location">';
+							echo sprintf( __( 'To edit the Font Awesome Icon used, please visit the <a href="%s">primary widgets page</a> in WordPress.', 'thememix-pro-genesis' ), admin_url() . 'widgets.php' );
+							echo '</div>';
 							break;
 						case 'p' :
 						case 'description' :
@@ -1944,7 +1963,7 @@ function thememixfcSave(t) {
 		do_action( 'thememix_featured_content_after_title_form_field', $instance, $this );
 		do_action( 'thememix_featured_content_before_form_fields', $instance, $this );
 
-		echo '<div class="thememixfc-widget-wrapper">';
+		echo '<div class="thememix-featured-content-widget-wrapper">';
 
 		do_action( 'thememix_featured_content_output_form_fields', $instance, $this );
 
@@ -2016,7 +2035,7 @@ function thememixfcSave(t) {
 	public static function set_custom_field( $instance ) {
 
 		$cf = isset( $instance['title'] ) ? sanitize_title_with_dashes( $instance['title'] ) : '';
-		$cf = isset( $cf ) ? $cf : 'thememixfc-' . $instance['post_type'];
+		$cf = isset( $cf ) ? $cf : 'thememix-featured-content-' . $instance['post_type'];
 		return $cf;
 	}
 

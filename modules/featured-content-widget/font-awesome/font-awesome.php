@@ -24,8 +24,12 @@ function font_awesome_generate() {
  */
 function font_awesome_picker_scripts() {
 
-	// Only load when on the widgets admin page
-	if ( 'widgets.php' != basename( $_SERVER['REQUEST_URI'] ) ) {
+	// Only load when on an widgets admin page
+	if (
+		! ThemeMix_Featured_Content::is_widgets_page()
+		&&
+		'/wp-admin/customize.php' != $_SERVER['PHP_SELF']
+	) {
 		return;
 	}
 

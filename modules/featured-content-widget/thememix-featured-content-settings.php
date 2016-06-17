@@ -101,7 +101,7 @@ class THEMEMIX_FEATURED_CONTENT_Settings extends Genesis_Admin_Settings {
      */
     public function add_metabox() {
         if ( class_exists( 'ThemeMix_Featured_Content' ) ) {
-            add_meta_box( 'thememixfc-settings', __( 'Genesis Featured Content Settings', 'thememix-pro-genesis' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
+            add_meta_box( 'thememix_featured_content-settings', __( 'Genesis Featured Content Settings', 'thememix-pro-genesis' ), array( $this, 'settings' ), $this->pagehook, 'main', 'high' );
         }
     }
 
