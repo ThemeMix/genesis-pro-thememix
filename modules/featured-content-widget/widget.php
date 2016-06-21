@@ -530,6 +530,18 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		if ( '' !== $instance['show_content'] ) {
 			echo '<div class="entry-content">';
 		}
+
+		//* Custom Link or Permalink
+		if ( empty( $instance['link_title_field'] ) ) {
+			$link = get_permalink();
+		} else {
+			$link = $instance['link_title_field'];
+		}
+
+		//* Add Link to content?
+		$wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', esc_url( $link ), the_title_attribute( 'echo=0' ) ) : '';
+		echo $wrap_open;
+
 		switch ( $instance['show_content'] ) {
 			case 'excerpt':
 				add_filter( 'excerpt_more', array( 'ThemeMix_Featured_Content', 'excerpt_more' ) );
@@ -546,6 +558,10 @@ class ThemeMix_Featured_Content extends WP_Widget {
 				do_action( 'thememix_featured_content_show_content' );
 				break;
 		}
+
+		$wrap_close = $instance['link_title'] == 1 ? '</a>' : '';
+		echo $wrap_close;
+
 		if ( '' !== $instance['show_content'] ) {
 			echo '</div>';
 		}

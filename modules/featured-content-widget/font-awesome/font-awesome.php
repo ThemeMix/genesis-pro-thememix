@@ -73,13 +73,13 @@ function thememix_featured_content_get_span_fontawesome( $text ) {
 	$inline_icon_code = '[thememix_featured_content_inline_title]' . $icon . '|||' . thememix_featured_content_get_size_fontawesome( $key ) . '[/thememix_featured_content_inline_title]';
 
 	if ( 'before_title' == $position ) {
-		$text = $block_icon_code . '<h2%s>%s%s</h2>';
+		$text = $block_icon_code . '<h2%s>%s%s%s</h2>';
 	} elseif ( 'inline_before_title' == $position ) {
 		$text = '<h2%s>%s' . $inline_icon_code . '%s</h2>';
 	} elseif ( 'inline_after_title' == $position ) {
-		$text = '<h2%s>%s%s' . $inline_icon_code . '</h2>';
+		$text = '<h2%s>%s%s%s' . $inline_icon_code . '</h2>';
 	} elseif ( 'after_title' == $position ) {
-		$text = '<h2%s>%s%s</h2>' . $block_icon_code;
+		$text = '<h2%s>%s%s%s</h2>' . $block_icon_code;
 	} else {
 		$text = $content;
 	}
