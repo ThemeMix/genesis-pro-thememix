@@ -1290,7 +1290,6 @@ function thememix_featured_contentSave(t) {
 					'3x' => '3x',
 					'4x' => '4x',
 					'5x' => '5x',
-					'6x' => '6x',
 				),
 				'requires'    => array(
 					'font-awesome',
