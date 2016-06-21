@@ -487,10 +487,14 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		if ( empty( $instance['show_title'] ) ) return;
 
 		//* Custom Link or Permalink
-		$link = $instance['link_title'] && $instance['link_title_field'] && genesis_get_custom_field( 'link_title_field' ) ? genesis_get_custom_field( 'link_title_field' ) : get_permalink();
+		if ( empty( $instance['link_title_field'] ) ) {
+			$link = get_permalink();
+		} else {
+			$link = $instance['link_title_field'];
+		}
 
 		//* Add Link to Title?
-		$wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', $link, the_title_attribute( 'echo=0' ) ) : '';
+		$wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', esc_url( $link ), the_title_attribute( 'echo=0' ) ) : '';
 		$wrap_close = $instance['link_title'] == 1 ? '</a>' : '';
 
 		if ( ! empty( $instance['title_limit'] ) )
