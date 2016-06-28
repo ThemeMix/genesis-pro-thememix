@@ -1284,12 +1284,11 @@ function thememix_featured_contentSave(t) {
 				'description' => '',
 				'type'        => 'select',
 				'options'     => array(
-					'lg' => __( 'Normal', 'thememix-pro-genesis' ),
-					'1x' => '1x',
-					'2x' => '2x',
-					'3x' => '3x',
-					'4x' => '4x',
-					'5x' => '5x',
+					'10px' => '10px',
+					'20px' => '20px',
+					'30px' => '30px',
+					'40px' => '40px',
+					'50px' => '50px',
 				),
 				'requires'    => array(
 					'font-awesome',
