@@ -487,10 +487,14 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		if ( empty( $instance['show_title'] ) ) return;
 
 		//* Custom Link or Permalink
-		$link = $instance['link_title'] && $instance['link_title_field'] && genesis_get_custom_field( 'link_title_field' ) ? genesis_get_custom_field( 'link_title_field' ) : get_permalink();
+		if ( empty( $instance['link_title_field'] ) ) {
+			$link = get_permalink();
+		} else {
+			$link = $instance['link_title_field'];
+		}
 
 		//* Add Link to Title?
-		$wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', $link, the_title_attribute( 'echo=0' ) ) : '';
+		$wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', esc_url( $link ), the_title_attribute( 'echo=0' ) ) : '';
 		$wrap_close = $instance['link_title'] == 1 ? '</a>' : '';
 
 		if ( ! empty( $instance['title_limit'] ) )
@@ -526,6 +530,18 @@ class ThemeMix_Featured_Content extends WP_Widget {
 		if ( '' !== $instance['show_content'] ) {
 			echo '<div class="entry-content">';
 		}
+
+		//* Custom Link or Permalink
+		if ( empty( $instance['link_title_field'] ) ) {
+			$link = get_permalink();
+		} else {
+			$link = $instance['link_title_field'];
+		}
+
+		//* Add Link to content?
+		$wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', esc_url( $link ), the_title_attribute( 'echo=0' ) ) : '';
+		echo $wrap_open;
+
 		switch ( $instance['show_content'] ) {
 			case 'excerpt':
 				add_filter( 'excerpt_more', array( 'ThemeMix_Featured_Content', 'excerpt_more' ) );
@@ -542,6 +558,10 @@ class ThemeMix_Featured_Content extends WP_Widget {
 				do_action( 'thememix_featured_content_show_content' );
 				break;
 		}
+
+		$wrap_close = $instance['link_title'] == 1 ? '</a>' : '';
+		echo $wrap_close;
+
 		if ( '' !== $instance['show_content'] ) {
 			echo '</div>';
 		}
@@ -1264,13 +1284,11 @@ function thememix_featured_contentSave(t) {
 				'description' => '',
 				'type'        => 'select',
 				'options'     => array(
-					'lg' => __( 'Normal', 'thememix-pro-genesis' ),
-					'1x' => '1x',
-					'2x' => '2x',
-					'3x' => '3x',
-					'4x' => '4x',
-					'5x' => '5x',
-					'6x' => '6x',
+					'10px' => '10px',
+					'20px' => '20px',
+					'30px' => '30px',
+					'40px' => '40px',
+					'50px' => '50px',
 				),
 				'requires'    => array(
 					'font-awesome',

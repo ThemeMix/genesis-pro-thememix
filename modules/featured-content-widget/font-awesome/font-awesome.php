@@ -73,13 +73,13 @@ function thememix_featured_content_get_span_fontawesome( $text ) {
 	$inline_icon_code = '[thememix_featured_content_inline_title]' . $icon . '|||' . thememix_featured_content_get_size_fontawesome( $key ) . '[/thememix_featured_content_inline_title]';
 
 	if ( 'before_title' == $position ) {
-		$text = $block_icon_code . '<h2%s>%s%s</h2>';
+		$text = $block_icon_code . '<h2%s>%s%s%s</h2>';
 	} elseif ( 'inline_before_title' == $position ) {
 		$text = '<h2%s>%s' . $inline_icon_code . '%s</h2>';
 	} elseif ( 'inline_after_title' == $position ) {
-		$text = '<h2%s>%s%s' . $inline_icon_code . '</h2>';
+		$text = '<h2%s>%s%s%s' . $inline_icon_code . '</h2>';
 	} elseif ( 'after_title' == $position ) {
-		$text = '<h2%s>%s%s</h2>' . $block_icon_code;
+		$text = '<h2%s>%s%s%s</h2>' . $block_icon_code;
 	} else {
 		$text = $content;
 	}
@@ -101,7 +101,7 @@ function thememix_featured_content_modify_title( $title ) {
 	$key = $thememix_featured_content_key;
 	$colour = $settings[$key]['background'];
 
-	$title = str_replace( '[thememix_featured_content_block_title]', '<div style="' . esc_attr( 'width:100%;text-align:center;color: ' . $colour ) . '"><span class="fa fa-', $title );
+	$title = str_replace( '[thememix_featured_content_block_title]', '<div style="' . esc_attr( 'width:100%;text-align:center;color: ' . $colour ) . '"><span style="font-size: ' . thememix_featured_content_get_size_fontawesome( $key ) . '" class="fa fa-', $title );
 	$title = str_replace( '[thememix_featured_content_inline_title]', '<span style="' . esc_attr( 'color:' . $colour ) . '" class="fa fa-', $title );
 	$title = str_replace( '|||', ' fa-', $title );
 	$title = str_replace( '[/thememix_featured_content_block_title]', '"></span></div>', $title );
@@ -127,7 +127,7 @@ function thememix_featured_content_span_fontawesome( $key, $inline = false ) {
 		echo '<div style="width:100%;text-align:center;">';
 	}
 
-	echo '<span class="fa fa-' . $icon . ' fa-' . thememix_featured_content_get_size_fontawesome( $key ) . 'aria-hidden="true"></span>';
+	echo '<span class="fa fa-' . $icon . '" style="font-size: ' . thememix_featured_content_get_size_fontawesome( $key ) . '" aria-hidden="true"></span>';
 
 	if ( false == $inline ) {
 		echo '</div>';
@@ -138,10 +138,10 @@ function thememix_featured_content_span_fontawesome( $key, $inline = false ) {
 function thememix_featured_content_get_size_fontawesome( $key ) {
 
 	$settings = get_option( 'widget_featured-content' );
-	if ( isset( $settings[$key]['fontawesome-size'] ) ) {
-		$size = $settings[$key]['fontawesome-size'];
+	if ( ! isset( $settings[$key]['fontawesome-size'] ) ) {
+		$size = '20px';
 	} else {
-		$size = 'lg';
+		$size = $settings[$key]['fontawesome-size'];
 	}
 
 	return $size;
