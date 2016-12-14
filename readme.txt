@@ -3,9 +3,9 @@ Contributors: thememix, defries
 
 Tags: genesis, page templates, genesis compatibility, genesis, thememix
 Requires at least: 4.3
-Tested up to: 4.5.2
-Stable tag: 1.0.4
-Version: 1.0.4
+Tested up to: 4.7
+Stable tag: 1.0.5
+Version: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ ThemeMix Pro for Genesis adds the following page templates:
 
 * Login Page
 * Private Page
+* Beaver Builder Full Width
 
 = Genesis Compatibility =
 
@@ -61,6 +62,9 @@ Glad you asked. Our internal roadmap is not public (yet), but we sure are curiou
 Head over to our [Github repo](https://github.com/thememix/thememix-pro-genesis) if you'd like to contribute or create an issue.
 
 == Changelog ==
+
+= 1.0.5 = 
+* Adding page templates for Full Width Beaver Builder pages and posts
 
 = 1.0.4 = 
 * Fixing FontAwesome Size selection
