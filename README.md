@@ -1,4 +1,4 @@
-# ThemeMix Pro for Genesis
+# Genesis Pro by ThemeMix
 
 * Contributors: thememix, defries
 * Tags: genesis, page templates, genesis compatibility, genesis, thememix
@@ -17,7 +17,7 @@ This plugin currently has the following features:
 
 ### Page Templates
 
-ThemeMix Pro for Genesis adds the following page templates:
+Genesis Pro by ThemeMix adds the following page templates:
 
 * Login Page
 * Private Page
@@ -27,7 +27,7 @@ ThemeMix Pro for Genesis adds the following page templates:
 
 There are numerous plugins out there that help Genesis play nice with plugins that featured rich custom post types. Most, if not all, of these plugins area quite old or still depend on old configuration. We've gone ahead and rewritten current solution to a more modern approach of what we think Genesis Compatibility should looks like. No bloat, only loading what is necessary to make Genesis play nice.
 
-By activating ThemeMix Pro for Genesis you'll have Genesis play nice with the following plugins:
+By activating Genesis Pro by ThemeMix you'll have Genesis play nice with the following plugins:
 
 * BuddyPress
 * bbPress

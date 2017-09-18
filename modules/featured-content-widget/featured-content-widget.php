@@ -15,7 +15,7 @@
 /**
  * Genesis Featured Content by ThemeMix Widget
  *
- * @category   ThemeMix_Pro_for_Genesis_Featured_Content
+ * @category   Genesis_Pro_by_ThemeMix_Featured_Content
  * @package    Featured Content Widget
  * @author     Travis Smith
  * @author     ThemeMix

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * ThemeMix Pro for Genesis Widget Classes
+ * Genesis Pro by ThemeMix Widget Classes
  *
- * @category   ThemeMix_Pro_for_Genesis
+ * @category   Genesis_Pro_by_ThemeMix
  * @package    Featured Content Widget
  * @author     Travis Smith
  * @author     ThemeMix
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
  *
  * @since 0.1.8
  *
- * @category   ThemeMix_Pro_for_Genesis
+ * @category   Genesis_Pro_by_ThemeMix
  * @package    Widgets
  */
 if ( ! class_exists( 'ThemeMix_Featured_Content' ) ) {

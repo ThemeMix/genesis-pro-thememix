@@ -1,19 +1,19 @@
 <?php
 /**
- * ThemeMix Pro for Genesis
+ * Genesis Pro by ThemeMix
  *
  * A plugin that adds modules to a Genesis framework powered site.
  * of the Genesis Framework.
  *
  *
- * @package   ThemeMix Pro for Genesis
+ * @package   Genesis Pro by ThemeMix
  * @author    ThemeMix <hello@thememix.com>
  * @license   GPL-2.0+
  * @link      https://thememix.com
  * @copyright 2016 ThemeMix
  *
  * @wordpress-plugin
- * Plugin Name:       ThemeMix Pro for Genesis
+ * Plugin Name:       Genesis Pro by ThemeMix
  * Plugin URI:        https://thememix.com/plugins/thememix-pro-genesis
  * Description:       A plugin that enhances, adds, modifies or removes certain elements
  * Version:           1.0.5
@@ -50,7 +50,7 @@ function thememix_plugin_deactivate() {
 function thememix_admin_notice_deactivation() {
     echo '<div class="notice notice-success is-dismissible">';
 
-        echo '<p>' . __( 'The ThemeMix Pro for Genesis plugin requires Genesis to be activated (as parent theme). This is no longer the case and this plugin has therefor been deactivated.', 'thememix-pro-genesis' ) . '</p>';
+        echo '<p>' . __( 'The Genesis Pro by ThemeMix plugin requires Genesis to be activated (as parent theme). This is no longer the case and this plugin has therefor been deactivated.', 'thememix-pro-genesis' ) . '</p>';
 
     echo '</div>';
 
@@ -89,7 +89,7 @@ function thememix_pro_genesis_activation_check() {
     // Restrict activation to only when the Genesis Framework is activated
     if ( basename( get_template_directory() ) != 'genesis' ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );  // Deactivate ourself
-        wp_die( sprintf( __( 'Sorry, but the ThemeMix Pro for Genesis plugin only works if you have the  %1$sGenesis Framework%2$s or a Genesis Child Theme activated as your current theme.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', '</a>' ) );
+        wp_die( sprintf( __( 'Sorry, but the Genesis Pro by ThemeMix plugin only works if you have the  %1$sGenesis Framework%2$s or a Genesis Child Theme activated as your current theme.', 'thememix-pro-genesis' ), '<a href="https://remkusdevries.com/out/genesis/" target="_new">', '</a>' ) );
     }
     // Set a minimum version of the Genesis Framework to be activated on
     if ( version_compare( $version, $minimum_genesis_version, '<' ) ) {
