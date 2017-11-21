@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
 /**
  * Adds a new metabox to Genesis Theme Settings Page.
  *
- * @category   ThemeMix_Pro_for_Genesis_Featured_Content
+ * @category   Genesis_Pro_by_ThemeMix_Featured_Content
  * @package    Admin
  * @author     Travis Smith
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)

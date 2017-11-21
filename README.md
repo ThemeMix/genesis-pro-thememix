@@ -1,11 +1,11 @@
-# ThemeMix Pro for Genesis
+# Genesis Pro by ThemeMix
 
 * Contributors: thememix, defries
 * Tags: genesis, page templates, genesis compatibility, genesis, thememix
 * Requires at least: 4.3
-* Tested up to: 4.7
-* Version: 1.0.5
-* Stable tag: 1.0.5
+* Tested up to: 4.9
+* Version: 1.0.6
+* Stable tag: 1.0.6
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ This plugin currently has the following features:
 
 ### Page Templates
 
-ThemeMix Pro for Genesis adds the following page templates:
+Genesis Pro by ThemeMix adds the following page templates:
 
 * Login Page
 * Private Page
@@ -27,7 +27,7 @@ ThemeMix Pro for Genesis adds the following page templates:
 
 There are numerous plugins out there that help Genesis play nice with plugins that featured rich custom post types. Most, if not all, of these plugins area quite old or still depend on old configuration. We've gone ahead and rewritten current solution to a more modern approach of what we think Genesis Compatibility should looks like. No bloat, only loading what is necessary to make Genesis play nice.
 
-By activating ThemeMix Pro for Genesis you'll have Genesis play nice with the following plugins:
+By activating Genesis Pro by ThemeMix you'll have Genesis play nice with the following plugins:
 
 * BuddyPress
 * bbPress
@@ -68,6 +68,12 @@ Upgrading to the latest version of the plugin should fix this, although there is
 Head over to our [Github repo](https://github.com/thememix/thememix-pro-genesis) if you'd like to contribute or create an issue.
 
 ## Changelog
+
+### 1.0.6
+* Temporarily fixing checkboxes being uncheckable. This change will break the checkboxes being autosaved for the Featured Content Widget. Props @mbootsman
+
+= 1.0.5 = 
+* Adding page templates for Full Width Beaver Builder pages and posts
 
 ### 1.0.4 
 * Fixing FontAwesome Size selection

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * ThemeMix Pro for Genesis Widget Classes
+ * Genesis Pro by ThemeMix Widget Classes
  *
- * @category   ThemeMix_Pro_for_Genesis
+ * @category   Genesis_Pro_by_ThemeMix
  * @package    Featured Content Widget
  * @author     Travis Smith
  * @author     ThemeMix
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit( 'Cheatin&#8217; uh?' );
  *
  * @since 0.1.8
  *
- * @category   ThemeMix_Pro_for_Genesis
+ * @category   Genesis_Pro_by_ThemeMix
  * @package    Widgets
  */
 if ( ! class_exists( 'ThemeMix_Featured_Content' ) ) {
@@ -1877,7 +1877,7 @@ function thememix_featured_contentSave(t) {
 							break;
 
 						case 'checkbox' :
-							printf( '<input type="checkbox" id="%1$s" name="%2$s" value="1" class="widget-control-save" %3$s />',
+							printf( '<input type="checkbox" id="%1$s" name="%2$s" value="1" %3$s />',
 								$obj->get_field_id( $field_id ),
 								$obj->get_field_name( $field_id ),
 								checked( 1, $instance[$field_id], false )
