@@ -16,7 +16,7 @@
  * Plugin Name:       Genesis Pro by ThemeMix
  * Plugin URI:        https://thememix.com/plugins/thememix-pro-genesis
  * Description:       A plugin that enhances, adds, modifies or removes certain elements
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            ThemeMix
  * Author URI:        https://thememix.com
  * Text Domain:       thememix-pro-genesis
